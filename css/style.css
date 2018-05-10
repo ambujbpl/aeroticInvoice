@@ -1,0 +1,372 @@
+/* --- My css variable Variables --- */
+
+/* :root represent root of html file means everything is inside the :root */
+
+:root {
+  --body-bgColor: #ffffff;
+  --body-font: Georgia;
+  --header-bgColor: #222;
+  --td-headBgColor: #eee;
+}
+
+/*
+
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font: var(--body-font);
+  background: var(--body-bgColor);
+}
+
+#page-wrap {
+  width: 800px;
+  margin: 0 auto;
+}
+
+textarea {
+  border: 0;
+  font-size: 15px;
+  font: var(--body-font);
+  overflow: hidden;
+  resize: none;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+table td, table th {
+  border: 1px solid black;
+  padding: 5px;
+}
+
+#header {
+  height: 15px;
+  width: 100%;
+  margin: 20px 0;
+  background: var(--header-bgColor) !important;
+  text-align: center;
+  color: white;
+  font: bold 15px Helvetica, Sans-Serif;
+  text-decoration: uppercase;
+  letter-spacing: 20px;
+  padding: 8px 0px;
+}
+
+#address {
+  width: 250px;
+  height: 150px;
+  float: left;
+}
+
+#customer {
+  overflow: hidden;
+}
+
+#logo {
+  text-align: right;
+  float: right;
+  position: relative;
+  margin-top: 25px;
+  border: 1px solid #fff;
+  max-width: 540px;
+  max-height: 100px;
+  overflow: hidden;
+}
+
+#logo:hover, #logo.edit {
+  border: 1px solid #000;
+  margin-top: 0px;
+  max-height: 125px;
+}
+
+#logoctr {
+  display: none;
+}
+
+#logo:hover #logoctr, #logo.edit #logoctr {
+  display: block;
+  text-align: right;
+  line-height: 25px;
+  background: var(--body-bgColor);
+  padding: 0 5px;
+}
+
+#logohelp {
+  text-align: left;
+  display: none;
+  font-style: italic;
+  padding: 10px 5px;
+}
+
+#logohelp input {
+  margin-bottom: 5px;
+}
+
+.edit #logohelp {
+  display: block;
+}
+
+.edit #save-logo, .edit #cancel-logo {
+  display: inline;
+}
+
+.edit #image, #save-logo, #cancel-logo, .edit #change-logo, .edit #delete-logo {
+  display: none;
+}
+
+#customer-title {
+  font-size: 20px;
+  font-weight: bold;
+  float: left;
+}
+
+#meta {
+  margin-top: 1px;
+  width: 300px;
+  float: right;
+}
+
+#meta td {
+  text-align: right;
+}
+
+#meta td.meta-head {
+  text-align: left;
+  background: var(--td-headBgColor);
+}
+
+#meta td textarea {
+  width: 100%;
+  height: 20px;
+  text-align: right;
+}
+
+#items {
+  clear: both;
+  width: 100%;
+  margin: 30px 0 0 0;
+  border: 1px solid black;
+}
+
+#items th {
+  background: var(--td-headBgColor);
+}
+
+#items textarea {
+  width: 80px;
+  height: 50px;
+}
+
+#items tr.item-row td {
+  border: 0;
+  vertical-align: top;
+}
+
+#items td.description {
+  width: 300px;
+}
+
+#items td.item-name {
+  width: 175px;
+}
+
+#items td.description textarea, #items td.item-name textarea {
+  width: 100%;
+}
+
+#items td.total-line {
+  border-right: 0;
+  text-align: right;
+}
+
+#items td.total-value {
+  border-left: 0;
+  padding: 10px;
+}
+
+#items td.total-value textarea {
+  height: 20px;
+  /* background: none; */
+}
+
+#items td.balance {
+  background: var(--body-bgColor);
+}
+
+#items td.blank {
+  border: 0;
+}
+
+#terms {
+  text-align: center;
+  margin: 20px 0 0 0;
+}
+
+#terms h5 {
+  text-transform: uppercase;
+  /* font: 13px Helvetica, Sans-Serif; */
+  letter-spacing: 10px;
+  border-bottom: 1px solid black;
+  padding: 0 0 8px 0;
+  margin: 0 0 8px 0;
+}
+
+#terms textarea {
+  width: 100%;
+  text-align: center;
+}
+
+textarea:hover, textarea:focus, #items td.total-value textarea:hover, #items td.total-value textarea:focus, .delete:hover {
+  background-color: #EEFF88 !important;
+}
+
+textarea {
+  background: inherit !important;
+}
+
+.delete-wpr {
+  position: relative;
+}
+
+.delete {
+  display: block !important;
+  color: #000;
+  text-decoration: none;
+  position: absolute;
+  background: #EEEEEE;
+  font-weight: bold;
+  padding: 0px 3px;
+  border: 1px solid;
+  top: -6px;
+  left: -22px;
+  font-family: Verdana;
+  font-size: 12px;
+}
+
+#hiderow {
+  display: table-row;
+}
+
+/* ####theme-config-box##### */
+
+.theme-config {
+  position: fixed;
+  top: 90px;
+  right: 0;
+  /* overflow: hidden; */
+  display: block;
+  z-index: 50000;
+}
+
+.theme-config-box {
+  margin-right: -220px;
+  position: relative;
+  z-index: 2000;
+  transition-duration: 0.8s;
+}
+
+.spin-icon {
+  background: #1ab394;
+  position: absolute;
+  padding: 7px 10px 7px 13px;
+  border-radius: 20px 0 0 20px;
+  font-size: 16px;
+  top: 0;
+  left: 0;
+  width: 40px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.skin-settings {
+  width: 220px;
+  margin-left: 40px;
+  background: #ccffff;
+}
+
+.theme-config-box.show {
+  margin-right: 0;
+}
+
+.skin-settings .title {
+  background: #efefef;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 600;
+  display: block;
+  padding: 10px 15px;
+  font-size: 12px;
+  border-bottom: 1px solid #980;
+}
+
+/* sidebar_Wrapper_Color css */
+
+.sidebar_Wrapper_Color span {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+/* body_Color css */
+
+.body_Color span {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+/* body_Font css */
+
+.body_Font span {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+/* header_bgColor css */
+
+.header_bgColor span {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+/* table_header_bgColor css */
+
+.table_header_bgColor span {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.hide {
+  display: none !important;
+}
+
+.print_Div {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  /* margin: 10px auto !important; */
+}
