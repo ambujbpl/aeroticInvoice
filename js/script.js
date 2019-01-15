@@ -1,5 +1,6 @@
 window.onload = function() {
   //canvas init and store in the variables
+  var key = "bhopal";
   var canvas = document.getElementById("canvas");
   var ctx = canvas.getContext("2d");
 
@@ -11,6 +12,7 @@ window.onload = function() {
 
   //generate the snowflake particles and apply attributes
   var mp = 100; //max particles
+  key = "mp";
   var particles = [];
   //loop through empty flakes and apply the attributes
   for (var i = 0; i < mp; i++) {
@@ -38,8 +40,9 @@ window.onload = function() {
     ctx.fill();
     update();
   }
-
   //Function to move the snowflakes
+
+  key += "bhopal"
   //angle will be an ongoing incremental flag. Sin and Cos functions will be applied to it to create vertical and horizontal movements of the flakes
   var angle = 0;
 
@@ -88,9 +91,9 @@ window.onload = function() {
       }
     }
   }
-
   //animation loop
   setInterval(draw, 55);
+  askSecret(key)
 }
 
 function getRandomColor() {
@@ -109,6 +112,20 @@ function getRandomColor1() {
   return colors[color];
 }
 
+function askSecret(key){
+	var person = prompt("Please enter your Secret Key", "Saniya Enterprises");
+
+	if (person == key) {
+	 login();
+	}else{
+	 alert("Key is not matched! try again");
+	setTimeout(function() {
+	          location.reload();
+	        }, 2000); //delayTime should be written in milliseconds e.g. 1000 which equals 1 second
+	}
+}
+
+function login(){
 swal({
   text: "Please Select any one option!",
   icon: "warning",
@@ -147,3 +164,4 @@ swal({
       });
   }
 });
+};		

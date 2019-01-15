@@ -35,7 +35,7 @@
 
     <div style="clear:both"></div>
 
-    <table id="items">
+    <table id="items" style="max-height: 300px;overflow-y: scroll;display: inline-block;width: 100%;">
       <thead>
         <tr>
           <th>Id</th>
@@ -71,7 +71,12 @@
       $.each(oJS, function(i, arr) {
         var body = "<tr>";
         body += "<td style='color: green;'>" + arr.id + "</td>";
-        body += "<td style='color: green;'>" + arr.fk_ID_Invoice + "</td>";
+        if(arr.fk_ID_Invoice <10){
+          body += "<td style='color: green;'>00" + arr.fk_ID_Invoice + "</td>";
+        }
+        else{
+          body += "<td style='color: green;'>0" + arr.fk_ID_Invoice + "</td>";
+        }
         body += "<td style='color: green;'>" + arr.invoice_date + "</td>";
         body += "<td style='color: green;'>" + arr.subtotal + "</td>";
         body += "<td style='color: orange;'>" + arr.gst + "</td>";

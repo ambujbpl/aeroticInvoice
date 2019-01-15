@@ -98,21 +98,8 @@ if($total2 >= 1){
     <div id="identity">
 
       <!-- <div id="address"><?php echo $result2['Name']."\n<br />".$result2['Address']."\n<br />Phone:- ".$result2['Phone']."\n<br />GST:-".$result2['Gst']?></div> -->
-			<div id="address" class="address">
-				From:<br>
-				<span style="height: 20px; font-size:15px;">Name: <span rows="1" id="selfName" style="height:14px;"></span></span><br>
-				<span style="height: 20px; font-size:15px;">Address: <span id="selfAddress"  style="height:14px;"></span></span><br>
-				<span style="height: 20px; font-size:15px;">Phone: <span id="selfPhone"  style="height:14px;"></span></span><br>
-				<span style="height: 20px; font-size:15px;">GST: <span id="selfGst" style="height:14px;"></span></span><br>
-			</div>
-
-			<div id="address" class="partyAddress" style="margin-left:15px">
-				To (Party Details):<br>
-				<span style="height: 20px; font-size:15px;">Name: <span rows="1" id="PartyName" style="height:14px;"></span></span><br>
-				<span style="height: 20px; font-size:15px;">Address: <span id="PartyAddress"  style="height:14px;"></span></span><br>
-				<span style="height: 20px; font-size:15px;">Phone: <span id="PartyPhone"  style="height:14px;"></span></span><br>
-				<span style="height: 20px; font-size:15px;">GST: <span id="PartyGst" style="height:14px;"></span></span><br>
-			</div>
+			<div id="address" class="address"></div>
+			<div id="address" class="partyAddress"></div>
       <div id="logo">
 <!--
         <div id="logoctr">
@@ -134,14 +121,14 @@ if($total2 >= 1){
 
     <div id="customer">
 
-			<div id="customer-title" style="width:100%;"><span style="height: 20px; font-size:15px;">Registration Number:<span id="registrationNumber" style="height:14px;">
-</span><span>
+      <div id="customer-title">Registration Number:<br>
+<?php echo $result2['HsnCode']?></div>
 
       <table id="meta">
         <tr>
           <td class="meta-head">Invoice #</td>
           <td>
-						<span id='invoiceNumber'></span><span>/2018-19</span>
+						<span id='invoiceNumber'></span>
           </td>
         </tr>
         <tr>
@@ -185,7 +172,7 @@ if($total2 >= 1){
       </tr>
       <tr>
         <td colspan="4" class="blank"></td>
-        <td class="total-line">Gst ( <span id="gstPercent"></span> % )</td>
+        <td class="total-line">Gst (18%)</td>
         <td class="total-value">
           <i class='fa fa-inr'></i> <span id="gst"></span>
         </td>
@@ -201,7 +188,7 @@ if($total2 >= 1){
         <td colspan="4" class="blank"> </td>
         <td class="total-line">Amount Paid</td>
         <td class="total-value">
-					<i class='fa fa-inr'></i> <span id="paid"></span>
+					<i class='fa fa-inr'></i><span id="paid"></span>
 				</td>
       </tr>
       <tr>
@@ -229,7 +216,7 @@ if($total2 >= 1){
   <!-- <script type="text/javascript" src="js/print.min.js"></script> -->
   <script type="text/javascript">
 		var obj = JSON.parse(sessionStorage.getItem("info"));
-		// console.log(obj);
+		console.log(obj);
 		$('#home_Title').html("View More about Invoice Number:-"+obj.Invoice);
 		$.ajax({
       type: 'POST',
@@ -237,11 +224,11 @@ if($total2 >= 1){
       data: {"obj":obj},
       dataType: "JSON",
     }).done(function(res) { // if getting done then call.
-      // console.log(res);
+      console.log(res);
       var invoice_more = res.Data[0]["invoice_more"];
       var invoice_item = res.Data[0]["invoice_item"];
-			// console.log("invoice_more????????????", invoice_more);
-      // console.log("invoice_item????????????", invoice_item);
+			console.log("invoice_more????????????", invoice_more);
+      console.log("invoice_item????????????", invoice_item);
       $.each(invoice_item, function(i, arr) {
         var body = "<tr>";
         body += "<td style='color: green;'>" + arr.name + "</td>";
@@ -249,11 +236,11 @@ if($total2 >= 1){
         body += "<td style='color: green;'>" + arr.value + "</td>";
         body += "<td style='color: green;'>" + arr.quantity + "</td>";
         body += "<td style='color: orange;'>" + arr.total + "</td>";
-	body += "</tr>";
-        // console.log("body>>>", body);
+				body += "</tr>";
+        console.log("body>>>", body);
         $("#my_file_output").append(body);
       });
-			// console.log(invoice_more[0].fk_ID_Invoice);
+			console.log(invoice_more[0].fk_ID_Invoice);
 			if(invoice_more[0].fk_ID_Invoice <10){
 				$('#invoiceNumber').html('00'+invoice_more[0].fk_ID_Invoice);
 			}else {
@@ -265,32 +252,9 @@ if($total2 >= 1){
 			$('#total').html(invoice_more[0].total);
 			$('#paid').html(invoice_more[0].paid);
 			$('.due').html(invoice_more[0].due);
-			// $('.address').html(invoice_more[0].Address);
-			// $('.partyAddress').html(invoice_more[0].PartyAddress);
-			//if(parseInt(invoice_more[0].fk_ID_Invoice) <116){
-			//   $('.address').html(invoice_more[0].Address);
-			//   $('.partyAddress').html(invoice_more[0].PartyAddress);
-			//}else {
-                       console.log("invoice_more self : ",invoice_more[0].Address);
-                       console.log("invoice_more party : ",invoice_more[0].PartyAddress);
-			var Address = JSON.parse(invoice_more[0].Address);
-			var PartyAddress = JSON.parse(invoice_more[0].PartyAddress);
-			// console.log("Address",Address);
-			// console.log("PartyAddress",PartyAddress);
-                          $('#selfName').html(Address.selfName);
-			  $('#selfAddress').html(Address.selfAddress);
-			  $('#selfPhone').html(Address.selfPhone);
-			  $('#selfGst').html(Address.selfGst);
-			  $('#gstPercent').html(Address.gstPercent);
-			  $('#PartyName').html(PartyAddress.PartyName);
-			  $('#PartyAddress').html(PartyAddress.PartyAddress);
-			  $('#PartyPhone').html(PartyAddress.PartyPhone);
-			  $('#PartyGst').html(PartyAddress.PartyGst);
-			//}			
-			$('#registrationNumber').html(PartyAddress.Registration);
-                        if((PartyAddress.header != "")||(PartyAddress.header != undefined)){
-                           $('#header').html(PartyAddress.header);
-                         }
+			$('.address').html(invoice_more[0].Address);
+			$('.partyAddress').html(invoice_more[0].PartyAddress);
+
 			}).fail(function(error) {
       // console.log(error.Message);
       swal(error.resCode, error.Message, "error");
@@ -306,7 +270,7 @@ if($total2 >= 1){
       } else { // else statement will check if cancel button is clicked.
         $('.theme-config').removeClass('hide');
         $('.print_Div').removeClass('hide');
-	$('.home').removeClass('hide');
+				$('.home').removeClass('hide');
       }
     });
 
@@ -314,4 +278,3 @@ if($total2 >= 1){
 </body>
 
 </html>
-			

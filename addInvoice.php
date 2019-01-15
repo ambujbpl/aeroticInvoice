@@ -10,6 +10,7 @@ if($total >= 1){
 }else {
 // New Project start command
 // TRUNCATE TABLE invoice;
+// DELETE FROM invoice WHERE id > 0
 // TRUNCATE TABLE invoice_item;
 // TRUNCATE TABLE invoice_more;
 // ALTER TABLE invoice AUTO_INCREMENT = 1000;
@@ -55,6 +56,13 @@ $total3 = mysqli_num_rows($data3);
     .blank {
       width: 50%;
     }
+		#seal{
+		  margin-top: 50px;
+		}
+		.print_Div {
+		  text-align: center;
+		  margin-top: 100px !important;
+		}
   </style>
 </head>
 
@@ -112,12 +120,25 @@ $total3 = mysqli_num_rows($data3);
   <!-- theme-configration -->
 
   <div id="page-wrap">
-
-    <div id="header">INVOICE</div>
+    <div><textarea id="header">INVOICE</textarea></div>
 
     <div id="identity">
 
-      <textarea id="address"><?php echo $result2['Name']."\n".$result2['Address']."\nPhone:- ".$result2['Phone']."\nGST:-".$result2['Gst']?></textarea>
+      <div id="address" class="address">
+				From:<br>
+				<span style="height: 20px; font-size:15px;">Name: <textarea rows="1" id="selfName" style="height:14px;"><?php echo $result2['Name']; ?></textarea></span><br>
+				<span style="height: 20px; font-size:15px;">Address: <textarea id="selfAddress"  style="height:14px;"><?php echo $result2['Address']; ?></textarea></span><br>
+				<span style="height: 20px; font-size:15px;">Phone: <textarea id="selfPhone"  style="height:14px;"><?php echo $result2['Phone']; ?></textarea></span><br>
+				<span style="height: 20px; font-size:15px;">GST: <textarea id="selfGst" style="height:14px;"><?php echo $result2['Gst']; ?></textarea></span><br>
+			</div>
+
+			<div id="address" class="partyAddress" style="margin-left:15px">
+				To (Party Details):<br>
+				<span style="height: 20px; font-size:15px;">Name: <textarea rows="1" id="PartyName" style="height:14px;"><?php echo $result2['PartyName']; ?></textarea></span><br>
+				<span style="height: 20px; font-size:15px;">Address: <textarea id="PartyAddress"  style="height:14px;"><?php echo $result2['PartyAddress']; ?></textarea></span><br>
+				<span style="height: 20px; font-size:15px;">Phone: <textarea id="PartyPhone"  style="height:14px;"><?php echo $result2['PartyPhone']; ?></textarea></span><br>
+				<span style="height: 20px; font-size:15px;">GST: <textarea id="PartyGst" style="height:14px;"><?php echo $result2['PartyGst']; ?></textarea></span><br>
+			</div>
 
       <div id="logo">
 
@@ -139,22 +160,27 @@ $total3 = mysqli_num_rows($data3);
 
     <div id="customer">
 
-      <textarea id="customer-title">HSN Code:
-<?php echo $result2['HsnCode']?></textarea>
+      <div id="customer-title" style="width:100%;"><span style="height: 20px; font-size:15px;">Registration Number:<textarea id="registrationNumber" style="height:14px;">
+<?php echo $result2['HsnCode']?></textarea><span>
 
       <table id="meta">
         <tr>
           <td class="meta-head">Invoice #</td>
           <td>
             <?php
-              if($result['id'] >=1000){
-                $result['id']+=1;
-                echo "<span id='invoiceNumber'>".$result['id']."</span>";
+						// echo "result['id'] ==".$result['id'];
+							if (($result['id'] >= 0) && ($result['id'] < 9)){
+								// echo $result['id'];
+                //$result['id'] += 1;//old
+                $result['id'] += 10;//new
+                echo "<span id='invoiceNumber'>0".$result['id']."</span>";
               }
               else {
-              echo "<span id='invoiceNumber'>1000</span>";
-              }
-            ?>
+								$result['id']+=1;
+								echo "<span id='invoiceNumber'>0".$result['id']."</span>";
+							}
+            ?><span>/2018-19</span>
+<!--<textarea></textarea>-->
           </td>
         </tr>
         <tr>
@@ -190,10 +216,10 @@ $total3 = mysqli_num_rows($data3);
     			{
 						echo  "<tr class='item-row'>
 						<td class='item-name'>
-						  <div class='delete-wpr'><textarea>".$array['Name']."</textarea><a class='delete' href='javascript:;' title='Remove row'><i class='fa fa-times' aria-hidden='true'></i>
+						  <div class='delete-wpr'><textarea id='Name'>".$array['Name']."</textarea><a class='delete' href='javascript:;' title='Remove row'><i class='fa fa-times' aria-hidden='true'></i>
 						</a></div>
 						</td>
-						<td class='description'><textarea>".$array['Type']."</textarea></td>
+						<td class='description'><textarea id='Type'>".$array['Type']."</textarea></td>
 						<td><textarea class='cost'></textarea></td>
 						<td><textarea class='qty'></textarea></td>
 						<td><i class='fa fa-inr'></i> <span class='price'></span></td>
@@ -216,7 +242,7 @@ $total3 = mysqli_num_rows($data3);
       </tr>
       <tr>
         <td colspan="4" class="blank"></td>
-        <td class="total-line">Gst (18%)</td>
+        <td class="total-line">Gst ( <textarea id="gstPercent" style="height:14px;width:25px">18</textarea> %)</td>
         <td class="total-value">
           <i class='fa fa-inr'></i> <span id="gst"></span>
         </td>
@@ -246,6 +272,11 @@ $total3 = mysqli_num_rows($data3);
       <h5>Terms</h5>
       <textarea>Please check the product serial number before receiving any product.</textarea>
     </div>
+
+		<div id="seal" style="float:right;">
+			<h5>Authorized Signatory</h5>
+			<!-- <textarea>Please check the product serial number before receiving any product.</textarea> -->
+		</div>
   </div>
   <div class="print_Div" id="print_Div">
     <button type="button" name="button" onclick="myFun()">Save in Database</button>
@@ -261,13 +292,16 @@ $total3 = mysqli_num_rows($data3);
   <!-- <script type="text/javascript" src="js/print.min.js"></script> -->
   <script type="text/javascript">
     function myFun() {
+
       var myTableArray = [];
       var table = $("#items tbody");
       table.find('tr').each(function(i) {
         var $tds = $(this).find('td textarea'),
           $tds1 = $(this).find('td .price'),
-          productName = $tds.eq(0).text(),
-          productDesc = $tds.eq(1).text(),
+          productName = $tds.eq(0).val(),
+					// productName = $('textarea#Name').val(),
+          productDesc = $tds.eq(1).val(),
+					// productDesc = $('textarea#Type').val(),
           productCost = $tds.eq(2).val(),
           productQuantity = $tds.eq(3).val(),
           productPrize = $tds1.text();
@@ -282,7 +316,7 @@ $total3 = mysqli_num_rows($data3);
           myTableArray.push(obj);
         }
       });
-      console.log("myTableArray>>>>>", myTableArray);
+      // console.log("myTableArray>>>>>", myTableArray);
       var Invoice = $('#invoiceNumber').text();
       var Invoice_Date = $('#date').val();
       var Subtotal = $('#subtotal').text();
@@ -290,6 +324,32 @@ $total3 = mysqli_num_rows($data3);
       var Total = $('#total').text();
       var Amount_Paid = $('#paid').val();
       var Amount_Due = $('#due').text();
+      var selfName = $('#selfName').val().trim();
+      var selfAddress = $('#selfAddress').val().trim();
+      var selfPhone = $('#selfPhone').val().trim();
+      var selfGst = $('#selfGst').val().trim();
+      var gstPercent = $('#gstPercent').val().trim();
+      var PartyName = $('#PartyName').val().trim();
+      var PartyAddress = $('#PartyAddress').val().trim();
+      var PartyPhone = $('#PartyPhone').val().trim();
+      var PartyGst = $('#PartyGst').val().trim();
+      var registrationNumber = $('#registrationNumber').val().trim();
+      var header = $('#header').val();
+			var Address = {
+				"selfName": selfName,
+				"selfAddress": selfAddress,
+				"selfPhone": selfPhone,
+				"selfGst": selfGst,
+				"gstPercent":gstPercent,
+			};
+			var PartyAddress = {
+				"PartyName": PartyName,
+				"PartyAddress": PartyAddress,
+				"PartyPhone": PartyPhone,
+				"PartyGst": PartyGst,
+                                "Registration":registrationNumber,
+                                "header":header,
+			};
       var rest = {
         "Invoice": Invoice,
         "Invoice_Date": Invoice_Date,
@@ -297,9 +357,13 @@ $total3 = mysqli_num_rows($data3);
         "Gst": Gst,
         "Total": Total,
         "Amount_Paid": Amount_Paid,
-        "Amount_Due": Amount_Due
+        "Amount_Due": Amount_Due,
+				"Address":JSON.stringify(Address),
+				"PartyAddress":JSON.stringify(PartyAddress),
+				"Registration":registrationNumber,
+"header":header,
       }
-      console.log("rest>>>>>///", rest);
+      // console.log("rest>>>>>///",rest);
       $.ajax({
         type: 'POST',
         url: 'api/Add_invoice.php',
@@ -334,3 +398,4 @@ $total3 = mysqli_num_rows($data3);
 </body>
 
 </html>
+				

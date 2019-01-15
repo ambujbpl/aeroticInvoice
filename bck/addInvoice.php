@@ -1,5 +1,20 @@
 <?php
 include('config/connection.php');
+$query = "select * from invoice";
+$data = mysqli_query($connection,$query);
+$total = mysqli_num_rows($data);
+if($total >= 1){
+	$query1 = "select * from invoice where id=(select max(id) from invoice);";
+	$data1 = mysqli_query($connection,$query1);
+	$result = mysqli_fetch_assoc($data1);
+}else {
+// New Project start command
+// TRUNCATE TABLE invoice;
+// DELETE FROM invoice WHERE id > 0
+// TRUNCATE TABLE invoice_item;
+// TRUNCATE TABLE invoice_more;
+// ALTER TABLE invoice AUTO_INCREMENT = 1000;
+}
 $query2 = "select * from basic";
 $data2 = mysqli_query($connection,$query2);
 $total2 = mysqli_num_rows($data2);
@@ -7,6 +22,15 @@ if($total2 >= 1){
 	$result2 = mysqli_fetch_assoc($data2);
 }else {
   // echo "No Record Found!";
+}
+$query3 = "select * from product";
+$data3 = mysqli_query($connection,$query3);
+$total3 = mysqli_num_rows($data3);
+	while ($row = $data3->fetch_assoc())
+{
+    $new_array[$row['id']]['id'] = $row['id'];
+    $new_array[$row['id']]['Name'] = $row['Name'];
+    $new_array[$row['id']]['Type'] = $row['Type'];
 }
 ?>
 
@@ -19,7 +43,7 @@ if($total2 >= 1){
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="description" content="Speed Governor, Saniya Enterprises, Aerotic India Pvt Ltd">
   <meta name="author" content="Ambuj Dubey">
-  <link rel="icon" href="./imges/logoNew1.png" type="image/x-icon">
+  <link rel="icon" href="./images/logoNew1.png" type="image/x-icon">
   <title>Saniya Invoice</title>
   <!-- Plugins CSS -->
   <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.css">
@@ -32,8 +56,12 @@ if($total2 >= 1){
     .blank {
       width: 50%;
     }
-		#my_file_output > tr > td{
-			text-align: center !important;
+		#seal{
+		  margin-top: 50px;
+		}
+		.print_Div {
+		  text-align: center;
+		  margin-top: 100px !important;
 		}
   </style>
 </head>
@@ -97,25 +125,12 @@ if($total2 >= 1){
 
     <div id="identity">
 
-      <!-- <div id="address"><?php echo $result2['Name']."\n<br />".$result2['Address']."\n<br />Phone:- ".$result2['Phone']."\n<br />GST:-".$result2['Gst']?></div> -->
-			<div id="address" class="address">
-				From:<br>
-				<span style="height: 20px; font-size:15px;">Name: <span rows="1" id="selfName" style="height:14px;"></span></span><br>
-				<span style="height: 20px; font-size:15px;">Address: <span id="selfAddress"  style="height:14px;"></span></span><br>
-				<span style="height: 20px; font-size:15px;">Phone: <span id="selfPhone"  style="height:14px;"></span></span><br>
-				<span style="height: 20px; font-size:15px;">GST: <span id="selfGst" style="height:14px;"></span></span><br>
-			</div>
+      <textarea id="address" class="address"><?php echo "From\nName ".$result2['Name']."\nAddress ".$result2['Address']."\nPhone ".$result2['Phone']."\nGST ".$result2['Gst']?></textarea>
+			<textarea id="address" class="partyAddress" style="margin-left:15px"><?php echo "To (Party Details)\nName ".$result2['PartyName']."\nAddress ".$result2['PartyAddress']."\nPhone ".$result2['PartyPhone']."\nGST ".$result2['PartyGst']?></textarea>
 
-			<div id="address" class="partyAddress" style="margin-left:15px">
-				To (Party Details):<br>
-				<span style="height: 20px; font-size:15px;">Name: <span rows="1" id="PartyName" style="height:14px;"></span></span><br>
-				<span style="height: 20px; font-size:15px;">Address: <span id="PartyAddress"  style="height:14px;"></span></span><br>
-				<span style="height: 20px; font-size:15px;">Phone: <span id="PartyPhone"  style="height:14px;"></span></span><br>
-				<span style="height: 20px; font-size:15px;">GST: <span id="PartyGst" style="height:14px;"></span></span><br>
-			</div>
       <div id="logo">
-<!--
-        <div id="logoctr">
+
+        <!-- <div id="logoctr">
           <a href="javascript:;" id="change-logo" title="Change logo">Change Logo</a>
           <a href="javascript:;" id="save-logo" title="Save changes">Save</a> |
           <a href="javascript:;" id="delete-logo" title="Delete logo">Delete Logo</a>
@@ -127,26 +142,36 @@ if($total2 >= 1){
         </div> -->
         <img id="image" src="images/logoNew1.png" alt="logo" width="40" height="40" />
       </div>
-
     </div>
 
     <div style="clear:both"></div>
 
     <div id="customer">
 
-			<div id="customer-title" style="width:100%;"><span style="height: 20px; font-size:15px;">Registration Number:<span id="registrationNumber" style="height:14px;">
-</span><span>
+      <textarea id="customer-title">Registration Number:
+<?php echo $result2['HsnCode']?></textarea>
 
       <table id="meta">
         <tr>
           <td class="meta-head">Invoice #</td>
           <td>
-						<span id='invoiceNumber'></span><span>/2018-19</span>
+            <?php
+						// echo "result['id'] ==".$result['id'];
+							if (($result['id'] >= 0) && ($result['id'] < 9)){
+								// echo $result['id'];
+                $result['id'] += 1;
+                echo "<span id='invoiceNumber'>00".$result['id']."</span>";
+              }
+              else {
+								$result['id']+=1;
+								echo "<span id='invoiceNumber'>0".$result['id']."</span>";
+							}
+            ?>
           </td>
         </tr>
         <tr>
           <td class="meta-head">Date</td>
-          <td><span class="date"></span></td>
+          <td><textarea id="date"></textarea></td>
         </tr>
         <tr>
           <td class="meta-head">Amount Due</td>
@@ -166,16 +191,34 @@ if($total2 >= 1){
         <tr>
           <th>Item</th>
           <th>Remark</th>
-          <th>Unit Cost</th>
+          <th>Unit Cost (<i class='fa fa-inr'></i>)</th>
           <th>Quantity</th>
           <th>Price</th>
         </tr>
       </thead>
-			<tbody id="my_file_output">
-
+      <tbody>
+        <?php
+    			foreach($new_array as $array)
+    			{
+						echo  "<tr class='item-row'>
+						<td class='item-name'>
+						  <div class='delete-wpr'><textarea id='Name'>".$array['Name']."</textarea><a class='delete' href='javascript:;' title='Remove row'><i class='fa fa-times' aria-hidden='true'></i>
+						</a></div>
+						</td>
+						<td class='description'><textarea id='Type'>".$array['Type']."</textarea></td>
+						<td><textarea class='cost'></textarea></td>
+						<td><textarea class='qty'></textarea></td>
+						<td><i class='fa fa-inr'></i> <span class='price'></span></td>
+					 </tr>";
+					}
+				?>
+          <tr id="hiderow" class="hiderow">
+            <td colspan="5"><a id="addrow" href="javascript:;" title="Add a row"><i class='fa fa-plus' aria-hidden='true'></i>Add a row</a></td>
+          </tr>
       </tbody>
     </table>
     <table style="width:100%;">
+
       <tr>
         <td colspan="4" class="blank"></td>
         <td class="total-line">Subtotal</td>
@@ -185,7 +228,7 @@ if($total2 >= 1){
       </tr>
       <tr>
         <td colspan="4" class="blank"></td>
-        <td class="total-line">Gst ( <span id="gstPercent"></span> % )</td>
+        <td class="total-line">Gst (18%)</td>
         <td class="total-value">
           <i class='fa fa-inr'></i> <span id="gst"></span>
         </td>
@@ -199,10 +242,8 @@ if($total2 >= 1){
       </tr>
       <tr>
         <td colspan="4" class="blank"> </td>
-        <td class="total-line">Amount Paid</td>
-        <td class="total-value">
-					<i class='fa fa-inr'></i> <span id="paid"></span>
-				</td>
+        <td class="total-line">Amount Paid (<i class='fa fa-inr'></i>)</td>
+        <td class="total-value"><textarea id="paid"></textarea></td>
       </tr>
       <tr>
         <td colspan="4" class="blank"> </td>
@@ -217,10 +258,18 @@ if($total2 >= 1){
       <h5>Terms</h5>
       <textarea>Please check the product serial number before receiving any product.</textarea>
     </div>
+
+		<div id="seal" style="float:right;">
+			<h5>Authorized Signatory</h5>
+			<!-- <textarea>Please check the product serial number before receiving any product.</textarea> -->
+		</div>
   </div>
   <div class="print_Div" id="print_Div">
+    <button type="button" name="button" onclick="myFun()">Save in Database</button>
     <button type="button" name="button" id="print">Print Invoice</button>
   </div>
+  <!-- <button type="button" name="button" onclick="myPrintFun()">Print Invoice</button> -->
+  <!-- <button type="button" onclick="printJS('page-wrap', 'html')">Print Invoice</button> -->
   <script type="text/javascript" src='js/jquery.min.js'></script>
   <!-- custom js -->
   <script type="text/javascript" src="js/changeColor.js"></script>
@@ -228,90 +277,84 @@ if($total2 >= 1){
   <script type="text/javascript" src='js/sweetalert.min.js'></script>
   <!-- <script type="text/javascript" src="js/print.min.js"></script> -->
   <script type="text/javascript">
-		var obj = JSON.parse(sessionStorage.getItem("info"));
-		// console.log(obj);
-		$('#home_Title').html("View More about Invoice Number:-"+obj.Invoice);
-		$.ajax({
-      type: 'POST',
-      url: './api/View_More.php',
-      data: {"obj":obj},
-      dataType: "JSON",
-    }).done(function(res) { // if getting done then call.
-      // console.log(res);
-      var invoice_more = res.Data[0]["invoice_more"];
-      var invoice_item = res.Data[0]["invoice_item"];
-			// console.log("invoice_more????????????", invoice_more);
-      // console.log("invoice_item????????????", invoice_item);
-      $.each(invoice_item, function(i, arr) {
-        var body = "<tr>";
-        body += "<td style='color: green;'>" + arr.name + "</td>";
-        body += "<td style='color: green;'>" + arr.dei + "</td>";
-        body += "<td style='color: green;'>" + arr.value + "</td>";
-        body += "<td style='color: green;'>" + arr.quantity + "</td>";
-        body += "<td style='color: orange;'>" + arr.total + "</td>";
-	body += "</tr>";
-        // console.log("body>>>", body);
-        $("#my_file_output").append(body);
+    function myFun() {
+
+      var myTableArray = [];
+      var table = $("#items tbody");
+      table.find('tr').each(function(i) {
+        var $tds = $(this).find('td textarea'),
+          $tds1 = $(this).find('td .price'),
+          productName = $tds.eq(0).val(),
+					// productName = $('textarea#Name').val(),
+          productDesc = $tds.eq(1).val(),
+					// productDesc = $('textarea#Type').val(),
+          productCost = $tds.eq(2).val(),
+          productQuantity = $tds.eq(3).val(),
+          productPrize = $tds1.text();
+        var obj = {
+          "productName": productName,
+          "productDesc": productDesc,
+          "productCost": productCost,
+          "productQuantity": productQuantity,
+          "productPrize": productPrize
+        };
+        if (productName) {
+          myTableArray.push(obj);
+        }
       });
-			// console.log(invoice_more[0].fk_ID_Invoice);
-			if(invoice_more[0].fk_ID_Invoice <10){
-				$('#invoiceNumber').html('00'+invoice_more[0].fk_ID_Invoice);
-			}else {
-				$('#invoiceNumber').html('0'+invoice_more[0].fk_ID_Invoice);
-			}
-			$('.date').html(invoice_more[0].invoice_date);
-			$('#subtotal').html(invoice_more[0].subtotal);
-			$('#gst').html(invoice_more[0].gst);
-			$('#total').html(invoice_more[0].total);
-			$('#paid').html(invoice_more[0].paid);
-			$('.due').html(invoice_more[0].due);
-			// $('.address').html(invoice_more[0].Address);
-			// $('.partyAddress').html(invoice_more[0].PartyAddress);
-			//if(parseInt(invoice_more[0].fk_ID_Invoice) <116){
-			//   $('.address').html(invoice_more[0].Address);
-			//   $('.partyAddress').html(invoice_more[0].PartyAddress);
-			//}else {
-                       console.log("invoice_more self : ",invoice_more[0].Address);
-                       console.log("invoice_more party : ",invoice_more[0].PartyAddress);
-			var Address = JSON.parse(invoice_more[0].Address);
-			var PartyAddress = JSON.parse(invoice_more[0].PartyAddress);
-			// console.log("Address",Address);
-			// console.log("PartyAddress",PartyAddress);
-                          $('#selfName').html(Address.selfName);
-			  $('#selfAddress').html(Address.selfAddress);
-			  $('#selfPhone').html(Address.selfPhone);
-			  $('#selfGst').html(Address.selfGst);
-			  $('#gstPercent').html(Address.gstPercent);
-			  $('#PartyName').html(PartyAddress.PartyName);
-			  $('#PartyAddress').html(PartyAddress.PartyAddress);
-			  $('#PartyPhone').html(PartyAddress.PartyPhone);
-			  $('#PartyGst').html(PartyAddress.PartyGst);
-			//}			
-			$('#registrationNumber').html(PartyAddress.Registration);
-                        if((PartyAddress.header != "")||(PartyAddress.header != undefined)){
-                           $('#header').html(PartyAddress.header);
-                         }
-			}).fail(function(error) {
-      // console.log(error.Message);
-      swal(error.resCode, error.Message, "error");
-    });
-		$("#print").click(function() { // calls the id of the button that will print
+      console.log("myTableArray>>>>>", myTableArray);
+      var Invoice = $('#invoiceNumber').text();
+      var Invoice_Date = $('#date').val();
+      var Subtotal = $('#subtotal').text();
+      var Gst = $('#gst').text();
+      var Total = $('#total').text();
+      var Amount_Paid = $('#paid').val();
+      var Amount_Due = $('#due').text();
+			var Address = $('.address').val();
+			var PartyAddress = $('.partyAddress').val();
+      var rest = {
+        "Invoice": Invoice,
+        "Invoice_Date": Invoice_Date,
+        "Subtotal": Subtotal,
+        "Gst": Gst,
+        "Total": Total,
+        "Amount_Paid": Amount_Paid,
+        "Amount_Due": Amount_Due,
+				"Address":Address,
+				"PartyAddress":PartyAddress
+      }
+      console.log("rest>>>>>///", rest);
+      $.ajax({
+        type: 'POST',
+        url: 'api/Add_invoice.php',
+        data: {
+          "Rest": rest,
+          "myTableArray": myTableArray
+        },
+        dataType: "JSON",
+      }).done(function(data) { // if getting done then call.
+        swal(data.resCode, data.Message, "success")
+      });
+    };
+    $("#print").click(function() { // calls the id of the button that will print
       $('.theme-config').addClass('hide');
+      $('.hiderow').addClass('hide');
       $('.print_Div').addClass('hide');
 			$('.home').addClass('hide');
       if (print()) { // shows print preview.
         $('.theme-config').removeClass('hide');
+        $('.hiderow').removeClass('hide');
         $('.print_Div').removeClass('hide');
 				$('.home').removeClass('hide');
       } else { // else statement will check if cancel button is clicked.
         $('.theme-config').removeClass('hide');
+        $('.hiderow').removeClass('hide');
         $('.print_Div').removeClass('hide');
-	$('.home').removeClass('hide');
+				$('.home').removeClass('hide');
       }
     });
-
+		$('#home_Title').html("Add Invoice Page");
   </script>
 </body>
 
 </html>
-			

@@ -74,13 +74,7 @@ function update_total() {
   update_balance();
 }
 function get_Gst(x){
-  var g = $('#gstPercent').val();
-  console.log("GST % : ",g);
-  if(g){
-    return ((x*(parseInt(g)))/100)
-  }else{
-    return ((x*18)/100)
-  }
+  return ((x*18)/100)
 }
 
 function update_balance() {
@@ -102,7 +96,6 @@ function update_price() {
 function bind() {
   $(".cost").blur(update_price);
   $(".qty").blur(update_price);
-  $("#gstPercent").blur(update_total);
 }
 
 $(document).ready(function() {
@@ -114,7 +107,7 @@ $(document).ready(function() {
   $("#paid").blur(update_balance);
 
   $("#addrow").click(function(){
-    $(".item-row:last").after("<tr class='item-row'><td class='item-name'><div class='delete-wpr'><textarea id='Name'></textarea><a class='delete' href='javascript:;' title='Remove row'>X</a></div></td><td class='description'><textarea>Description</textarea></td><td><textarea class='cost'>0</textarea></td><td><textarea class='qty'>0</textarea></td><td><span class='price'>0</span></td></tr>");
+    $(".item-row:last").after('<tr class="item-row"><td class="item-name"><div class="delete-wpr"><textarea></textarea><a class="delete" href="javascript:;" title="Remove row">X</a></div></td><td class="description"><textarea>Description</textarea></td><td><textarea class="cost">0</textarea></td><td><textarea class="qty">0</textarea></td><td><span class="price">0</span></td></tr>');
     // if ($(".delete").length > 0) $(".delete").show();
     bind();
   });

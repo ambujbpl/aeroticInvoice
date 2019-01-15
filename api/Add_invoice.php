@@ -19,8 +19,8 @@ if((isset($_POST["myTableArray"]) && (isset($_POST["Rest"]))))
     	echo "Records error<br />";
     else
     {
-          $query4 = "INSERT INTO invoice_more (invoice_date, subtotal, gst, total, paid, due,	fk_ID_Invoice) VALUES";
-          $query4 .="('".$y["Invoice_Date"]."','".$y["Subtotal"]."','".$y["Gst"]."','".$y["Total"]."','".$y["Amount_Paid"]."','".$y["Amount_Due"]."','".$y["Invoice"]."'),";
+          $query4 = "INSERT INTO invoice_more (invoice_date, subtotal, gst, total, paid, due,	fk_ID_Invoice, Address, PartyAddress) VALUES";
+          $query4 .="('".$y["Invoice_Date"]."','".$y["Subtotal"]."','".$y["Gst"]."','".$y["Total"]."','".$y["Amount_Paid"]."','".$y["Amount_Due"]."','".$y["Invoice"]."','".$y["Address"]."','".$y["PartyAddress"]."'),";
               $query4 = rtrim($query4,",");
            if(!mysqli_query($connection,$query4))
             {
