@@ -179,7 +179,7 @@ $total3 = mysqli_num_rows($data3);
 								$result['id']+=1;
 								echo "<span id='invoiceNumber'>0".$result['id']."</span>";
 							}
-            ?><span>/2018-19</span>
+            ?><span>/2019-20</span>
 <!--<textarea></textarea>-->
           </td>
         </tr>
@@ -270,7 +270,7 @@ $total3 = mysqli_num_rows($data3);
 
     <div id="terms">
       <h5>Terms</h5>
-      <textarea>Please check the product serial number before receiving any product.</textarea>
+      <textarea>Please check the product serial number before receiving any product And GST include 9% SGST and 9% CGST(total 18% GST).</textarea>
     </div>
 
 		<div id="seal" style="float:right;">

@@ -1,7 +1,7 @@
 <?php
 include 'config.php';
 error_reporting(0);
-$connection = mysqli_connect($host,$username,$password,$database);
+$connection = mysqli_connect($host,$username,$password,$database,$port);
 if($connection)
 {
 	// echo "Connection Establishment Successfully!";	
