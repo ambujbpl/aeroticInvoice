@@ -26,12 +26,12 @@
             <h5 class="card-title text-center">Sign In</h5>
             <form class="form-signin" id="loginForm" action="" method="post">
               <div class="form-label-group">
-                <input type="text" id="inputUserID" name="inputUserID" class="form-control" placeholder="User ID" required autofocus>
+                <input type="text" id="inputUserID" name="inputUserID" class="form-control" placeholder="User ID"  autofocus>
                 <label for="inputUserID">User ID</label>
               </div>
 
               <div class="form-label-group">
-                <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required>
+                <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" >
                 <label for="inputPassword">Password</label>
               </div>
 
@@ -40,8 +40,8 @@
                 <label class="custom-control-label" for="customCheck1">Remember password</label>
               </div>
 
-              <div class="custom-control custom-checkbox mb-3">
-                <div class="errorDiv"><?php echo $errorMessage ?></div>
+              <div class="custom-control mb-3">
+                <div class="errorDiv" id="errorDiv"><?php echo $errorMessage ?></div>
               </div>
               <a href="registration.php">New Registration</a>
               <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="submit">Sign in</button>
