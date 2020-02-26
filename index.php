@@ -43,6 +43,7 @@
               <div class="custom-control custom-checkbox mb-3">
                 <div class="errorDiv"><?php echo $errorMessage ?></div>
               </div>
+              <a href="registration.php">New Registration</a>
               <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="submit">Sign in</button>
             </form>
           </div>
