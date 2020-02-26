@@ -4,9 +4,8 @@
 }
 
 body {
-  /*background-image: url("./../images/tic-newsletter.jpg");*/
-/*background-image: url(img_girl.jpg);*/
-  /*background: url(images/bg.jpg) no-repeat center center fixed; */
+  background-image: url("./../images/car.jpg");
+ /*background-image: url(img_girl.jpg);*/
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
