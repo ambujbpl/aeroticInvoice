@@ -1,0 +1,85 @@
+{
+	"info": {
+		"_postman_id": "c6628c64-fb4a-4b95-a066-e998d8c4edac",
+		"name": "invoice",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "View All Invoices",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userid\":\"ambuj\",\n\t\"password\":\"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost/aeroticInvoice/api/View_invoice.php",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"aeroticInvoice",
+						"api",
+						"View_invoice.php"
+					]
+				},
+				"description": "localhost/aeroticInvoice/api/View_invoice.php"
+			},
+			"response": []
+		},
+		{
+			"name": "Login ",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userid\" : \"ambuj\",\n\t\"password\" : \"12345\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost/aeroticInvoice/api/login.php",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"aeroticInvoice",
+						"api",
+						"login.php"
+					]
+				},
+				"description": "localhost/aeroticInvoice/api/login.php"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

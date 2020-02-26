@@ -55,24 +55,24 @@
 <script type="text/javascript" src="plugins/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="plugins/popper/popper.min.js"></script>
 <script type="text/javascript" src="plugins/bootstrap-4.0.0/dist/js/bootstrap.min.js"></script>
-<!-- <script type="text/javascript" src="js/index.js"></script> -->
+<script type="text/javascript" src="js/index.js"></script>
 
-<?php
-if(isset($_POST["submit"])){
-  $user = $_POST['inputUserID'];
-  $pass = $_POST['inputPassword'];
-  // echo $user ," ", $pass; 
-  $query = "select * from users where userid='$user' && password='$pass'";
-  $data = mysqli_query($connection,$query);
-  $total = mysqli_num_rows($data);
-  if($total == 1){
-    $_SESSION['un'] = $user; 
-    header('location:viewInvoice.php');
-  }else{
-    $msg = "Login Fail! Please check credential.";
-    header("Location:index.php?msg=$msg");
-  }
-}
-?>
+<!-- <?php 
+// if(isset($_POST["submit"])){
+//   $user = $_POST['inputUserID'];
+//   $pass = $_POST['inputPassword'];
+//   // echo $user ," ", $pass; 
+//   $query = "select * from users where userid='$user' && password='$pass'";
+//   $data = mysqli_query($connection,$query);
+//   $total = mysqli_num_rows($data);
+//   if($total == 1){
+//     $_SESSION['un'] = $user; 
+//     header('location:viewInvoice.php');
+//   }else{
+//     $msg = "Login Fail! Please check credential.";
+//     header("Location:index.php?msg=$msg");
+//   }
+// }
+ ?> -->
 
 </html>
