@@ -10,7 +10,7 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  background-position: : center;
+  background-position: center;
 }
 
 .card-signin {
@@ -104,20 +104,23 @@ body {
   color: #777;
 }
 
-.btn-google {
-  color: white;
-  background-color: #ea4335;
-}
-
-.btn-facebook {
-  color: white;
-  background-color: #3b5998;
-}
-
 .errorDiv{
   color: red;
 }
 
+.error{
+  color: red;
+  margin-left: 10px; 
+}
+
+.form-error{
+  text-align: center;
+}
+
+.goToRegistrationPage{
+  color: black;
+  text-decoration: underline;
+}
 /* Fallback for Edge
 -------------------------------------------------- */
 

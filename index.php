@@ -1,10 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php
-  include("config/connection.php");
-  session_start();
-  if(isset($_GET['msg']))$errorMessage = $_GET['msg']
-?>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,6 +19,9 @@
         <div class="card card-signin my-5">
           <div class="card-body">
             <h5 class="card-title text-center">Sign In</h5>
+            <div class="form-error">
+              <div class="errorDiv" id="errorDiv"></div>
+            </div>
             <form class="form-signin" id="loginForm" action="" method="post">
               <div class="form-label-group">
                 <input type="text" id="inputUserID" name="inputUserID" class="form-control" placeholder="User ID"  autofocus>
@@ -36,14 +34,16 @@
               </div>
 
               <div class="custom-control custom-checkbox mb-3">
-                <input type="checkbox" class="custom-control-input" id="customCheck1">
-                <label class="custom-control-label" for="customCheck1">Remember password</label>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <input type="checkbox" class="custom-control-input" id="customCheck1">              
+                    <label class="custom-control-label" for="customCheck1">Remember password</label>    
+                  </div>
+                  <div class="col-sm-6">
+                    <a class="goToRegistrationPage" href="registration.php">New Registration</a>
+                  </div>
+                </div>
               </div>
-
-              <div class="custom-control mb-3">
-                <div class="errorDiv" id="errorDiv"><?php echo $errorMessage ?></div>
-              </div>
-              <a href="registration.php">New Registration</a>
               <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="submit">Sign in</button>
             </form>
           </div>
@@ -56,6 +56,8 @@
 <script type="text/javascript" src="plugins/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="plugins/popper/popper.min.js"></script>
 <script type="text/javascript" src="plugins/bootstrap-4.0.0/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="plugins/jquery-validation-1.19.1/dist/jquery.validate.js"></script>
+<script type="text/javascript" src="plugins/notify/notify.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
 
 <!-- <?php 
