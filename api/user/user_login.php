@@ -5,24 +5,18 @@ header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
-$first_name = '';
-$last_name = '';
-$email_address = '';
-$mobile_number = '';
+
 $userid = '';
-$password = '';
+$pass = '';
 
 $data = json_decode(file_get_contents("php://input"));
 
-$firstname = $data->first_name;
-$lastname = $data->last_name;
-$email = $data->email_address;
 $userid = $data->userid;
 $pass = $data->password;
 
 if($userid && $pass)
 {
-	include('./../config/connection.php');
+	include('./../../config/connection.php');
 	$query = "select * from users where userid='$userid' && password='$pass'";
 	$data = mysqli_query($connection,$query);
 	$total = mysqli_num_rows($data);
