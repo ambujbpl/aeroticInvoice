@@ -5,19 +5,26 @@ header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
-
+$first_name = '';
+$last_name = '';
+$email_address = '';
+$mobile_number = '';
 $userid = '';
-$password = '';
+$pass = '';
 
 $data = json_decode(file_get_contents("php://input"));
 
+$first_name = $data->first_name;
+$last_name = $data->last_name;
+$email_address = $data->email_address;
+$mobile_number = $data->mobile_number;
 $userid = $data->userid;
 $pass = $data->password;
 
-if($userid && $pass)
+
 {
 	include('./../../config/connection.php');
-	$query = "select * from users where userid='$userid' && password='$pass'";
+$query = "insert into users (first_name,last_name,userid,password,email,mobile) VALUES ('$first_name','$last_name','$userid','$password','$email','$mobile')";
 	$data = mysqli_query($connection,$query);
 	$total = mysqli_num_rows($data);
 	if($total == 1){
@@ -28,7 +35,8 @@ if($userid && $pass)
 		$resp = array('resCode' => 'Error', 'Message' => 'Sorry, User not validate') ;
 		echo json_encode($resp);
 	}
-}else{
+} 
+{
 	$required = "";
 	if(( empty ( $userid ) ) || ($userid = "")) {
 		$required .= 'userid';
