@@ -44,7 +44,7 @@ function formSubmitFunction() {
     }
     $.ajax({
         type: "POST",
-        url: "/aeroticInvoice/api/login.php",
+        url: "/aeroticInvoice/api/user/login.php",
         data: JSON.stringify(obj),
         contentType: "application/json",
         dataType: "json",
