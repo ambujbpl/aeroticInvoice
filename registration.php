@@ -17,68 +17,69 @@
   <link rel="stylesheet" href="css/index.css">
 </head>
 
-<body>
-	<div class="container">
-	    <div class="row centered-form">
-	        <div class="col-xs-12 col-sm-8 col-md-4" style="margin: 40px auto;">
-	        	<div class="panel panel-default">
-	        		<div class="panel-heading">
-				    		<h3 class="panel-title">SIGN UP <small>TO LOGIN!</small></h3>
-				 			</div>
-				 			<div class="panel-body">
-				    		<form role="form">
-				    			<div class="row">
-				    				<div class="col-xs-6 col-sm-6 col-md-6">
-				    					<div class="form-group">
-				                			<input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="First Name">
-				    					</div>
-				    				</div>
-				    				<div class="col-xs-6 col-sm-6 col-md-6">
-				    					<div class="form-group">
-				    						<input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Last Name">
-				    					</div>
-				    				</div>
-				    			</div>
-
-				    			<div class="form-group">
-				    				<input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email Address">
-				    			</div>
-				    			<div class="row">
-				    				<div class="col-xs-6 col-sm-6 col-md-6">
-				    					<div class="form-group">
-				    						<input type="int" name="mobile" id="mobile" class="form-control input-sm" placeholder="Mobile Number">
-				    					</div>
-				    				</div>
-				    				<div class="col-xs-6 col-sm-6 col-md-6">
-				    					<div class="form-group">
-				    						<input type="text" name="user_id" id="user_id" class="form-control input-sm" placeholder="User Id">
-				    					</div>
-				    				</div>
-				    			</div>
-				    			<div class="row">
-				    				<div class="col-xs-6 col-sm-6 col-md-6">
-				    					<div class="form-group">
-				    						<input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password">
-				    					</div>
-				    				</div>
-				    			<div class="col-xs-6 col-sm-6 col-md-6">
-				    					<div class="form-group">
-				    						<input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Confirm Password">
-				    					</div>
-				    				</div>
-				    			</div>
-				    			
-				    			<input type="submit" value="Register" class="btn btn-info btn-block">
-				    		
-				    		</form>
-				    	</div>
-		    		</div>
-	    		</div>
-	    	</div>
-	</div>
+<body>	
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h5 class="card-title text-center">Sign In</h5>
+            <div class="form-error">
+              <div class="errorDiv" id="errorDiv"></div>
+            </div>
+    		<form class="form-signin" id="registrationForm" action="" method="post">
+    			<div class="row">
+    				<div class="col-xs-6 col-sm-6 col-md-6">
+    					<div class="form-group">
+                			<input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="First Name">
+    					</div>
+    				</div>
+    				<div class="col-xs-6 col-sm-6 col-md-6">
+    					<div class="form-group">
+    						<input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Last Name">
+    					</div>
+    				</div>
+    			</div>
+    			<div class="form-group">
+    				<input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email Address">
+    			</div>
+    			<div class="row">
+    				<div class="col-xs-6 col-sm-6 col-md-6">
+    					<div class="form-group">
+    						<input type="number" name="mobile" id="mobile" class="form-control input-sm" placeholder="Mobile Number">
+    					</div>
+    				</div>
+    				<div class="col-xs-6 col-sm-6 col-md-6">
+    					<div class="form-group">
+    						<input type="text" name="user_id" id="user_id" class="form-control input-sm" placeholder="User Id">
+    					</div>
+    				</div>
+    			</div>
+    			<div class="row">
+    				<div class="col-xs-6 col-sm-6 col-md-6">
+    					<div class="form-group">
+    						<input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password">
+    					</div>
+    				</div>
+    			<div class="col-xs-6 col-sm-6 col-md-6">
+    					<div class="form-group">
+    						<input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Confirm Password">
+    					</div>
+    				</div>
+    			</div>
+    			<button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="submit">Register</button>    		
+    		</form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
 <script type="text/javascript" src="plugins/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="plugins/popper/popper.min.js"></script>
 <script type="text/javascript" src="plugins/bootstrap-4.0.0/dist/js/bootstrap.min.js"></script>
-<!-- <script type="text/javascript" src="js/index.js"></script> -->
+<script type="text/javascript" src="plugins/jquery-validation-1.19.1/dist/jquery.validate.js"></script>
+<script type="text/javascript" src="plugins/notify/notify.js"></script>
+<script type="text/javascript" src="js/registration.js"></script>
 </html>
 

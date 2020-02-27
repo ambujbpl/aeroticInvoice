@@ -25,7 +25,7 @@ if($userid && $pass)
 		$resp = array('resCode' => 'Ok', 'Message' => 'User validation successful') ;
 		echo json_encode($resp);
 	}else{
-		$resp = array('resCode' => 'Error', 'Message' => 'user not validate') ;
+		$resp = array('resCode' => 'Error', 'Message' => 'Sorry, User not validate') ;
 		echo json_encode($resp);
 	}
 }else{
