@@ -7,6 +7,6 @@ if($connection)
 	// echo "Connection Establishment Successfully!";	
 }
 else{
-	die("Connection failed Error! because ".mysqli_connect_error());
+	die("Connection failed Error! because ". $connection->connect_error);
 }
 ?>

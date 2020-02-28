@@ -20,33 +20,23 @@ $email_address = $data->email_address;
 $mobile_number = $data->mobile_number;
 $userid = $data->userid;
 $pass = $data->password;
-
-
-{
-	include('./../../config/connection.php');
-$query = "insert into users (first_name,last_name,userid,password,email,mobile) VALUES ('$first_name','$last_name','$userid','$password','$email','$mobile')";
-	$data = mysqli_query($connection,$query);
-	$total = mysqli_num_rows($data);
-	if($total == 1){
-		$_SESSION['un'] = $user;
-		$resp = array('resCode' => 'Ok', 'Message' => 'User validation successful') ;
-		echo json_encode($resp);
-	}else{
-		$resp = array('resCode' => 'Error', 'Message' => 'Sorry, User not validate') ;
-		echo json_encode($resp);
-	}
-} 
-{
-	$required = "";
-	if(( empty ( $userid ) ) || ($userid = "")) {
-		$required .= 'userid';
-	}
-	if(( empty ( $pass ) ) || ($userid = "")) {
-		if($required != "")$required .= " and ";
-		$required .= 'password';
-	}
-	echo $required;
-	$resp = array('resCode' => 'Error', 'Message' => $required ." is required.") ;
+include('./../../config/connection.php');
+$query1 = "select * from users where userid='$userid'";
+$data1 = mysqli_query($connection,$query1);
+$total1 = mysqli_num_rows($data1);
+if($total1 == 1){
+	$resp = array('resCode' => 'Error', 'Message' => "Sorry, User ID:- $userid already registered") ;
 	echo json_encode($resp);
+}else{
+	$query2 = "insert into users (first_name,last_name,userid,password,email,mobile) VALUES ('$first_name','$last_name','$userid','$pass','$email_address','$mobile_number')";
+	// $data2 = mysqli_query($connection,$query2);
+	if ($connection->query($query2) === TRUE) {
+		$connection->close();
+	    $resp = array('resCode' => 'Ok', 'Message' => 'User registered successful') ;
+		echo json_encode($resp);
+	} else {
+	    $resp = array('resCode' => 'Error', 'Message' => 'Sorry, User registration failed') ;
+		echo json_encode($resp);
+	}
 }
 ?>

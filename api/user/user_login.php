@@ -20,6 +20,7 @@ if($userid && $pass)
 	$query = "select * from users where userid='$userid' && password='$pass'";
 	$data = mysqli_query($connection,$query);
 	$total = mysqli_num_rows($data);
+	mysqli_close($connection);
 	if($total == 1){
 		$_SESSION['un'] = $user;
 		$resp = array('resCode' => 'Ok', 'Message' => 'User validation successful') ;
@@ -37,7 +38,6 @@ if($userid && $pass)
 		if($required != "")$required .= " and ";
 		$required .= 'password';
 	}
-	echo $required;
 	$resp = array('resCode' => 'Error', 'Message' => $required ." is required.") ;
 	echo json_encode($resp);
 }
