@@ -112,33 +112,33 @@ function formSubmitFunction() {
     var obj = {
         "first_name":first_name,
         "last_name":last_name,
-        "email":email,
-        "mobile":mobile,        
-        "user_id": user_id,
+        "email_address":email,
+        "mobile_number":mobile,        
+        "userid": user_id,
         "password": password,
         "password_confirmation": password_confirmation
     }
     console.log(obj,'-----------------');
-    // $.ajax({
-    //     type: "POST",
-    //     url: "/aeroticInvoice/api/login.php",
-    //     data: JSON.stringify(obj),
-    //     contentType: "application/json",
-    //     dataType: "json",
-    //     success: function(data) {
-    //         if (data.resCode.trim().toLowerCase() == "ok") {
-    //             $.notify(data.Message, "success");
-    //             $('#errorDiv').html(data.Message);
-    //             setTimeout(()=>{
-    //                 location.href = 'viewInvoice.php';
-    //             },100);
-    //         } else {
-    //             $('#errorDiv').html(data.Message);
-    //             $.notify(data.Message, "error");
-    //         }
-    //     },
-    //     error: function(err) {
-    //         $('#errorDiv').html("Something went wrong please contact your administrator.");
-    //     }
-    // })
+    $.ajax({
+        type: "POST",
+        url: "/aeroticInvoice/api/user/user_registration.php",
+        data: JSON.stringify(obj),
+        contentType: "application/json",
+        dataType: "json",
+        success: function(data) {
+            if (data.resCode.trim().toLowerCase() == "ok") {
+                $.notify(data.Message, "success");
+                $('#errorDiv').html(data.Message);
+                setTimeout(()=>{
+                    location.href = 'index.php';
+                },100);
+            } else {
+                $('#errorDiv').html(data.Message);
+                $.notify(data.Message, "error");
+            }
+        },
+        error: function(err) {
+            $('#errorDiv').html("Something went wrong please contact your administrator.");
+        }
+    })
 };

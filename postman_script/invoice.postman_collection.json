@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c6628c64-fb4a-4b95-a066-e998d8c4edac",
+		"_postman_id": "b65a7888-4641-412c-acb5-322a60c85149",
 		"name": "invoice",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -58,7 +58,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"userid\" : \"ambuj\",\n\t\"password\" : \"12345\"\n}",
+					"raw": "{\n\t\"userid\" : \"harshuj\",\n\t\"password\" : \"ambuj\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -66,17 +66,55 @@
 					}
 				},
 				"url": {
-					"raw": "localhost/aeroticInvoice/api/login.php",
+					"raw": "localhost/aeroticInvoice/api/user/user_login.php",
 					"host": [
 						"localhost"
 					],
 					"path": [
 						"aeroticInvoice",
 						"api",
-						"login.php"
+						"user",
+						"user_login.php"
 					]
 				},
 				"description": "localhost/aeroticInvoice/api/login.php"
+			},
+			"response": []
+		},
+		{
+			"name": "User Registration in invoice project",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"first_name\":\"Kalpana\",\n\t\"last_name\":\"Dubey\",\n\t\"email_address\":\"kalpanadubey@gmailcom\",\n\t\"mobile_number\":\"9691953737\",\n\t\"userid\" : \"kp\",\n\t\"password\" : \"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost/aeroticInvoice/api/user/user_registration.php",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"aeroticInvoice",
+						"api",
+						"user",
+						"user_registration.php"
+					]
+				},
+				"description": "localhost/aeroticInvoice/api/user/user_registration.php"
 			},
 			"response": []
 		}
