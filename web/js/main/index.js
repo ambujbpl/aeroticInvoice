@@ -1,13 +1,13 @@
 $(document).ready(function() {
     $("#loginForm").validate({
-        errorPlacement: function(error, element) {
-            // Append error within linked label
-            $(element)
-                .closest("form")
-                .find("label[for='" + element.attr("id") + "']")
-                .append(error);
-        },
-        errorElement: "span",
+        // errorPlacement: function(error, element) {
+        //     // Append error within linked label
+        //     $(element)
+        //         .closest("form")
+        //         .find("label[for='" + element.attr("id") + "']")
+        //         .append(error);
+        // },
+        // errorElement: "span",
         // Specify validation rules
         rules: {
             inputUserID: "required",
@@ -53,7 +53,7 @@ function formSubmitFunction() {
             	$.notify(data.Message, "success");
                 $('#errorDiv').html(data.Message);
                 setTimeout(()=>{
-                	location.href = 'viewInvoice.php';
+                	location.href = 'web/dashboard.php';
                 },100);
             } else {
                 $('#errorDiv').html(data.Message);
