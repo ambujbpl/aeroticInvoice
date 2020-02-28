@@ -20,7 +20,7 @@ $email_address = $data->email_address;
 $mobile_number = $data->mobile_number;
 $userid = $data->userid;
 $pass = $data->password;
-include('./../../config/connection.php');
+include('./../config/connection.php');
 $query1 = "select * from users where userid='$userid'";
 $data1 = mysqli_query($connection,$query1);
 $total1 = mysqli_num_rows($data1);

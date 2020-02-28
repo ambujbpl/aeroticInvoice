@@ -16,7 +16,7 @@ $pass = $data->password;
 
 if($userid && $pass)
 {
-	include('./../../config/connection.php');
+	include('./../config/connection.php');
 	$query = "select * from users where userid='$userid' && password='$pass'";
 	$data = mysqli_query($connection,$query);
 	$total = mysqli_num_rows($data);
