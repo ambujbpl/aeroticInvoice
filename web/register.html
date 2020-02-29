@@ -34,34 +34,32 @@
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
               </div>
-              <form class="user">
+              <form class="user form-signin" id="registrationForm" action="" method="post">
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name">
+                    <input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="First Name">
                   </div>
                   <div class="col-sm-6">
-                    <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Last Name">
+                    <input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Last Name">
                   </div>
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address">
+                    <input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email Address">
                   </div>
                   <div class="col-sm-6">
-                    <input type="mobile" class="form-control form-control-user" id="exampleInputmobile" placeholder="Mobile Number">
+                    <input type="number" name="mobile" id="mobile" class="form-control input-sm" placeholder="Mobile Number">
                   </div>
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="User Id" class="form-control form-control-user" id="exampleInputuserid" placeholder="User Id">
+                    <input type="text" name="user_id" id="user_id" class="form-control input-sm" placeholder="User Id">
                   </div>
                   <div class="col-sm-6">
-                    <input type="password" class="form-control form-control-user" id="examplePassword" placeholder="Password">
+                    <input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password">
                   </div>
                 </div>
-                <a href="login.html" class="btn btn-primary btn-user btn-block">
-                  Register Account
-                </a>
+                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="submit">Register Account</button>
               </form>
               <hr>
               <div class="text-center">
@@ -87,7 +85,9 @@
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
-
+  <script type="text/javascript" src="./vendor/jquery-validation-1.19.1/dist/jquery.validate.js"></script>
+  <script type="text/javascript" src="./vendor/notify/notify.js"></script>
+  <script src="./js/main/registration.js"></script>
 </body>
 
 </html>
