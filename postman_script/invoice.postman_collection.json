@@ -117,6 +117,46 @@
 				"description": "localhost/aeroticInvoice/api/user/user_registration.php"
 			},
 			"response": []
+		},
+		{
+			"name": "Get User Details",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userid\":\"kp\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost/aeroticInvoice/api/user/user_details.php",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"aeroticInvoice",
+						"api",
+						"user",
+						"user_details.php"
+					]
+				},
+				"description": "localhost/aeroticInvoice/api/user/user_details.php"
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}

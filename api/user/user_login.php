@@ -22,11 +22,12 @@ if($userid && $pass)
 	$total = mysqli_num_rows($data);
 	mysqli_close($connection);
 	if($total == 1){
-		$_SESSION['un'] = $user;
-		$resp = array('resCode' => 'Ok', 'Message' => 'User validation successful') ;
+		session_start();
+		$_SESSION['user_id'] = $userid;
+		$resp = array('resCode' => 'Ok', 'message' => 'User validation successful', 'userid' =>  $userid) ;
 		echo json_encode($resp);
 	}else{
-		$resp = array('resCode' => 'Error', 'Message' => 'Sorry, User not validate') ;
+		$resp = array('resCode' => 'Error', 'message' => 'Sorry, User not validate');
 		echo json_encode($resp);
 	}
 }else{
@@ -38,7 +39,7 @@ if($userid && $pass)
 		if($required != "")$required .= " and ";
 		$required .= 'password';
 	}
-	$resp = array('resCode' => 'Error', 'Message' => $required ." is required.") ;
+	$resp = array('resCode' => 'Error', 'message' => $required ." is required.");
 	echo json_encode($resp);
 }
 ?>
