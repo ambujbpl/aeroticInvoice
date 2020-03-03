@@ -117,8 +117,8 @@ function formSubmitFunction() {
                 $.notify(data.Message, "success");
                 $('#errorDiv').html(data.Message);
                 setTimeout(()=>{
-                    location.href = './../index.php';
-                },100);
+                    location.href = './login.html';
+                },250);
             } else {
                 $('#errorDiv').html(data.Message);
                 $.notify(data.Message, "error");

@@ -20,6 +20,7 @@ if($userid && $pass)
 	$query = "select * from users where userid='$userid' && password='$pass'";
 	$data = mysqli_query($connection,$query);
 	$total = mysqli_num_rows($data);
+	mysqli_free_result($data);
 	mysqli_close($connection);
 	if($total == 1){
 		session_start();

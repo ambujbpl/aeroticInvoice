@@ -58,12 +58,12 @@ function formSubmitFunction() {
 
 function updateUserDetails(obj){
   $.when(Posthandler("/aeroticInvoice/api/user/user_details.php", obj, true)).done(function(data) {
-    if(data.resCode.trim().toLowerCase() == "ok") {            
+    if(data.resCode.trim().toLowerCase() == "ok") {          
       $.notify(data.message, "success");
-      localStorage.setItem("user",JSON.stringify(data.data))
+      localStorage.setItem("user",JSON.stringify(data.data[0]))
       setTimeout(()=>{
         location.href = './dashboard.html';
-      },150);
+      },250);
     } else {
       $('#errorDiv').html(data.message);
       $.notify(data.message, "error");

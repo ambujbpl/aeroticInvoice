@@ -24,6 +24,7 @@ if($userid)
 		while($row = $data->fetch_assoc()){
 			$data_array[] = $row;
 		}
+		mysqli_free_result($data);
 		$resp = array('resCode' => 'Ok', 'message' => 'User details fetch successful', 'data' => $data_array ) ;
 		echo json_encode($resp);
 	}else{
