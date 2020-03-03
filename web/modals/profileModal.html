@@ -4,8 +4,34 @@
     <span aria-hidden="true">×</span>
   </button>
 </div>
-<div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+<div class="modal-body" id="modal-body">
+	<div style="text-align: center;"><img class="profile-img rounded-circle" height='150' width='150' src=""/></div><br/>
+	<div id="profileModalBody" class="profileModalBody"></div>
+</div>
 <div class="modal-footer">
   <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-  <button class="btn btn-primary" type="button" data-dismiss="modal" onclick="logoutFunction();">Logout</a>
+  <button class="btn btn-primary" type="button" data-dismiss="modal" onclick="printFunction('modal-body','profile');">Print</a>
 </div>
+<script type="text/javascript">
+	var user = localStorage.getItem('user');
+	if(user){
+		user = JSON.parse(user);
+		if(user.profile_file_name && user.profile_file_name  !=undefined && user.profile_file_name != ""){
+			$(".profile-img").attr("src","./profilePic/" + user.profile_file_name);
+		} else {
+			$(".profile-img").attr("src","./profilePic/defualt.png");
+		}
+	  $('#profileModalBody').html(" ");
+	  $('#profileModalBody').html("<table id='profileModalTable' class='table table-bordered table-striped' cellspacing=0 width=100%></table>");
+	  var body = "";
+	  var data = user;
+	  for(var key in data){
+	  	let updatedKey = updateKeyFormat(key);
+	  	if(data[key] == null || data[key] == undefined)data[key] = ''
+	  	body += "<tr><th class='capitalize' style='width:50%;'>" + updatedKey + "</th><td style='width:50%;'>" + data[key] + "</td></tr>";
+	  }
+	  $("#profileModalTable").append(body);
+	}else{
+		logoutFunction();
+	}
+</script>

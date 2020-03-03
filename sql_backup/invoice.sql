@@ -1,13 +1,13 @@
--- MySQL dump 10.13  Distrib 8.0.17, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.27, for Win64 (x86_64)
 --
 -- Host: localhost    Database: invoice
 -- ------------------------------------------------------
--- Server version	8.0.17
+-- Server version	5.7.27-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -21,7 +21,7 @@
 
 DROP TABLE IF EXISTS `basic`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `basic` (
   `Name` varchar(20) NOT NULL,
   `Address` varchar(40) NOT NULL,
@@ -47,7 +47,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `invoice`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `invoice` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
@@ -70,7 +70,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `invoice_item`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `invoice_item` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -100,7 +100,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `invoice_more`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `invoice_more` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `invoice_date` varchar(30) NOT NULL,
@@ -133,7 +133,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `product`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `product` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(200) NOT NULL,
@@ -158,8 +158,9 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `first_name` varchar(20) DEFAULT NULL,
   `last_name` varchar(20) DEFAULT NULL,
   `userid` varchar(20) NOT NULL,
@@ -168,8 +169,11 @@ CREATE TABLE `users` (
   `mobile` varchar(15) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated_by` varchar(15) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `updated_by` varchar(15) DEFAULT NULL,
+  `role` varchar(10) DEFAULT 'VIEWER',
+  `profile_file_name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -178,7 +182,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('Harshita','Dubey','harshuj','ambuj','harshitadubeybpl@gmail.com','9669809091','2020-02-26 17:37:53','2020-02-26 17:39:59','ambuj'),('Ambuj','Dubey','harsuj','harshuj','hs70401@gmail.com','9753750955','2020-02-27 11:23:17','2020-02-27 11:23:17',NULL),('','','harshuj','root','','','2020-02-27 11:46:48','2020-02-27 11:46:48',NULL);
+INSERT INTO `users` VALUES (1,'Harshita','Dubey','harshuj','ambuj','harshitadubeybpl@gmail.com','966980980','2020-02-26 12:07:53','2020-03-03 21:21:18','harshuj','VIEWER','IMG_9940.jpg'),(2,'Ambuj','Dubey','harsuj','harshuj','hs70@gmail.com','9753750844','2020-02-27 05:53:17','2020-03-03 21:24:14','harsuj','VIEWER',NULL),(3,'Kalpana','Dubey','kp','123456','kalpanadubey@gmailcom','9691964848','2020-03-02 04:13:07','2020-03-03 21:26:09','kp','VIEWER','ambuj.jpg'),(4,'Shrawan','Dubey','skd','skdbpl','skdbpl@gmail.com','9926841459','2020-03-02 22:22:41','2020-03-03 21:27:16','skd','VIEWER','Screenshot (4).png'),(5,'vid','papa','vidpapa','vidpapa','vidp@gmail.com','99774455668','2020-03-02 22:24:34','2020-03-02 22:24:34',NULL,'VIEWER',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -191,4 +195,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-02-27 19:45:55
+-- Dump completed on 2020-03-04  2:57:56

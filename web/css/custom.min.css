@@ -1,0 +1,17 @@
+/*harshuj css*/
+.capitalize {
+  text-transform: capitalize;
+}
+
+#profileModalBody {
+	max-height: 300px;
+	overflow-y: scroll;
+}
+
+#customModalContainer {
+	text-align: center;
+}
+
+.modal-title {
+	width: 100%;
+}

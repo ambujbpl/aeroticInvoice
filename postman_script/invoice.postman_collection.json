@@ -157,6 +157,43 @@
 				"description": "localhost/aeroticInvoice/api/user/user_details.php"
 			},
 			"response": []
+		},
+		{
+			"name": "Run Custom Query",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"query\":\"select * from users\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost/aeroticInvoice/api/custom/custom_query.php",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"aeroticInvoice",
+						"api",
+						"custom",
+						"custom_query.php"
+					]
+				},
+				"description": "localhost/aeroticInvoice/api/custom/custom_query.php"
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}
