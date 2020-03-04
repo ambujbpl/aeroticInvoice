@@ -128,6 +128,34 @@ INSERT INTO `invoice_more` VALUES (389,'December 07, 2019',720.000,129.600,849.6
 UNLOCK TABLES;
 
 --
+-- Table structure for table `logs`
+--
+
+DROP TABLE IF EXISTS `logs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `logs` (
+  `id` int(6) NOT NULL AUTO_INCREMENT,
+  `map_id` int(6) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `type` varchar(255) DEFAULT NULL,
+  `info` varchar(255) DEFAULT NULL,
+  `table_name` varchar(255) DEFAULT NULL,
+  `details` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `logs`
+--
+
+LOCK TABLES `logs` WRITE;
+/*!40000 ALTER TABLE `logs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `logs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `product`
 --
 
@@ -172,6 +200,7 @@ CREATE TABLE `users` (
   `updated_by` varchar(15) DEFAULT NULL,
   `role` varchar(10) DEFAULT 'VIEWER',
   `profile_file_name` varchar(255) DEFAULT NULL,
+  `notification` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -182,7 +211,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Harshita','Dubey','harshuj','ambuj','harshitadubeybpl@gmail.com','966980980','2020-02-26 12:07:53','2020-03-03 21:21:18','harshuj','VIEWER','IMG_9940.jpg'),(2,'Ambuj','Dubey','harsuj','harshuj','hs70@gmail.com','9753750844','2020-02-27 05:53:17','2020-03-03 21:24:14','harsuj','VIEWER',NULL),(3,'Kalpana','Dubey','kp','123456','kalpanadubey@gmailcom','9691964848','2020-03-02 04:13:07','2020-03-03 21:26:09','kp','VIEWER','ambuj.jpg'),(4,'Shrawan','Dubey','skd','skdbpl','skdbpl@gmail.com','9926841459','2020-03-02 22:22:41','2020-03-03 21:27:16','skd','VIEWER','Screenshot (4).png'),(5,'vid','papa','vidpapa','vidpapa','vidp@gmail.com','99774455668','2020-03-02 22:24:34','2020-03-02 22:24:34',NULL,'VIEWER',NULL);
+INSERT INTO `users` VALUES (1,'Harshita','Dubey','harshuj','ambuj','harshitadubeybpl@gmail.com','966980980','2020-02-26 12:07:53','2020-03-04 03:59:36','harshuj','VIEWER','ambuj.jpg',1),(2,'Ambuj','Dubey','harsuj','harshuj','hs70@gmail.com','9753750844','2020-02-27 05:53:17','2020-03-03 21:24:14','harsuj','VIEWER',NULL,0),(3,'Kalpana','Dubey','kp','123456','kalpanadubey@gmailcom','9691964848','2020-03-02 04:13:07','2020-03-03 21:26:09','kp','VIEWER','ambuj.jpg',0),(4,'Shrawan','Dubey','skd','skdbpl','skdbpl@gmail.com','9926841459','2020-03-02 22:22:41','2020-03-03 21:27:16','skd','VIEWER','Screenshot (4).png',0),(5,'vid','papa','vidpapa','vidpapa','vidp@gmail.com','99774455668','2020-03-02 22:24:34','2020-03-02 22:24:34',NULL,'VIEWER',NULL,0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -195,4 +224,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-04  2:57:56
+-- Dump completed on 2020-03-04 16:25:20

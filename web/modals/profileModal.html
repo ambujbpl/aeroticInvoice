@@ -27,7 +27,11 @@
 	  var data = user;
 	  for(var key in data){
 	  	let updatedKey = updateKeyFormat(key);
-	  	if(data[key] == null || data[key] == undefined)data[key] = ''
+	  	if(data[key] == null || data[key] == undefined)data[key] = '';
+	  	if(key === "notification"){
+	  		if(data[key] == 1) data[key] = 'Enable';
+	  		else data[key] = 'Disable';
+	  	}
 	  	body += "<tr><th class='capitalize' style='width:50%;'>" + updatedKey + "</th><td style='width:50%;'>" + data[key] + "</td></tr>";
 	  }
 	  $("#profileModalTable").append(body);

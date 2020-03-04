@@ -14,7 +14,8 @@
 </div>
 <script type="text/javascript">
 	var user = localStorage.getItem('user');
-	var chengedArray = [];	  
+	var chengedArray = [];
+	var selected; 
 	if(user){
 		user = JSON.parse(user);
 		if(user.profile_file_name && user.profile_file_name  !=undefined && user.profile_file_name != ""){
@@ -31,12 +32,17 @@
 	  	if(data[key] == null || data[key] == undefined)data[key] = '';
 	  	if(key == "id" || key == "userid" || key == "password" || key == "created_at" || key == "updated_at" || key == "updated_by" || key == "role" || key == "profile_file_name"){
 	  		body += "<tr><th class='capitalize'>" + updatedKey + "</th><td>" + data[key] + "</td></tr>";	  		
-	  	}else{
+	  	} else if(key == "notification" ) {	  		
+	  		body += "<tr><th class='capitalize'>" + updatedKey + "</th><td><select id='"+ key + "'><option value="+ 0 +">Disable</option><option value=" + 1 +">Enable</option></select></td></tr>";
+	  		chengedArray.push(key);
+	  		selected = data[key];
+	  	} else{
 	  		body += "<tr><th class='capitalize'>" + updatedKey + "</th><td><input type='text' id='"+ key + "' value='" + data[key] + "' /></td></tr>";
 	  		chengedArray.push(key);
 	  	}
 	  }
 	  $("#profileModalTable").append(body);
+	  $("#notification").val(selected).change();
 	}else{
 		logoutFunction();
 	}
