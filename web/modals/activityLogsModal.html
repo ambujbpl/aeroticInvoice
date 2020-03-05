@@ -1,0 +1,58 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">Activity Logs</h5>
+  <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">×</span>
+  </button>
+</div>
+<div class="modal-body" id="modal-body">
+	<div id="activityLogsModalBody" class="activityLogsModalBody">
+		<table id="example" class="table table-bordered dataTable" style="width:100%">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Table name</th>
+                <th>Info</th>
+                <th>Details</th>
+                <th>Created date</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Type</th>
+                <th>Table name</th>
+                <th>Info</th>
+                <th>Details</th>
+                <th>Created date</th>
+            </tr>
+        </tfoot>
+    </table>
+	</div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+  <button class="btn btn-primary" type="button" data-dismiss="modal" onclick="printFunction('modal-body','activity');">Print</a>
+</div>
+<script type="text/javascript">
+	$(document).ready(function() {
+    $('#example').DataTable({
+    	dom: 'Blfrtip',
+      buttons: [
+          'copy', 'excel', 'pdf', 'print'
+      ],
+      searching: true,
+    	ordering:  true,
+    	aLengthMenu: [
+	        [5, 10, 50, 100, -1],
+	        [5, 10, 50, 100, "All"]
+	    ],
+	    iDisplayLength: 5,
+      // "ordering": true,
+     //  "select": true,
+     //  "sorting": true,
+     //  "pagination": true,
+      "processing": true,
+      "serverSide": true,
+      "ajax": "/aeroticInvoice/api/datatable/user_activityLogs.php"
+    });
+	});
+</script>

@@ -3,7 +3,9 @@
  * { function_description }
  */
 logoutFunction = () => {
-  $.when(Gethandler("/aeroticInvoice/api/user/user_logout.php", {}, true)).done(function(data) {
+  var user = localStorage.getItem('user');
+  if(user)user=JSON.parse(user);
+  $.when(Posthandler("/aeroticInvoice/api/user/user_logout.php", {userid:user.userid}, true)).done(function(data) {
     if(data.resCode.trim().toLowerCase() == "ok") {            
       $.notify(data.message, "success");
       localStorage.clear();
@@ -26,9 +28,12 @@ logoutFunction = () => {
  * @class      OpenCustomModal (name)
  * @param      {string}  modalName  The modal name
  * @param      {string}  extention  The extention
+ * @param      {<type>}  modalType  The modal type
  */
-OpenCustomModal = (modalName,extention) => {
+OpenCustomModal = (modalName,extention,modalType) => {
   var model = "./modals/" + modalName + "." + extention;
+  $('.modal-dialog').removeClass('modal-xl').removeClass('modal-lg').removeClass('modal-sm').removeClass('modal-xs');
+  $('.modal-dialog').addClass(modalType);
   $('#customModalContainer').load(model);
   $('#custom-modal').modal('show');
 };
@@ -138,3 +143,15 @@ printFunction = (id,name) => {
   // mywindow.close();
   return true;
 }
+
+/**
+ * Gets the url parameter.
+ *
+ * @param      {string}  name    The name
+ */
+function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+};

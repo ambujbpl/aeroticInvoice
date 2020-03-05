@@ -23,7 +23,20 @@ error_reporting(0);
   <script type="text/javascript" src="../vendor/notify/notify.js"></script>
   <script type="text/javascript" src="../js/plugins/ajaxHendler.js"></script>
   <script type="text/javascript" src="../js/plugins/util.js"></script>
-
+  <script type="text/javascript">
+  	updateProfilePicByNameFunction =() => {
+  		var type = getUrlParameter("type");
+  		if(type == "profile"){
+  			var user = localStorage.getItem('user');
+				if(user){
+					user=JSON.parse(user);
+					if(user.profile_file_name){
+						$("#appendProfilePicture").attr("src","../profilePic/" +user.profile_file_name);
+					}
+				}
+  		}
+  	} 
+  </script>
 </head>
 
 <body id="page-top">
@@ -35,6 +48,7 @@ error_reporting(0);
 		<form action="" method="post" enctype="multipart/form-data">
 			<input class='primary' type="file" name="uploadfile" value=""/>
 			<input type="submit" class="btn btn-primary" name="submit" value="Upload File"/>
+			<br/><br/><img id="appendProfilePicture" height='200'  width='200' />
 		</form>
 		<?php
 		$filename = '';
@@ -50,8 +64,9 @@ error_reporting(0);
 			if (isset($_GET['type'])) {
 			  if($_GET['type'] === "profile"){
 			  	if(strpos($filename,'png') == true || strpos($filename,'jpg') == true || strpos($filename,'jpeg') == true){
-			  		echo "<br/><br/><img src='$folder' height='200'  width='200' />";
-			  		echo "<script> updateProfilePicName('$filename'); </script>";	
+			  		// echo "<br/><br/><img src='$folder' height='200'  width='200' />";
+			  		echo "<script> $('#appendProfilePicture').attr('src','$folder'); </script>";
+			  		echo "<script> updateProfilePicName('$filename'); </script>";
 			  	} else {
 			  		if($filename !== '')
 			  		echo "<script> $.notify('Please upload image file only and we are support .png, .jpg or .jepg extention only!','error'); </script>";
@@ -63,6 +78,8 @@ error_reporting(0);
 				// echo "<script> alert(); </script>";
 				echo "<script> $.notify('Type should be defined','error'); </script>";
 			}
+		} else {
+			echo "<script> updateProfilePicByNameFunction(); </script>";
 		}
 		?>
 	</div>

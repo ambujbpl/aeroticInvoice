@@ -6,7 +6,6 @@ function Posthandler(url, dataArray,asyncType) {
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify(dataArray),
-        contentType: "application/json",
         dataType: "json",
         async: asyncType,
         // headers: {
