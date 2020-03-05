@@ -143,7 +143,7 @@ CREATE TABLE `logs` (
   `table_name` varchar(255) DEFAULT NULL,
   `details` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152,6 +152,7 @@ CREATE TABLE `logs` (
 
 LOCK TABLES `logs` WRITE;
 /*!40000 ALTER TABLE `logs` DISABLE KEYS */;
+INSERT INTO `logs` VALUES (1,1,'2020-03-04 17:03:28','login','harshuj','users',NULL),(2,1,'2020-03-04 17:04:48','login','harshuj','users',NULL),(3,1,'2020-03-04 17:21:36','login','harshuj','users',NULL),(4,1,'2020-03-04 17:23:01','login','harshuj','users',NULL),(5,1,'2020-03-04 17:23:59','login','harshuj','users',NULL),(6,1,'2020-03-04 17:46:26','logout','harshuj','users',NULL),(7,1,'2020-03-04 17:48:11','logout','harshuj','users',NULL),(8,1,'2020-03-04 17:48:33','login','harshuj','users',NULL),(9,1,'2020-03-04 17:48:42','logout','harshuj','users',NULL),(10,1,'2020-03-04 17:56:47','login','harshuj','users',NULL),(11,1,'2020-03-05 01:05:57','login','harshuj','users',NULL),(12,1,'2020-03-05 01:09:12','logout','harshuj','users',NULL),(13,1,'2020-03-05 01:09:19','login','harshuj','users',NULL),(14,1,'2020-03-05 02:35:16','login','harshuj','users',NULL),(15,1,'2020-03-05 02:36:28','login','harshuj','users',NULL),(16,1,'2020-03-05 02:37:21','login','harshuj','users',NULL),(17,1,'2020-03-05 02:51:25','login','harshuj','users',NULL),(18,1,'2020-03-05 02:51:37','login','harshuj','users',NULL),(19,1,'2020-03-05 02:52:18','login','harshuj','users',NULL),(20,1,'2020-03-05 02:53:34','login','harshuj','users',NULL),(21,1,'2020-03-05 02:54:37','login','harshuj','users',NULL);
 /*!40000 ALTER TABLE `logs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -211,7 +212,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Harshita','Dubey','harshuj','ambuj','harshitadubeybpl@gmail.com','966980980','2020-02-26 12:07:53','2020-03-04 03:59:36','harshuj','VIEWER','ambuj.jpg',1),(2,'Ambuj','Dubey','harsuj','harshuj','hs70@gmail.com','9753750844','2020-02-27 05:53:17','2020-03-03 21:24:14','harsuj','VIEWER',NULL,0),(3,'Kalpana','Dubey','kp','123456','kalpanadubey@gmailcom','9691964848','2020-03-02 04:13:07','2020-03-03 21:26:09','kp','VIEWER','ambuj.jpg',0),(4,'Shrawan','Dubey','skd','skdbpl','skdbpl@gmail.com','9926841459','2020-03-02 22:22:41','2020-03-03 21:27:16','skd','VIEWER','Screenshot (4).png',0),(5,'vid','papa','vidpapa','vidpapa','vidp@gmail.com','99774455668','2020-03-02 22:24:34','2020-03-02 22:24:34',NULL,'VIEWER',NULL,0);
+INSERT INTO `users` VALUES (1,'Harshita','Dubey','harshuj','ambuj','harshitadubeybpl@gmail.com','966980980','2020-02-26 12:07:53','2020-03-05 02:52:09','harshuj','VIEWER','IMG_9940.jpg',1),(2,'Ambuj','Dubey','harsuj','harshuj','hs70@gmail.com','9753750844','2020-02-27 05:53:17','2020-03-03 21:24:14','harsuj','VIEWER',NULL,0),(3,'Kalpana','Dubey','kp','123456','kalpanadubey@gmailcom','9691964848','2020-03-02 04:13:07','2020-03-03 21:26:09','kp','VIEWER','ambuj.jpg',0),(4,'Shrawan','Dubey','skd','skdbpl','skdbpl@gmail.com','9926841459','2020-03-02 22:22:41','2020-03-03 21:27:16','skd','VIEWER','Screenshot (4).png',0),(5,'vid','papa','vidpapa','vidpapa','vidp@gmail.com','99774455668','2020-03-02 22:24:34','2020-03-02 22:24:34',NULL,'VIEWER',NULL,0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -224,4 +225,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-04 16:25:20
+-- Dump completed on 2020-03-05 10:04:45
