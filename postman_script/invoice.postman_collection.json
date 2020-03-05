@@ -45,7 +45,7 @@
 			"response": []
 		},
 		{
-			"name": "Login ",
+			"name": "User Login API",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -192,6 +192,67 @@
 					]
 				},
 				"description": "localhost/aeroticInvoice/api/custom/custom_query.php"
+			},
+			"response": []
+		},
+		{
+			"name": "User Logout Api",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userid\":1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost/aeroticInvoice/api/user/user_logout.php",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"aeroticInvoice",
+						"api",
+						"user",
+						"user_logout.php"
+					]
+				},
+				"description": "localhost/aeroticInvoice/api/user/user_logout.php"
+			},
+			"response": []
+		},
+		{
+			"name": "Datatable User Activity Logs Api",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost/aeroticInvoice/api/datatable/user_activityLogs.php",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"aeroticInvoice",
+						"api",
+						"datatable",
+						"user_activityLogs.php"
+					]
+				},
+				"description": "localhost/aeroticInvoice/api/datatable/user_activityLogs.php"
 			},
 			"response": []
 		}

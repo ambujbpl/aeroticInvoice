@@ -6,7 +6,7 @@
 </div>
 <div class="modal-body" id="modal-body">
 	<div id="activityLogsModalBody" class="activityLogsModalBody">
-		<table id="example" class="table table-bordered dataTable" style="width:100%">
+		<table id="activityLogsModalTable" class="table table-bordered dataTable" style="width:100%">
         <thead>
             <tr>
                 <th>Type</th>
@@ -27,26 +27,36 @@
         </tfoot>
     </table>
 	</div>
+  <div id="viewGraphicalRepresentation" class="viewGraphicalRepresentation hide row">
+    <div class="col-sm-6" id="viewGraphicalRepresentationLogin" class="viewGraphicalRepresentationLogin"><span>Login Graphical Representation</span><canvas id="viewGraphicalRepresentationLoginChart" width="400" height="400"></canvas></div>
+    <div class="col-sm-6" id="viewGraphicalRepresentationLogout" class="viewGraphicalRepresentationLogout"><span>Logout Graphical Representation</span><canvas id="viewGraphicalRepresentationLogoutChart" width="400" height="400"></canvas></div>
+  </div>
 </div>
 <div class="modal-footer">
   <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-  <button class="btn btn-primary" type="button" data-dismiss="modal" onclick="printFunction('modal-body','activity');">Print</a>
+  <button class="btn btn-primary graphicVieButton" type="button" onclick="viewGraphicalRepresentationFunction(this,event);">View Graphical Representation</a>
+  <!-- <button class="btn btn-primary" type="button" onclick="printFunction('modal-body','activity');">Print</a> -->
 </div>
 <script type="text/javascript">
 	$(document).ready(function() {
-    $('#example').DataTable({
+    allGraphicalViewUpdate();
+    var user = localStorage.getItem('user');
+    if(user){
+      user = JSON.parse(user);
+    }
+    $('#activityLogsModalTable').DataTable({
     	dom: 'Blfrtip',
       buttons: [
           'copy', 'excel', 'pdf', 'print'
       ],
       searching: true,
-    	ordering:  true,
+    	// ordering:  true,
+    	"order": [[ 4, "desc" ]],
     	aLengthMenu: [
-	        [5, 10, 50, 100, -1],
-	        [5, 10, 50, 100, "All"]
+	        [5, 10, 50, 100, 500, 1000, -1],
+	        [5, 10, 50, 100, 500, 1000, "All"]
 	    ],
 	    iDisplayLength: 5,
-      // "ordering": true,
      //  "select": true,
      //  "sorting": true,
      //  "pagination": true,

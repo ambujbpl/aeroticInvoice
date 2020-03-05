@@ -31,6 +31,11 @@ if($userid && $pass)
 		$userRecordDecode = json_decode($userRecord, true);
 		$userRecordDecodeDataID = $userRecordDecode['data'][0]['id'];
 		$userRecordDecodeDataNotification = $userRecordDecode['data'][0]['notification'];
+		$cookie_name = "userid";
+		$cookie_value = $userid;
+		ob_start();
+		setcookie($cookie_name, $cookie_value, 0, '/');
+		ob_end_flush();
 		// if($userRecordDecodeDataNotification == "1"){
 		// 	$userRecordDecodeDataEmail = $userRecordDecode['data'][0]['email'];
 		// 	$userRecordDecodeDataName = $userRecordDecode['data'][0]['first_name'];

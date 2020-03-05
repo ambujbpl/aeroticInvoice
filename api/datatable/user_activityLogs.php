@@ -37,7 +37,7 @@ $columns = array(
         'db'        => 'created_at',
         'dt'        => 4,
         'formatter' => function( $d, $row ) {
-            return date( 'jS M y', strtotime($d));
+            return date( 'jS M Y [ h:i A ]', strtotime($d));
         }
     ),
     array('db' => 'table_name', 'dt' => 1)
@@ -57,8 +57,14 @@ $sql_details = array(
     'db'   => 'invoice',
     'host' => 'localhost'
 );
- 
- 
+
+$id = 'userid';
+$where = '';
+if(!isset($_COOKIE[$id])) {
+} else {
+  $val = $_COOKIE[$id];
+  $where = " where info='$val' ";
+}
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * If you just want to use the basic configuration for DataTables with PHP
  * server-side, there is no need to edit below this line.
@@ -67,5 +73,5 @@ $sql_details = array(
 require( './../config/ssp.class.php' );
  
 echo json_encode(
-    SSP::simple( $_GET, $sql_details, $table, $primaryKey, $columns )
+    SSP::simple( $_GET, $sql_details, $table, $primaryKey, $columns, $where )
 );

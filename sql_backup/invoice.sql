@@ -143,7 +143,7 @@ CREATE TABLE `logs` (
   `table_name` varchar(255) DEFAULT NULL,
   `details` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152,7 +152,7 @@ CREATE TABLE `logs` (
 
 LOCK TABLES `logs` WRITE;
 /*!40000 ALTER TABLE `logs` DISABLE KEYS */;
-INSERT INTO `logs` VALUES (1,1,'2020-03-04 17:03:28','login','harshuj','users',NULL),(2,1,'2020-03-04 17:04:48','login','harshuj','users',NULL),(3,1,'2020-03-04 17:21:36','login','harshuj','users',NULL),(4,1,'2020-03-04 17:23:01','login','harshuj','users',NULL),(5,1,'2020-03-04 17:23:59','login','harshuj','users',NULL),(6,1,'2020-03-04 17:46:26','logout','harshuj','users',NULL),(7,1,'2020-03-04 17:48:11','logout','harshuj','users',NULL),(8,1,'2020-03-04 17:48:33','login','harshuj','users',NULL),(9,1,'2020-03-04 17:48:42','logout','harshuj','users',NULL),(10,1,'2020-03-04 17:56:47','login','harshuj','users',NULL),(11,1,'2020-03-05 01:05:57','login','harshuj','users',NULL),(12,1,'2020-03-05 01:09:12','logout','harshuj','users',NULL),(13,1,'2020-03-05 01:09:19','login','harshuj','users',NULL),(14,1,'2020-03-05 02:35:16','login','harshuj','users',NULL),(15,1,'2020-03-05 02:36:28','login','harshuj','users',NULL),(16,1,'2020-03-05 02:37:21','login','harshuj','users',NULL),(17,1,'2020-03-05 02:51:25','login','harshuj','users',NULL),(18,1,'2020-03-05 02:51:37','login','harshuj','users',NULL),(19,1,'2020-03-05 02:52:18','login','harshuj','users',NULL),(20,1,'2020-03-05 02:53:34','login','harshuj','users',NULL),(21,1,'2020-03-05 02:54:37','login','harshuj','users',NULL);
+INSERT INTO `logs` VALUES (1,1,'2020-03-04 17:03:28','login','harshuj','users',NULL),(2,1,'2020-03-04 17:04:48','login','harshuj','users',NULL),(3,1,'2020-03-04 17:21:36','login','harshuj','users',NULL),(4,1,'2020-03-04 17:23:01','login','harshuj','users',NULL),(5,1,'2020-03-04 17:23:59','login','harshuj','users',NULL),(6,1,'2020-03-04 17:46:26','logout','harshuj','users',NULL),(7,1,'2020-03-04 17:48:11','logout','harshuj','users',NULL),(8,1,'2020-03-04 17:48:33','login','harshuj','users',NULL),(9,1,'2020-03-04 17:48:42','logout','harshuj','users',NULL),(10,1,'2020-03-04 17:56:47','login','harshuj','users',NULL),(11,1,'2020-03-05 01:05:57','login','harshuj','users',NULL),(12,1,'2020-03-05 01:09:12','logout','harshuj','users',NULL),(13,1,'2020-03-05 01:09:19','login','harshuj','users',NULL),(14,1,'2020-03-05 02:35:16','login','harshuj','users',NULL),(15,1,'2020-03-05 02:36:28','login','harshuj','users',NULL),(16,1,'2020-03-05 02:37:21','login','harshuj','users',NULL),(17,1,'2020-03-05 02:51:25','login','harshuj','users',NULL),(18,1,'2020-03-05 02:51:37','login','harshuj','users',NULL),(19,1,'2020-03-05 02:52:18','login','harshuj','users',NULL),(20,1,'2020-03-05 02:53:34','login','harshuj','users',NULL),(21,1,'2020-03-05 02:54:37','login','harshuj','users',NULL),(22,1,'2020-03-05 05:02:56','login','harshuj','users',NULL),(23,1,'2020-03-05 05:03:21','login','harshuj','users',NULL),(24,1,'2020-03-05 05:18:03','login','harshuj','users',NULL),(25,1,'2020-03-05 06:13:53','logout','harshuj','users',NULL),(26,2,'2020-03-05 06:14:05','login','harsuj','users',NULL),(27,2,'2020-03-05 08:19:13','logout','harsuj','users',NULL),(28,1,'2020-03-05 08:19:25','login','harshuj','users',NULL),(29,1,'2020-03-05 08:20:59','logout','harshuj','users',NULL),(30,2,'2020-03-05 08:21:20','login','harsuj','users',NULL),(31,2,'2020-03-05 08:40:30','logout','harsuj','users',NULL),(32,1,'2020-03-05 08:40:45','login','harshuj','users',NULL),(33,1,'2020-03-05 08:50:17','login','harshuj','users',NULL),(34,1,'2020-03-05 09:00:30','logout','harshuj','users',NULL),(35,2,'2020-03-05 09:00:47','login','harsuj','users',NULL),(36,2,'2020-03-05 12:40:04','logout','harsuj','users',NULL),(37,1,'2020-03-05 12:40:10','login','harshuj','users',NULL),(38,1,'2020-03-05 17:23:58','logout','harshuj','users',NULL),(39,1,'2020-03-05 17:24:05','login','harshuj','users',NULL);
 /*!40000 ALTER TABLE `logs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -225,4 +225,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-05 10:04:45
+-- Dump completed on 2020-03-05 22:58:11
