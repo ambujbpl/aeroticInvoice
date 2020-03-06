@@ -162,13 +162,21 @@ function getUrlParameter(name) {
  * @param      {<type>}  query   The query
  * @return     {Object}  { description_of_the_return_value }
  */
-executeCustomQuery = (query,type) => {
+executeCustomQuery = (query,type,view = "") => {
   $.when(Posthandler("/aeroticInvoice/api/custom/custom_query.php", {'query':query}, false)).done(function(res) {
     if(res.resCode.trim().toLowerCase() == "ok") {
      if(type.trim().toLowerCase() === "login"){
        updateLoginGraphicLayout(res.data,type);
-     } else if(type.trim().toLowerCase() === "logout")  {
+     } else if(type.trim().toLowerCase() === "logout") {
        updateLogoutGraphicLayout(res.data,type);
+     } else if(type.trim().toLowerCase() === "maincontainerbody"){
+       if(res.data.length > 0){
+        globalObj.data = res.data;
+        globalObj.type = type;
+        globalObj.view = view;
+        updateMainContainerBody(res.data,type,view);
+       }
+       else $.notify("Data not found","error")
      }
     }
   }).fail(function() {
@@ -244,7 +252,6 @@ updateLoginGraphicLayout = (data) => {
  * @param      {<type>}  data    The data
  */
 updateLogoutGraphicLayout = (data) => {
-  console.log("updateLogoutGraphicLayout : ",data);
   var xAxes = [];
   var yAxes = [];
   var backgroundColor = [];
@@ -319,4 +326,83 @@ function viewGraphicalRepresentationFunction(ele,e){
     $('.viewGraphicalRepresentation').addClass('hide')
     $('.graphicVieButton').html('Show Graphical Representation');
   }
+}
+
+var globalObj = {}
+/**
+ * { function_description }
+ *
+ * @param      {<type>}  data    The data
+ * @param      {<type>}  type    The type
+ * @param      {<type>}  view    The view
+ */
+updateMainContainerBody = (data,type,view) => {
+  if(view.trim().toLowerCase() === "basicdetails"){
+    $('.' + type).html("").append(`<table id='${type + 'Table'}' class='table table-bordered table-striped' cellspacing=0 width=100%></table><br/><br/><button class="btn btn-primary" type="button" onclick="editMainContainerBody();">Edit</button>`);
+    var body = "";
+    data = data[0];
+    for(var key in data){
+      let updatedKey = updateKeyFormat(key);
+      if(data[key] == null || data[key] == undefined)data[key] = '';
+      body += "<tr><th class='capitalize' style='width:50%;'>" + updatedKey + "</th><td style='width:50%;'>" + data[key] + "</td></tr>";
+    }
+    $("#" + type + 'Table').append(body);
+  }
+}
+
+/**
+ * { edit Main Container Body }
+ */
+editMainContainerBody = () => {
+  if(globalObj.view.trim().toLowerCase() === "basicdetails"){
+    $('.' + globalObj.type).html("").append(`<table id='${globalObj.type + 'Table'}' class='table table-bordered table-striped' cellspacing=0 width=100%></table><br/><br/><button class="btn btn-primary" type="button" onclick="saveEditedMainContainerBody();">Save</button>`);
+    var body = "";
+    data = globalObj.data[0];
+    var allEditFieldKey = [];
+    delete data.updated_at;
+    delete data.updated_by;
+    for(var key in data){
+      let updatedKey = updateKeyFormat(key);
+      if(data[key] == null || data[key] == undefined)data[key] = '';
+      body += "<tr><th class='capitalize' style='width:50%;'>" + updatedKey + "</th><td style='width:50%;'><input type='text' id='" + key + "' value='" + data[key] + "'/></td></tr>";
+      allEditFieldKey.push(key);
+    }
+    globalObj.allEditFieldKey = allEditFieldKey;
+    $("#" + globalObj.type + 'Table').append(body);
+  }
+}
+
+/**
+ * Saves an edited main container body.
+ */
+saveEditedMainContainerBody = () => {
+  var query = 'update ';
+  var user = localStorage.getItem('user');
+  if(user){
+    user = JSON.parse(user);
+  }
+  if(globalObj.view.trim().toLowerCase() === "basicdetails"){
+    query += "basic SET "
+  }
+  globalObj.allEditFieldKey.forEach(key => {
+    query += key + "='" + $('#'+ key).val() + "', "
+  })
+  // query = query.slice(0, -1);
+  query += `updated_by="${user.userid}"`;
+  $.when(Posthandler("/aeroticInvoice/api/custom/custom_query.php", {'query':query}, true)).done(function(res) {
+    if(res.resCode.trim().toLowerCase() == "ok") {
+      $.notify(res.message, "success");          
+      setTimeout(()=>{
+        if(globalObj.view.trim().toLowerCase() === "basicdetails"){
+          basicDetails();
+        }
+      },100);
+    } else {
+      $('#errorDiv').html(res.message);
+      $.notify(res.message, "error");
+    }
+  }).fail(function() {
+    $.notify("Something went wrong please contact your administrator.", "error");
+    console.log("Error executing AJAX request. Please contact your administrator");
+  });
 }
