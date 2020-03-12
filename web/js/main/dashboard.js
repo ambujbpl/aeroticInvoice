@@ -11,11 +11,33 @@ $(document).ready(function() {
 	} else {
 		$(".img-profile").attr("src","profilePic/defualt.png");
 	}
+	updateCounters();
 });
 
+/**
+ * { basic Details }
+ */
 basicDetails = () => {
 	$('.mainContainerRow').removeClass('hide');
 	$('.mainContainerHeader').html('Basic Details');
 	$('.mainContainerDropdownMenuLink').html('').append(`<div class="dropdown-header">Dropdown Basic Details Header:</div>`).append(`<a class="dropdown-item" onclick="basicDetails();">Basic Detail View</a>`).append(`<a class="dropdown-item" onclick="editMainContainerBody();">Edit Basic Detail</a>`);
 	executeCustomQuery("select * from basic","mainContainerBody","basicDetails");
+}
+
+/**
+ * { product Details }
+ */
+productDetails = () => {
+	$('.mainContainerRow').removeClass('hide');
+	$('.mainContainerHeader').html('Product Details');
+	$('.mainContainerDropdownMenuLink').html('').append(`<div class="dropdown-header">Dropdown Product Details Header:</div>`).append(`<a class="dropdown-item" onclick="productDetails();">Product Detail View</a>`).append(`<a class="dropdown-item" onclick="editMainContainerBody();">Edit Product Detail</a>`);
+	// executeCustomQuery("select * from product","mainContainerBody","productDetails");
+	showServerSideDetailsByTableNameDataTable("product","mainContainerBody","productDetails");
+}
+
+/**
+ * { update Counters }
+ */
+updateCounters = () => {
+	executeCustomQuery("select count(*) as count from product","updatecounters","productCounts","");
 }

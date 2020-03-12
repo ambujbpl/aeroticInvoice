@@ -19,3 +19,7 @@
 .hide {
 	display: none;
 }
+
+.dropdown-item:hover{
+	cursor: pointer;
+}

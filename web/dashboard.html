@@ -19,6 +19,8 @@
   <link rel="stylesheet" type="text/css" href="vendor/DataTables/datatables.min.css"/>
   <link rel="stylesheet" type="text/css" href="vendor/DataTables/Buttons-1.6.1/css/buttons.bootstrap4.min.css">
   <link rel="stylesheet" type="text/css" href="vendor/DataTables/Responsive-2.2.3/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" type="text/css" href="vendor/DataTables/Select-1.3.1/css/dataTables.select.min.css">
+  <link rel="stylesheet" type="text/css" href="vendor/DataTables/editor.dataTables.min.css">
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.css" rel="stylesheet" type="text/css">
   <link href="css/custom.min.css" rel="stylesheet" type="text/css">
@@ -69,7 +71,22 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">COMPONENTS:</h6>
             <a class="collapse-item" onclick="basicDetails();">Basic Details</a>
-            <a class="collapse-item" href="cards.html">LOSS</a>
+            <a class="collapse-item" onclick="productDetails();">Product Details</a>
+          </div>
+        </div>
+      </li>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Bill Book</span>
+        </a>
+        <div id="collapse3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">COMPONENTS:</h6>
+            <a class="collapse-item" onclick="basicDetails();">Create Bill</a>
+            <a class="collapse-item" onclick="productDetails();">View Bill</a>
           </div>
         </div>
       </li>
@@ -410,14 +427,14 @@
               </div>
             </div>
 
-            <!-- Pending Requests Card Example -->
+            <!-- Products Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Requests</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Total Products</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800 productCounts">0</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -705,11 +722,14 @@
   <script type="text/javascript" src="vendor/DataTables/Buttons-1.6.1/js/buttons.bootstrap4.min.js"></script>
   <script type="text/javascript" src="vendor/DataTables/Buttons-1.6.1/js/buttons.bootstrap4.min.js"></script>
   <script type="text/javascript" src="vendor/DataTables/Responsive-2.2.3/js/responsive.bootstrap4.min.js"></script>
+  <script type="text/javascript" src="vendor/DataTables/Select-1.3.1/js/dataTables.select.min.js"></script>
+  <script type="text/javascript" src="vendor/DataTables/dataTables.editor.min.js"></script>
 
   <!-- Page level custom scripts -->
   <script type="text/javascript" src="js/demo/chart-area-demo.js"></script>
   <script type="text/javascript" src="js/demo/chart-pie-demo.js"></script>
   <script type="text/javascript" src="vendor/jquery-validation-1.19.1/dist/jquery.validate.js"></script>
+  <script type="text/javascript" src="js/plugins/sweet-alert.min.js"></script>
   <script type="text/javascript" src="vendor/notify/notify.js"></script>
   <script type="text/javascript" src="js/plugins/ajaxHendler.js"></script>
   <script type="text/javascript" src="js/plugins/util.js"></script>

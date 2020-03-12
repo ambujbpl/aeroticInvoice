@@ -19,7 +19,7 @@
  */
  
 // DB table to use
-$table = 'logs';
+$table = 'product';
  
 // Table's primary key
 $primaryKey = 'id';
@@ -30,16 +30,31 @@ $primaryKey = 'id';
 // indexes
 $columns = array(
     // array( 'db' => 'id', 'dt' => 0 ),
-    array( 'db' => 'type',  'dt' => 0 ),
-    array( 'db' => 'table_name', 'dt' => 1),
-    array( 'db' => 'info',   'dt' => 2 ),
-    array( 'db' => 'details',     'dt' => 3 ),
+    array( 'db' => 'id',  'dt' => 0 ),
+    array( 'db' => 'name', 'dt' => 1),
+    array( 'db' => 'detail',   'dt' => 2 ),
+    array( 'db' => 'rate',     'dt' => 3 ),
     array(
         'db'        => 'created_at',
         'dt'        => 4,
         'formatter' => function( $d, $row ) {
             return date( 'jS M Y [ h:i A ]', strtotime($d));
         }
+    ),
+    array(
+        'db'        => 'updated_at',
+        'dt'        => 5,
+        'formatter' => function( $d, $row ) {
+            return date( 'jS M Y [ h:i A ]', strtotime($d));
+        }
+    ),
+    array(
+        'db'        => 'updated_by',
+        'dt'        => 6
+    ),
+    array(
+        'db'        => 'updated_by',
+        'dt'        => 7
     )
 );
  
@@ -53,17 +68,17 @@ $sql_details = array(
 
 $id = 'userid';
 $where = '';
-if(!isset($_COOKIE[$id])) {
-} else {
-  $val = $_COOKIE[$id];
-  $where = " where info='$val' ";
-}
+// if(!isset($_COOKIE[$id])) {
+// } else {
+//   $val = $_COOKIE[$id];
+//   $where = " where info='$val' ";
+// }
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * If you just want to use the basic configuration for DataTables with PHP
  * server-side, there is no need to edit below this line.
  */
  
-require( './../config/ssp.class.php' );
+require( './../config/ssp.classEdit.php' );
  
 echo json_encode(
     SSP::simple( $_GET, $sql_details, $table, $primaryKey, $columns, $where )

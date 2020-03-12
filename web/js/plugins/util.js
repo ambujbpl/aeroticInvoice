@@ -136,7 +136,6 @@ printFunction = (id,name) => {
   mywindow.document.write('</head><body >');
   mywindow.document.write(content);
   mywindow.document.write('</body></html>');
-
   mywindow.document.close();
   mywindow.focus()
   mywindow.print();
@@ -162,7 +161,7 @@ function getUrlParameter(name) {
  * @param      {<type>}  query   The query
  * @return     {Object}  { description_of_the_return_value }
  */
-executeCustomQuery = (query,type,view = "") => {
+executeCustomQuery = (query,type,view = "",message = "") => {
   $.when(Posthandler("/aeroticInvoice/api/custom/custom_query.php", {'query':query}, false)).done(function(res) {
     if(res.resCode.trim().toLowerCase() == "ok") {
      if(type.trim().toLowerCase() === "login"){
@@ -176,7 +175,18 @@ executeCustomQuery = (query,type,view = "") => {
         globalObj.view = view;
         updateMainContainerBody(res.data,type,view);
        }
-       else $.notify("Data not found","error")
+       else{
+        $.notify("Data not found","error");
+        updateMainContainerBodyWithOutData(res.data,type,view);
+       }
+     } else if(type.trim().toLowerCase() === "directrun"){
+       if(message != ""){
+         $.notify(message,"success");
+       }else{
+         $.notify(res.message,"success");
+       }
+     } else if(type.trim().toLowerCase() === "updatecounters"){
+       $('.' + view).html(res.data[0]["count"])
      }
     }
   }).fail(function() {
@@ -184,6 +194,11 @@ executeCustomQuery = (query,type,view = "") => {
   });
 }
 
+showServerSideDetailsByTableNameDataTable = (table_name,type,veiw = "")=> {
+  if(type.trim().toLowerCase() === "maincontainerbody"){
+    updateMainContainerBodyDataTable(table_name,type,veiw);
+  }
+}
 
 /**
  * { function_description }
@@ -351,6 +366,132 @@ updateMainContainerBody = (data,type,view) => {
 }
 
 /**
+ * { function_description }
+ *
+ * @param      {<type>}  table_name  The table name
+ * @param      {string}  type        The type
+ * @param      {string}  view        The view
+ */
+updateMainContainerBodyDataTable = (table_name,type,view) => {
+  if(view.trim().toLowerCase() === "productdetails"){
+    $('.' + type).html("").append(`<table id='exampleEditable' class='table table-bordered table-striped' cellspacing=0 width=100%><thead><tr><th>ID</th><th>Name</th><th>Detail</th><th>Rate</th><th>Created At</th><th>Updated At</th><th>Updated By</th><th>Action</th></tr></thead></table>`);
+    updateDataTableWithServerSidePagination('exampleEditable','/aeroticInvoice/api/datatable/product_details.php',true,table_name);    
+  }
+}
+
+/**
+ * { function_description }
+ *
+ * @param      {string}  id      The identifier
+ * @param      {<type>}  url     The url
+ */
+updateDataTableWithServerSidePagination = (id,url,action,table_name) => {
+  if(action){
+    $.fn.dataTable.ext.buttons.add = {
+      className: 'add-record',   
+      action: function ( e, dt, node, config ) {
+        globalObj.editTableName = table_name;
+        delete globalObj.editId;
+        OpenCustomModal('editModal','html','modal-lg');
+      }
+    };
+    $('#' + id).DataTable({
+      dom: 'Blfrtip',
+      buttons: [
+        'copy', 'csv', 'excel', 'pdf', 'print',{extend: 'add',text: 'Add New'}
+      ],
+      searching: true,
+      aLengthMenu: [
+          [5, 10, 50, 100, -1],
+          [5, 10, 50, 100, "All"]
+      ],
+      iDisplayLength: 5,
+      "processing": true,
+      "serverSide": true,
+      "ajax": url,
+      createdRow: function(row, data, index) {
+          // $(row).find('td').eq(0).addClass(index + 'noisref');
+          // $(row).find('td').eq(1).addClass('getRowWiseData');
+          $(row).find('td:last').html(`<a href='javascript:;' class='edit' onclick='EditData(this,"${table_name}")'><i class='far fa-edit'></i></a> | <a href='javascript:;' class='delete' onclick='DeleteData(this,"${table_name}")'><i class='far fa-trash-alt'></i></a>`);
+      },
+      "scrollX": true,
+      "autoWidth": true
+    });
+  }else{
+    $('#' + id).DataTable({
+      dom: 'Blfrtip',
+      buttons: [
+          'copy', 'excel', 'pdf', 'print'
+      ],
+      searching: true,
+      aLengthMenu: [
+          [5, 10, 50, 100, -1],
+          [5, 10, 50, 100, "All"]
+      ],
+      iDisplayLength: 5,
+      "processing": true,
+      "serverSide": true,
+      "ajax": url,
+      "scrollX": true,
+      "autoWidth": true
+    });
+  }
+}
+
+/**
+ * { Edit Data }
+ *
+ * @class      EditData (name)
+ * @param      {<type>}  val         The value
+ * @param      {<type>}  table_name  The table name
+ */
+EditData = (val,table_name) => {
+  var Id = $(val).parents('tr').find('td:first').html();
+  globalObj.editId = Id;
+  globalObj.editTableName = table_name;
+  swal({
+    title: "Are you sure?",
+    text: `You want to edit record having id ${Id}`,
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  }).then((isConfirm) => {
+    if (isConfirm) {
+      OpenCustomModal('editModal','html','modal-lg');
+    } else {
+      $.notify("Your details are safe!", "info");
+    }
+  });
+}
+
+/**
+ * { Delete Data }
+ *
+ * @class      DeleteData (name)
+ * @param      {<type>}  val         The value
+ * @param      {<type>}  table_name  The table name
+ */
+DeleteData = (val,table_name) => {
+  var Id = $(val).parents('tr').find('td:first').html();
+  swal({
+    title: "Are you sure?",
+    text: `You want to delete this record having id ${Id}`,
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  }).then((isConfirm) => {
+    if (isConfirm) {
+      var query = `delete from ${table_name} where id=${Id};`;
+      executeCustomQuery(query,"directrun","","Record has been deleted");
+      updateCounters();
+      productDetails();
+    } else {
+      $.notify("Your details are safe!", "info");
+    }
+  });
+}
+
+/**
  * { edit Main Container Body }
  */
 editMainContainerBody = () => {
@@ -405,4 +546,8 @@ saveEditedMainContainerBody = () => {
     $.notify("Something went wrong please contact your administrator.", "error");
     console.log("Error executing AJAX request. Please contact your administrator");
   });
+}
+
+updateMainContainerBodyWithOutData = (data,type,view) => {
+  $('.' + type).html("");
 }
