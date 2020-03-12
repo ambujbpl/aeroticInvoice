@@ -388,7 +388,7 @@ updateMainContainerBodyDataTable = (table_name,type,view) => {
 updateDataTableWithServerSidePagination = (id,url,action,table_name) => {
   if(action){
     $.fn.dataTable.ext.buttons.add = {
-      className: 'add-record',   
+      className: 'add-record',
       action: function ( e, dt, node, config ) {
         globalObj.editTableName = table_name;
         delete globalObj.editId;
