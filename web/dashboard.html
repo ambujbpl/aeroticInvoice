@@ -16,11 +16,17 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" type="text/css">
   <!-- Custom plugin for this template-->
   <!-- <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+  
   <link rel="stylesheet" type="text/css" href="vendor/DataTables/datatables.min.css"/>
   <link rel="stylesheet" type="text/css" href="vendor/DataTables/Buttons-1.6.1/css/buttons.bootstrap4.min.css">
   <link rel="stylesheet" type="text/css" href="vendor/DataTables/Responsive-2.2.3/css/responsive.bootstrap4.min.css">
-  <link rel="stylesheet" type="text/css" href="vendor/DataTables/Select-1.3.1/css/dataTables.select.min.css">
+  <link rel="stylesheet" type="text/css" href="vendor/DataTables/Select-1.3.1/css/select.dataTables.min.css">
   <link rel="stylesheet" type="text/css" href="vendor/DataTables/editor.dataTables.min.css">
+
+  <!-- <link href="https://nightly.datatables.net/buttons/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
+  <link href="https://nightly.datatables.net/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" /> -->
+
+
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.css" rel="stylesheet" type="text/css">
   <link href="css/custom.min.css" rel="stylesheet" type="text/css">
@@ -85,8 +91,8 @@
         <div id="collapse3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">COMPONENTS:</h6>
-            <a class="collapse-item" onclick="basicDetails();">Create Bill</a>
-            <a class="collapse-item" onclick="productDetails();">View Bill</a>
+            <a class="collapse-item" onclick="createBill();">Create Bill</a>
+            <a class="collapse-item" onclick="viewBill();">View Bill</a>
           </div>
         </div>
       </li>
@@ -720,7 +726,10 @@
   <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script> -->
   <script type="text/javascript" src="vendor/DataTables/datatables.min.js"></script>
   <script type="text/javascript" src="vendor/DataTables/Buttons-1.6.1/js/buttons.bootstrap4.min.js"></script>
-  <script type="text/javascript" src="vendor/DataTables/Buttons-1.6.1/js/buttons.bootstrap4.min.js"></script>
+  <script type="text/javascript" src="vendor/DataTables/JSZip-2.5.0/jszip.min.js"></script>
+  <script type="text/javascript" src="vendor/DataTables/datatables.min.js"></script>
+  <script type="text/javascript" src="vendor/DataTables/pdfmake.min.js"></script>
+  <script type="text/javascript" src="vendor/DataTables/vfs_fonts.js"></script>
   <script type="text/javascript" src="vendor/DataTables/Responsive-2.2.3/js/responsive.bootstrap4.min.js"></script>
   <script type="text/javascript" src="vendor/DataTables/Select-1.3.1/js/dataTables.select.min.js"></script>
   <script type="text/javascript" src="vendor/DataTables/dataTables.editor.min.js"></script>

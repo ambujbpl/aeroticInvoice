@@ -15,6 +15,16 @@ $(document).ready(function() {
 });
 
 /**
+ * { Create Bill }
+ */
+createBill = () => {
+	$('.mainContainerRow').removeClass('hide');
+	$('.mainContainerHeader').html('Create Bill');
+	$('.mainContainerDropdownMenuLink').html('').append(`<div class="dropdown-header">Dropdown Create Bill Header:</div>`).append(`<a class="dropdown-item" onclick="createBill();">Create a Bill</a>`).append(`<a class="dropdown-item" onclick="editMainContainerBody();">Edit a Bill Detail</a>`);
+	executeCustomQuery("select * from basic","mainContainerBody","basicDetails");
+}
+
+/**
  * { basic Details }
  */
 basicDetails = () => {
