@@ -27,6 +27,7 @@ if($userid && $pass)
 	if($total == 1){
 		session_start();
 		$_SESSION['user_id'] = $userid;
+		$_SESSION['session_start_time'] = time();
 		$userRecord = runCustomQuery("select * from users where userid='$userid'");
 		$userRecordDecode = json_decode($userRecord, true);
 		$userRecordDecodeDataID = $userRecordDecode['data'][0]['id'];

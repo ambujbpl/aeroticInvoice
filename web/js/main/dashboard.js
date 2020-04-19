@@ -20,10 +20,27 @@ $(document).ready(function() {
 createBill = () => {
 	$('.mainContainerRow').removeClass('hide');
 	$('.mainContainerHeader').html('Create Bill');
-	$('.mainContainerDropdownMenuLink').html('').append(`<div class="dropdown-header">Dropdown Create Bill Header:</div>`).append(`<a class="dropdown-item" onclick="createBill();">Create a Bill</a>`).append(`<a class="dropdown-item" onclick="editMainContainerBody();">Edit a Bill Detail</a>`);
-	executeCustomQuery("select * from basic","mainContainerBody","basicDetails");
+	$('.mainContainerDropdownMenuLink').html('').append(`<div class="dropdown-header">Dropdown Create Bill Header:</div>`).append(`<a class="dropdown-item" onclick="showAddBill();">Create a Bill</a>`).append(`<a class="dropdown-item" onclick="viewBill();">View Bill</a>`);
+	// executeCustomQuery("select * from basic","mainContainerBody","basicDetails");
+	showAddBill();	
 }
 
+/**
+ * Shows the add bill.
+ */
+showAddBill = () => {
+	window.open("./html/addInvoice.html", "_blank");
+	// location.href = './html/addInvoice.php';
+}
+
+/**
+ * { view the bill book }
+ */
+viewBill = () => {
+	$('.mainContainerRow').removeClass('hide');
+	$('.mainContainerHeader').html('View Bill Details');
+	showServerSideDetailsByTableNameDataTable("invoices","mainContainerBody","invoicesDetails");
+}
 /**
  * { basic Details }
  */

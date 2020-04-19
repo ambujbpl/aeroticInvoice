@@ -187,11 +187,44 @@ executeCustomQuery = (query,type,view = "",message = "") => {
        }
      } else if(type.trim().toLowerCase() === "updatecounters"){
        $('.' + view).html(res.data[0]["count"])
+     } else if(type.trim().toLowerCase() === "updatebasics"){
+       // $('.' + view).html(res.data[0]["count"])
+       $("#selfName").html(res.data[0]["Name"]);
+       $("#selfAddress").html(res.data[0]["Address"]);
+       $("#selfPhone").html(res.data[0]["Phone"]);
+       $("#selfGst").html(res.data[0]["Gst"]);
+       $("#registrationNumber").html(res.data[0]["HsnCode"]);
+     } else if(type.trim().toLowerCase() === "updateinvoicenumber"){
+       $("#invoiceNumber").html(parseInt(res.data[0]["invoiceNumber"]) + 1);
+     } else if(type.trim().toLowerCase() === "updateinvoiceitems"){
+       updateInvoiceItems(res.data,type,view,message);
      }
     }
   }).fail(function() {
     return {"resCode":"Error","message":"Something went wrong please contact your administrator."};
   });
+}
+
+updateInvoiceItems = (data,type,view,message) => {
+  var body = '';
+  data.forEach((items) => {
+    body += `<tr class='item-row'>
+              <td class='item-name'>
+                <div class='delete-wpr'><textarea id='Name'>${items['name']}</textarea><a class='delete' href='javascript:;' title='Remove row'><i class='fa fa-times' aria-hidden='true'></i></a>
+                </div>
+              </td>
+              <td class='description'><textarea id='Type'>${items['detail']}</textarea></td>
+              <td><textarea class='cost'>${items['rate']}</textarea></td>
+              <td class='qtyDiv'><textarea class='qty'></textarea></td>
+              <td><i class='fa fa-inr'></i> <span class='price'></span></td>
+            </tr>";`
+  });
+  body += `<tr id="hiderow" class="hiderow">
+            <td colspan="5"><a id="addrow" href="javascript:;" title="Add a row"><i class='fa fa-plus' aria-hidden='true'></i>Add a row</a></td>
+          </tr>`;
+  $('#' + view).html(body);
+  // $(".qty").html(1);
+  // $('.qtyDiv').find('textarea').first().focus();
 }
 
 showServerSideDetailsByTableNameDataTable = (table_name,type,veiw = "")=> {
@@ -376,6 +409,9 @@ updateMainContainerBodyDataTable = (table_name,type,view) => {
   if(view.trim().toLowerCase() === "productdetails"){
     $('.' + type).html("").append(`<table id='exampleEditable' class='table table-bordered table-striped' cellspacing=0 width=100%><thead><tr><th>ID</th><th>Name</th><th>Detail</th><th>Rate</th><th>Created At</th><th>Updated At</th><th>Updated By</th><th>Action</th></tr></thead></table>`);
     updateDataTableWithServerSidePagination('exampleEditable','/aeroticInvoice/api/datatable/product_details.php',true,table_name);    
+  } else if (view.trim().toLowerCase() === "invoicesdetails"){
+    $('.' + type).html("").append(`<table id='exampleEditable' class='table table-bordered table-striped' cellspacing=0 width=100%><thead><tr><th>Invoice ID</th><th>Invoice Date</th><th>Sub Total</th><th>GST</th><th>Total</th><th>Paid</th><th>Due</th><th>Created At</th><th>Updated At</th><th>Updated By</th><th>Action</th></tr></thead></table>`);
+    updateDataTableWithServerSidePagination('exampleEditable','/aeroticInvoice/api/datatable/invoices_details.php',true,table_name);
   }
 }
 
@@ -386,6 +422,10 @@ updateMainContainerBodyDataTable = (table_name,type,view) => {
  * @param      {<type>}  url     The url
  */
 updateDataTableWithServerSidePagination = (id,url,action,table_name) => {
+  console.log("id : ",id);
+  console.log("url : ",url);
+  console.log("action : ",action);
+  console.log("table_name : ",table_name);
   if(action){
     $.fn.dataTable.ext.buttons.add = {
       className: 'add-record',
@@ -412,7 +452,13 @@ updateDataTableWithServerSidePagination = (id,url,action,table_name) => {
       createdRow: function(row, data, index) {
           // $(row).find('td').eq(0).addClass(index + 'noisref');
           // $(row).find('td').eq(1).addClass('getRowWiseData');
-          $(row).find('td:last').html(`<a href='javascript:;' class='edit' onclick='EditData(this,"${table_name}")'><i class='far fa-edit'></i></a> | <a href='javascript:;' class='delete' onclick='DeleteData(this,"${table_name}")'><i class='far fa-trash-alt'></i></a>`);
+          var addHtml = ``;
+          if(table_name === "product"){
+            addHtml += `<a href='javascript:;' class='edit' onclick='EditData(this,"${table_name}")'><i class='far fa-edit'></i></a> | <a href='javascript:;' class='delete' onclick='DeleteData(this,"${table_name}")'><i class='far fa-trash-alt'></i></a>`;
+          } else if(table_name === "invoices"){
+            addHtml += `<a href='javascript:;' class='edit' onclick='EditData(this,"${table_name}")'><i class='far fa-eye'></i></a> | <a href='javascript:;' class='delete' onclick='DeleteData(this,"${table_name}")'><i class='far fa-trash-alt'></i></a>`;
+          }
+          $(row).find('td:last').html(addHtml);
       },
       "scrollX": true,
       "autoWidth": true
@@ -449,15 +495,25 @@ EditData = (val,table_name) => {
   var Id = $(val).parents('tr').find('td:first').html();
   globalObj.editId = Id;
   globalObj.editTableName = table_name;
+  var action;
+  if(table_name.trim().toLowerCase() === "product"){
+    action = 'edit';
+  }else if(table_name.trim().toLowerCase() === "invoices"){
+    action = 'view';
+  }
   swal({
     title: "Are you sure?",
-    text: `You want to edit record having id ${Id}`,
+    text: `You want to ${action} record having id ${Id}`,
     icon: "warning",
     buttons: true,
     dangerMode: true,
   }).then((isConfirm) => {
-    if (isConfirm) {
-      OpenCustomModal('editModal','html','modal-lg');
+    if (isConfirm) {      
+      if(table_name.trim().toLowerCase() === "product"){
+        OpenCustomModal('editModal','html','modal-lg');
+      }else if(table_name.trim().toLowerCase() === "invoices"){
+        window.open("./html/addInvoice.html?type=view", "_blank")
+      }      
     } else {
       $.notify("Your details are safe!", "info");
     }
@@ -484,7 +540,11 @@ DeleteData = (val,table_name) => {
       var query = `delete from ${table_name} where id=${Id};`;
       executeCustomQuery(query,"directrun","","Record has been deleted");
       updateCounters();
-      productDetails();
+      if(table_name === "product"){
+        productDetails();
+      } else if (table_name === "invoices"){
+        viewBill();
+      }
     } else {
       $.notify("Your details are safe!", "info");
     }

@@ -23,3 +23,23 @@
 .dropdown-item:hover{
 	cursor: pointer;
 }
+
+.btn-default{
+	border: 1px solid #ccc;
+	border-radius: 8px;
+}
+
+.btn-default:hover{
+	background-color: #ccc;
+	text-decoration: underline;
+	text-transform: bold;
+}
+
+.dataTables_filter{
+	width: 100%;
+	text-align: right !important;
+}
+
+.ui-datepicker{
+	background-color: #ccc;
+}
