@@ -44,7 +44,7 @@ function formSubmitFunction() {
   }
   $.when(Posthandler("/aeroticInvoice/api/user/user_login.php", obj, true)).done(function(res) {
     if(res.resCode.trim().toLowerCase() == "ok") {
-      var obj = {"userid":res.userid};
+      var obj = {"userid":res.userid,"token":res.token};
       updateUserDetails(obj);
     } else {
       $('#errorDiv').html(res.message);
@@ -60,6 +60,7 @@ function updateUserDetails(obj){
   $.when(Posthandler("/aeroticInvoice/api/user/user_details.php", obj, true)).done(function(data) {
     if(data.resCode.trim().toLowerCase() == "ok") {          
       $.notify(data.message, "success");
+      data.data[0].token = obj.token;
       localStorage.setItem("user",JSON.stringify(data.data[0]))
       setTimeout(()=>{
         location.href = './dashboard.html';

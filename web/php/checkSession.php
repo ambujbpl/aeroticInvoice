@@ -1,10 +1,10 @@
 <?php
   session_start();
 	if(isset($_SESSION["user_id"])) {
-		include('./web/php/function.php');
+		include('./function.php');
 		if(!isLoginSessionExpired()) {
 			echo "<script> localStorage.clear(); </script>";
-	    header("Location: web/login.html");
+	    	header("Location: web/login.html");
 		} else {
 			header("Location: web/dashboard.html");
 		}

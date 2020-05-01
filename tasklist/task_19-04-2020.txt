@@ -1,5 +1,9 @@
-1 Session time 
-2 jwt token
-3 data table issue 
-4 role managemenst
-5 
+30-04-2020
+1 Session time :- Done 
+2 jwt token :- Add Token Validation in place of jwt token
+3 Add validation using session time and token.......(Harshi need to replicate others api's)
+ 
+ 
+4 data table issue :-  
+5 role managemenst :- 
+6 Task list implementation :- (Harshi will do)

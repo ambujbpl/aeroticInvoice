@@ -1,0 +1,3 @@
+<?php 
+$sessionMaxTime = 20;
+?>

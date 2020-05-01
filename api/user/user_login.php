@@ -19,6 +19,7 @@ if($userid && $pass)
 	include('./../config/connection.php');
 	include('./../custom/custom_query_function.php');
 	include('./../email/email.php');
+	include('./secret.php');
 	$query = "select * from users where userid='$userid' && password='$pass'";
 	$data = mysqli_query($connection,$query);
 	$total = mysqli_num_rows($data);
@@ -34,6 +35,9 @@ if($userid && $pass)
 		$userRecordDecodeDataNotification = $userRecordDecode['data'][0]['notification'];
 		$cookie_name = "userid";
 		$cookie_value = $userid;
+		$key = $userid . time() . $secret;
+		$token = str_rot13($key);
+		$_SESSION['token'] = $token;
 		ob_start();
 		setcookie($cookie_name, $cookie_value, 0, '/');
 		ob_end_flush();
@@ -48,7 +52,7 @@ if($userid && $pass)
 		// 	echo $sendEmail; 
 		// }
 		runCustomQuery("insert into logs (type,info,table_name,map_id) values ('login','$userid','users',$userRecordDecodeDataID)");
-		$resp = array('resCode' => 'Ok', 'message' => 'User validation successful', 'userid' =>  $userid) ;
+		$resp = array('resCode' => 'Ok', 'message' => 'User validation successful', 'userid' =>  $userid, 'token' => $token);//
 		echo json_encode($resp);
 	}else{
 		$resp = array('resCode' => 'Error', 'message' => 'Sorry, User not validate');

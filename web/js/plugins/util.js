@@ -1,25 +1,30 @@
-
 /**
  * { function_description }
  */
 logoutFunction = () => {
   var user = localStorage.getItem('user');
   if(user)user=JSON.parse(user);
-  $.when(Posthandler("/aeroticInvoice/api/user/user_logout.php", {userid:user.userid}, true)).done(function(data) {
-    if(data.resCode.trim().toLowerCase() == "ok") {            
-      $.notify(data.message, "success");
-      localStorage.clear();
-      setTimeout(()=>{
-        location.href = '/';
-      },150);
-    } else {
-      $('#errorDiv').html(data.message);
-      $.notify(data.message, "error");
-    }
-  }).fail(function() {
-    $.notify("Something went wrong please contact your administrator.", "error");
-    console.log("Error executing AJAX request. Please contact your administrator");
-  });	
+  if(user){
+    $.when(Posthandler("/aeroticInvoice/api/user/user_logout.php", {userid:user.userid}, true)).done(function(data) {
+      if(data.resCode.trim().toLowerCase() == "ok") {            
+        $.notify(data.message, "success");
+        localStorage.clear();
+        setTimeout(()=>{
+          location.href = '/';
+        },150);
+      } else {
+        $('#errorDiv').html(data.message);
+        $.notify(data.message, "error");
+      }
+    }).fail(function() {
+      $.notify("Something went wrong please contact your administrator.", "error");
+      console.log("Error executing AJAX request. Please contact your administrator");
+    });    
+  }	else{
+    setTimeout(()=>{
+      location.href = '/';
+    },150);
+  }
 }
 
 /**
@@ -149,10 +154,10 @@ printFunction = (id,name) => {
  * @param      {string}  name    The name
  */
 function getUrlParameter(name) {
-    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-    var results = regex.exec(location.search);
-    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+  name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+  var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+  var results = regex.exec(location.search);
+  return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
 };
 
 /**
@@ -162,7 +167,8 @@ function getUrlParameter(name) {
  * @return     {Object}  { description_of_the_return_value }
  */
 executeCustomQuery = (query,type,view = "",message = "") => {
-  $.when(Posthandler("/aeroticInvoice/api/custom/custom_query.php", {'query':query}, false)).done(function(res) {
+  var user = JSON.parse(localStorage.getItem('user'));
+  $.when(Posthandler("/aeroticInvoice/api/custom/custom_query.php", {'query':query, 'token': user.token}, false)).done(function(res) {
     if(res.resCode.trim().toLowerCase() == "ok") {
      if(type.trim().toLowerCase() === "login"){
        updateLoginGraphicLayout(res.data,type);
@@ -199,6 +205,14 @@ executeCustomQuery = (query,type,view = "",message = "") => {
      } else if(type.trim().toLowerCase() === "updateinvoiceitems"){
        updateInvoiceItems(res.data,type,view,message);
      }
+    } else if(res.resCode.trim().toLowerCase() == "sessionerror") {
+      $.notify(res.message,"error");
+      setTimeout(()=> { logoutFunction(); },200);
+    } else if(res.resCode.trim().toLowerCase() == "tokenerror") {
+      $.notify(res.message,"error");
+      setTimeout(()=> { logoutFunction(); },200);
+    }else {
+      $.notify(res.message,"error");
     }
   }).fail(function() {
     return {"resCode":"Error","message":"Something went wrong please contact your administrator."};

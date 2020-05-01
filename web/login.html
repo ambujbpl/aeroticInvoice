@@ -17,12 +17,8 @@
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.css" rel="stylesheet" type="text/css">
-  <script type="text/javascript" src="js/plugins/util.js"></script>
   <script type="text/javascript">
-    var user = localStorage.getItem("user");
-    if(user){
-      logoutFunction();
-    }
+    localStorage.clear();
   </script>
 </head>
 
@@ -89,8 +85,9 @@
 
   </div>
 
-  <!-- Bootstrap core JavaScript-->
   <script type="text/javascript" src="vendor/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="js/plugins/util.js"></script>
+  <!-- Bootstrap core JavaScript-->
   <script type="text/javascript" src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
@@ -102,7 +99,5 @@
   <script type="text/javascript" src="vendor/notify/notify.js"></script>
   <script type="text/javascript" src="js/plugins/ajaxHendler.js"></script>
   <script type="text/javascript" src="js/main/login.js"></script>
-
 </body>
-
 </html>
