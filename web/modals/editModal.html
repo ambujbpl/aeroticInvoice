@@ -21,7 +21,7 @@
 	  if(globalObj.editId && globalObj.editTableName){
 	  	$('.addUpdateBtn').html("Update");
 		  var query = `select * from ${globalObj.editTableName} where id=${globalObj.editId};`;
-		  $.when(Posthandler("/aeroticInvoice/api/custom/custom_query.php", {'query':query}, true)).done(function(res) {
+		  $.when(Posthandler("./../api/custom/custom_query.php", {'query':query, 'token': user.token}, true)).done(function(res) {
 		    if(res.resCode.trim().toLowerCase() == "ok") {
 		    	$.notify(res.message, "success");   
 					$('#editModalBody').html("<table id='editModalTable' class='table table-bordered table-striped' cellspacing=0 width=100%></table>");
@@ -49,7 +49,7 @@
 	  }else{
 	  	$('.addUpdateBtn').html("Add");
 		  var query = `select * from ${globalObj.editTableName} limit 1;`;
-		  $.when(Posthandler("/aeroticInvoice/api/custom/custom_query.php", {'query':query}, true)).done(function(res) {
+		  $.when(Posthandler("./../api/custom/custom_query.php", {'query':query, 'token': user.token}, true)).done(function(res) {
 		    if(res.resCode.trim().toLowerCase() == "ok") {
 		    	$('#editModalBody').html("<table id='editModalTable' class='table table-bordered table-striped' cellspacing=0 width=100%></table>");
 				  var body = "";
@@ -94,8 +94,8 @@
 					query += `${key}="${val}" ,`;
 				});
 				// query = query.slice(0, -1);
-				query += ` updated_by="${user.userid}" where id=${globalObj.editId}`;
-				$.when(Posthandler("/aeroticInvoice/api/custom/custom_query.php", {'query':query}, true)).done(function(res) {
+				query += ` updated_by="${user.id}" where id=${globalObj.editId}`;
+				$.when(Posthandler("./../api/custom/custom_query.php", {'query':query, 'token': user.token}, true)).done(function(res) {
 	        if(res.resCode.trim().toLowerCase() == "ok") {
 	          $.notify("Record has been edited", "success");
 	          productDetails();
@@ -121,9 +121,9 @@
 					query += `"${val}" ,`;
 				});
 				// query = query.slice(0, -1);
-				query += `"${user.userid}")`;
+				query += `"${user.id}")`;
 				console.log("query : ",query);
-				$.when(Posthandler("/aeroticInvoice/api/custom/custom_query.php", {'query':query}, true)).done(function(res) {
+				$.when(Posthandler("./../api/custom/custom_query.php", {'query':query, 'token': user.token}, true)).done(function(res) {
 	        if(res.resCode.trim().toLowerCase() == "ok") {
 	          $.notify("Record has been added", "success");
 	          updateCounters();

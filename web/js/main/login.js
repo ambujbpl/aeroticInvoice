@@ -1,3 +1,8 @@
+var user = localStorage.getItem('user');
+if(user){
+  console.log('user : ',user);
+  location.href = './dashboard.html';
+}
 $(document).ready(function() {
     $("#loginForm").validate({
         // errorPlacement: function(error, element) {
@@ -42,7 +47,7 @@ function formSubmitFunction() {
       "userid": userid,
       "password": password
   }
-  $.when(Posthandler("/aeroticInvoice/api/user/user_login.php", obj, true)).done(function(res) {
+  $.when(Posthandler("./../api/user/user_login.php", obj, true)).done(function(res) {
     if(res.resCode.trim().toLowerCase() == "ok") {
       var obj = {"userid":res.userid,"token":res.token};
       updateUserDetails(obj);
@@ -55,9 +60,8 @@ function formSubmitFunction() {
     console.log("Error executing AJAX request. Please contact your administrator");
   });
 };
-
 function updateUserDetails(obj){
-  $.when(Posthandler("/aeroticInvoice/api/user/user_details.php", obj, true)).done(function(data) {
+  $.when(Posthandler("./../api/user/user_details.php", obj, true)).done(function(data) {
     if(data.resCode.trim().toLowerCase() == "ok") {          
       $.notify(data.message, "success");
       data.data[0].token = obj.token;

@@ -112,7 +112,7 @@ function formSubmitFunction() {
     console.log(obj,'-----------------');
     $.ajax({
         type: "POST",
-        url: "/aeroticInvoice/api/user/user_registration.php",
+        url: "./../api/user/user_registration.php",
         data: JSON.stringify(obj),
         contentType: "application/json",
         dataType: "json",

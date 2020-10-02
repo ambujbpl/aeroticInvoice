@@ -5,7 +5,7 @@ logoutFunction = () => {
   var user = localStorage.getItem('user');
   if(user)user=JSON.parse(user);
   if(user){
-    $.when(Posthandler("/aeroticInvoice/api/user/user_logout.php", {userid:user.userid}, true)).done(function(data) {
+    $.when(Posthandler("./../api/user/user_logout.php", {userid:user.userid}, true)).done(function(data) {
       if(data.resCode.trim().toLowerCase() == "ok") {            
         $.notify(data.message, "success");
         localStorage.clear();
@@ -74,11 +74,11 @@ updateProfilePicName = (name) => {
     user = JSON.parse(user);
     if(name && name != undefined && name != ""){
       let query = `update users set profile_file_name="${name}", updated_by="${user.userid}" where id=${user.id}`;
-      $.when(Posthandler("/aeroticInvoice/api/custom/custom_query.php", {'query':query}, true)).done(function(res) {
+      $.when(Posthandler("./../../api/custom/custom_query.php", {'query':query, 'token': user.token}, true)).done(function(res) {
         if(res.resCode.trim().toLowerCase() == "ok") {
           $.notify(res.message, "success");          
           setTimeout(()=>{
-            updateUserDetails(user.userid);
+            updateUserDetailsHtml(user.userid);
           },250);
         } else {
           $('#errorDiv').html(res.message);
@@ -100,7 +100,31 @@ updateProfilePicName = (name) => {
  * @param      {<type>}  userid  The userid
  */
 updateUserDetails = (userid) => {
-  $.when(Posthandler("/aeroticInvoice/api/user/user_details.php", {"userid":userid}, true)).done(function(res) {
+  $.when(Posthandler("./../api/user/user_details.php", {"userid":userid}, true)).done(function(res) {
+    if(res.resCode.trim().toLowerCase() == "ok") {
+      $.notify(res.message, "success");
+      localStorage.setItem("user",JSON.stringify(res.data[0]))
+      setTimeout(()=>{
+        // location.href = './../dashboard.html';
+        location.href = '/';
+      },350);
+    } else {
+      $('#errorDiv').html(res.message);
+      $.notify(res.message, "error");
+    }
+  }).fail(function() {
+    $.notify("Something went wrong please contact your administrator.", "error");
+    console.log("Error executing AJAX request. Please contact your administrator");
+  });  
+}
+
+/**
+ * { function_description }
+ *
+ * @param      {<type>}  userid  The userid
+ */
+updateUserDetailsHtml = (userid) => {
+  $.when(Posthandler("./../../api/user/user_details.php", {"userid":userid}, true)).done(function(res) {
     if(res.resCode.trim().toLowerCase() == "ok") {
       $.notify(res.message, "success");
       localStorage.setItem("user",JSON.stringify(res.data[0]))
@@ -168,7 +192,7 @@ function getUrlParameter(name) {
  */
 executeCustomQuery = (query,type,view = "",message = "") => {
   var user = JSON.parse(localStorage.getItem('user'));
-  $.when(Posthandler("/aeroticInvoice/api/custom/custom_query.php", {'query':query, 'token': user.token}, false)).done(function(res) {
+  $.when(Posthandler("./../api/custom/custom_query.php", {'query':query, 'token': user.token}, false)).done(function(res) {
     if(res.resCode.trim().toLowerCase() == "ok") {
      if(type.trim().toLowerCase() === "login"){
        updateLoginGraphicLayout(res.data,type);
@@ -200,6 +224,82 @@ executeCustomQuery = (query,type,view = "",message = "") => {
        $("#selfPhone").html(res.data[0]["Phone"]);
        $("#selfGst").html(res.data[0]["Gst"]);
        $("#registrationNumber").html(res.data[0]["HsnCode"]);
+       let invoiceNumber = ``;
+       if(parseInt(parseInt(res.data[0]["InvoiceCount"])) > 99) {
+         invoiceNumber = `${parseInt(res.data[0]["InvoiceCount"])}`; 
+       } else if(parseInt(res.data[0]["InvoiceCount"]) > 9) {
+         invoiceNumber = `0${parseInt(res.data[0]["InvoiceCount"])}`;
+       }  else invoiceNumber = `00${parseInt(res.data[0]["InvoiceCount"])}`;
+       invoiceNumber = invoiceNumber + `/${res.data[0]["YearCode"]}`;
+       console.log('invoiceNumber : ',invoiceNumber);
+       $("#invoiceNumber").html(invoiceNumber);
+     } else if(type.trim().toLowerCase() === "updateinvoiceitems"){
+       updateInvoiceItems(res.data,type,view,message);
+     }
+    } else if(res.resCode.trim().toLowerCase() == "sessionerror") {
+      $.notify(res.message,"error");
+      setTimeout(()=> { logoutFunction(); },200);
+    } else if(res.resCode.trim().toLowerCase() == "tokenerror") {
+      $.notify(res.message,"error");
+      setTimeout(()=> { logoutFunction(); },200);
+    }else {
+      $.notify(res.message,"error");
+    }
+  }).fail(function() {
+    return {"resCode":"Error","message":"Something went wrong please contact your administrator."};
+  });
+}
+
+/**
+ * { function_description }
+ *
+ * @param      {<type>}  query   The query
+ * @return     {Object}  { description_of_the_return_value }
+ */
+executeCustomQueryHtml = (query,type,view = "",message = "") => {
+  var user = JSON.parse(localStorage.getItem('user'));
+  $.when(Posthandler("./../../api/custom/custom_query.php", {'query':query, 'token': user.token}, false)).done(function(res) {
+    if(res.resCode.trim().toLowerCase() == "ok") {
+     if(type.trim().toLowerCase() === "login"){
+       updateLoginGraphicLayout(res.data,type);
+     } else if(type.trim().toLowerCase() === "logout") {
+       updateLogoutGraphicLayout(res.data,type);
+     } else if(type.trim().toLowerCase() === "maincontainerbody"){
+       if(res.data.length > 0){
+        globalObj.data = res.data;
+        globalObj.type = type;
+        globalObj.view = view;
+        updateMainContainerBody(res.data,type,view);
+       }
+       else{
+        $.notify("Data not found","error");
+        updateMainContainerBodyWithOutData(res.data,type,view);
+       }
+     } else if(type.trim().toLowerCase() === "directrun"){
+       if(message != ""){
+         $.notify(message,"success");
+       }else{
+         $.notify(res.message,"success");
+       }
+     } else if(type.trim().toLowerCase() === "updatecounters"){
+       $('.' + view).html(res.data[0]["count"])
+     } else if(type.trim().toLowerCase() === "updatebasics"){
+       // $('.' + view).html(res.data[0]["count"])
+       $("#selfName").html(res.data[0]["Name"]);
+       $("#selfAddress").html(res.data[0]["Address"]);
+       $("#selfPhone").html(res.data[0]["Phone"]);
+       $("#selfGst").html(res.data[0]["Gst"]);
+       $("#registrationNumber").html(res.data[0]["HsnCode"]);
+       $("#YearCode").html(res.data[0]["YearCode"]);
+       let invoiceNumber = ``;
+       if(parseInt(parseInt(res.data[0]["InvoiceCount"])) > 99) {
+         invoiceNumber = `${parseInt(res.data[0]["InvoiceCount"])}`; 
+       } else if(parseInt(res.data[0]["InvoiceCount"]) > 9) {
+         invoiceNumber = `0${parseInt(res.data[0]["InvoiceCount"])}`;
+       }  else invoiceNumber = `00${parseInt(res.data[0]["InvoiceCount"])}`;
+       invoiceNumber = invoiceNumber + `/${res.data[0]["YearCode"]}`;
+       console.log('invoiceNumber : ',invoiceNumber);
+       $("#invoiceNumber").html(invoiceNumber);
      } else if(type.trim().toLowerCase() === "updateinvoicenumber"){
        $("#invoiceNumber").html(parseInt(res.data[0]["invoiceNumber"]) + 1);
      } else if(type.trim().toLowerCase() === "updateinvoiceitems"){
@@ -422,10 +522,10 @@ updateMainContainerBody = (data,type,view) => {
 updateMainContainerBodyDataTable = (table_name,type,view) => {
   if(view.trim().toLowerCase() === "productdetails"){
     $('.' + type).html("").append(`<table id='exampleEditable' class='table table-bordered table-striped' cellspacing=0 width=100%><thead><tr><th>ID</th><th>Name</th><th>Detail</th><th>Rate</th><th>Created At</th><th>Updated At</th><th>Updated By</th><th>Action</th></tr></thead></table>`);
-    updateDataTableWithServerSidePagination('exampleEditable','/aeroticInvoice/api/datatable/product_details.php',true,table_name);    
+    updateDataTableWithServerSidePagination('exampleEditable','./../api/datatable/product_details.php',true,table_name);    
   } else if (view.trim().toLowerCase() === "invoicesdetails"){
     $('.' + type).html("").append(`<table id='exampleEditable' class='table table-bordered table-striped' cellspacing=0 width=100%><thead><tr><th>Invoice ID</th><th>Invoice Date</th><th>Sub Total</th><th>GST</th><th>Total</th><th>Paid</th><th>Due</th><th>Created At</th><th>Updated At</th><th>Updated By</th><th>Action</th></tr></thead></table>`);
-    updateDataTableWithServerSidePagination('exampleEditable','/aeroticInvoice/api/datatable/invoices_details.php',true,table_name);
+    updateDataTableWithServerSidePagination('exampleEditable','./../api/datatable/invoices_details.php',true,table_name);
   }
 }
 
@@ -603,8 +703,8 @@ saveEditedMainContainerBody = () => {
     query += key + "='" + $('#'+ key).val() + "', "
   })
   // query = query.slice(0, -1);
-  query += `updated_by="${user.userid}"`;
-  $.when(Posthandler("/aeroticInvoice/api/custom/custom_query.php", {'query':query}, true)).done(function(res) {
+  query += `updated_by="${user.id}"`;
+  $.when(Posthandler("./../api/custom/custom_query.php", {'query':query, 'token': user.token}, true)).done(function(res) {
     if(res.resCode.trim().toLowerCase() == "ok") {
       $.notify(res.message, "success");          
       setTimeout(()=>{

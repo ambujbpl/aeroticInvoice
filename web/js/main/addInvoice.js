@@ -1,6 +1,12 @@
 var user = localStorage.getItem('user');
 if(user){
 	user = JSON.parse(user);
+  if(user.role.toLowerCase() != "admin") {
+    $.notify('Sorry, You do not have admin access','error');
+    setTimeout(()=> {
+      window.close();
+    },1500)
+  }
 }else{
 	logoutFunction();
 }
@@ -22,9 +28,9 @@ $(document).ready(async function() {
  * { function_description }
  */
 updateBasics = async () => {
-	executeCustomQuery("select * from basic","updatebasics","","");
-	// executeCustomQuery("select count(*) as invoiceNumber from invoices","updateinvoicenumber","","");
-	executeCustomQuery("select * from product","updateInvoiceItems","itemsTableBody","");
+	executeCustomQueryHtml("select * from basic","updatebasics","","");
+	// executeCustomQueryHtml("select count(*) as invoiceNumber from invoices","updateinvoicenumber","","");
+	executeCustomQueryHtml("select * from product","updateInvoiceItems","itemsTableBody","");
 }
 
 /**
@@ -73,16 +79,16 @@ hideLoader = () => {
           myTableArray.push(obj);
         }
       });
-      var Invoice = $('#invoiceNumber').text();
+      var Invoice_ID = $('#invoiceNumber').text();
       var Invoice_Date = $('#date').val();
       console.log("Invoice_Date old : ",Invoice_Date);
       Invoice_Date = moment(Invoice_Date,"DD-MM-YYYY").format('YYYY-MM-DD');
       console.log("Invoice_Date new : ",Invoice_Date);
-      var Subtotal = $('#subtotal').text();
-      var Gst = $('#gst').text();
-      var Total = $('#total').text();
-      var Amount_Paid = $('#paid').val();
-      var Amount_Due = $('#due').text();
+      var Subtotal = $('#subtotal').text() || '0';
+      var Gst = $('#gst').text() || '0';
+      var Total = $('#total').text() || '0';
+      var Amount_Paid = $('#paid').val() || '0';
+      var Amount_Due = $('#due').text() || '0';
       var selfName = $('#selfName').val().trim();
       var selfAddress = $('#selfAddress').val().trim();
       var selfPhone = $('#selfPhone').val().trim();
@@ -120,18 +126,24 @@ hideLoader = () => {
 				"customer_address":JSON.stringify(customer_address),
 				"Registration":registrationNumber,
         "header":header,
-        "updated_by":user.userid
+        "updated_by":user.userid,
+        "Invoice_ID":Invoice_ID
       }
       $.ajax({
         type: 'POST',
-        url: '/aeroticInvoice/api/invoice/Add_invoices.php',
+        url: './../../api/invoice/Add_invoices.php',
         data: {
           "invoiceobj": invoiceobj,
         	"product_details":JSON.stringify(myTableArray)
         },
         dataType: "JSON",
       }).done(function(data) { // if getting done then call.
-        swal(data.resCode, data.Message, "success")
+        if(data.resCode == "Ok"){
+          swal(data.resCode, data.Message, "success");
+          $('#saveInDBButton').remove();
+        } else {
+          swal(data.resCode, data.Message, "error")
+        }
       });
     };
     $("#print").click(function() { // calls the id of the button that will print

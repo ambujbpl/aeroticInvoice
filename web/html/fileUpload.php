@@ -9,10 +9,11 @@ error_reporting(0);
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="description" content="Ambuj Project, Speed Governor, Saniya Enterprises, Aerotic India Pvt Ltd">
+  <meta name="author" content="Ambuj Dubey">
+  <link rel="icon" href="./../images/logoNew1.png" type="image/x-icon">
 
-  <title>Aerotic - File Upload</title>
+  <title>File Upload | Saniya Enterprises</title>
 
   <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="../css/sb-admin-2.min.css" rel="stylesheet" type="text/css">

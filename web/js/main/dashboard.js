@@ -1,6 +1,10 @@
 var user = localStorage.getItem('user');
 if(user){
 	user = JSON.parse(user);
+  if(user.role.toLowerCase() != "admin") {
+    $.notify('Sorry, You do not have admin access','error');
+    $('.adminAccess').addClass('hide');
+  }
 }else{
 	logoutFunction();
 }

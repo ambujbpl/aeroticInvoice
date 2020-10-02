@@ -17,7 +17,7 @@
 }
 
 .hide {
-	display: none;
+	display: none !important;
 }
 
 .dropdown-item:hover{
