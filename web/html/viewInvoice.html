@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="Ambuj Project, Speed Governor, Saniya Enterprises, Aerotic India Pvt Ltd">
+  <meta name="author" content="Ambuj Dubey">
+  <link rel="icon" href="./../images/logoNew1.png" type="image/x-icon">
+  <title>View Invoice | Saniya Enterprises</title>
+  <!-- Plugins CSS -->
+  <link rel="stylesheet" type="text/css" href="./../vendor/fontawesome-free/css/all.min.css">
+  <link rel='stylesheet' type="text/css" href="./../css/old/style.css">
+  <link rel="stylesheet" type="text/css" href="./../css/old/print.min.css">
+  <link rel="stylesheet" type="text/css" href="./../css/custom.min.css">
+  <link rel="stylesheet" type="text/css" href="./../loader/loader.css">  
+</head>
+
+<body>
+  <!-- <div id="loading">
+    <img id="loading-image" src="./../loader/giphy.webp" alt="Loading..." />
+  </div> -->
+<div class="container">
+  <div class="loader">
+    <div class="loader--dot"></div>
+    <div class="loader--dot"></div>
+    <div class="loader--dot"></div>
+    <div class="loader--dot"></div>
+    <div class="loader--dot"></div>
+    <div class="loader--dot"></div>
+    <div class="loader--text"></div>
+  </div>
+
+  <div class="bodycontainer hide">
+  <div class="home">
+    <a href="/" class="fa fa-home" aria-hidden="true">Home</a> > <span id="home_Title"></span>
+  </div>
+  <!-- theme-configration -->
+  <div class="theme-config">
+    <div class="theme-config-box">
+      <div class="spin-icon">
+        <i class="fa fa-cogs fa-spin"></i>
+      </div>
+      <div class="skin-settings">
+        <div class="title">Configuration <br>
+          <small style="text-transform: none;font-weight: 400">
+              Config box designed for change UI background color.
+          </small></div>
+
+        <div class="title">Body Background</div>
+        <div class="setings-item  body_Color">
+          <span style="background: #ffcccc;"></span>
+          <span style="background: #ffc6b3;"></span>
+          <span style="background: #ffe6cc;"></span>
+          <span style="background: #d9ffcc;"></span>
+          <span style="background: #ffffff;"></span>
+        </div>
+        <!-- <div class="title">Body Font</div>
+        <div class="setings-item body_Font">
+          <span style="font-family: Times New Roman;">A</span>
+          <span style="font-family: courier;">A</span>
+          <span style="font-family: arial;">A</span>
+          <span style="font-family: Arial Black;">A</span>
+          <span style="font-family: georgia;">A</span>
+        </div> -->
+        <div class="title">Header Background</div>
+        <div class="setings-item header_bgColor">
+          <span style="background: #4d2600;"></span>
+          <span style="background: #330000;"></span>
+          <span style="background: #00331a"></span>
+          <span style="background: #00004d"></span>
+          <span style="background: #222"></span>
+        </div>
+        <div class="title">Table Header Background</div>
+        <div class="setings-item table_header_bgColor">
+          <span style="background: #d6d6c2;"></span>
+          <span style="background: #c2c2a3;"></span>
+          <span style="background: #adad85"></span>
+          <span style="background: #8a8a5c"></span>
+          <span style="background: #eee"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- theme-configration -->
+
+  <div id="page-wrap">
+    <div><textarea id="header"></textarea></div>
+
+    <div id="identity">
+
+      <div id="address" class="address">
+        From:<br>
+        <span style="height: 20px; font-size:15px;">Name: <span rows="1" id="selfName" style="height:14px;"></span></span><br>
+        <span style="height: 20px; font-size:15px;">Address: <span id="selfAddress"  style="height:14px;"></span></span><br>
+        <span style="height: 20px; font-size:15px;">Phone: <span id="selfPhone"  style="height:14px;"></span></span><br>
+        <span style="height: 20px; font-size:15px;">GST: <span id="selfGst" style="height:14px;"></span></span><br>
+      </div>
+
+      <div id="address" class="partyAddress" style="margin-left:15px">
+        To (Party Details):<br>
+        <span style="height: 20px; font-size:15px;">Name: <span rows="1" id="PartyName" style="height:14px;"></span></span><br>
+        <span style="height: 20px; font-size:15px;">Address: <span id="PartyAddress"  style="height:14px;"></span></span><br>
+        <span style="height: 20px; font-size:15px;">Phone: <span id="PartyPhone"  style="height:14px;"></span></span><br>
+        <span style="height: 20px; font-size:15px;">GST: <span id="PartyGst" style="height:14px;"></span></span><br>
+      </div>
+
+      <div id="logo">
+        <img id="image" src="./../images/logoNew1.png" alt="logo" width="40" height="40" />
+      </div>
+    </div>
+
+    <div style="clear:both"></div>
+
+    <div id="customer">
+
+      <div id="customer-title" style="width:100%;"><span style="height: 20px; font-size:15px;">Registration Number:<span id="registrationNumber" style="height:14px;"></span><span>
+
+      <table id="meta">
+        <tr>
+          <td class="meta-head">Invoice #</td>
+          <td>
+            <span id='invoiceNumber'></span>
+          </td>
+        </tr>
+        <tr>
+          <td class="meta-head">Date</td>
+          <td><spam id="date"></spam></td>
+        </tr>
+        <tr>
+          <td class="meta-head">Amount Due</td>
+          <td>
+            <div><i class="fa fa-inr"></i>
+              <span class="due"></span>
+            </div>
+          </td>
+        </tr>
+
+      </table>
+
+    </div>
+
+    <table id="items">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Remark</th>
+          <th>Unit Cost (<i class='fa fa-inr'></i>)</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody id="itemsTableBody"></tbody>
+    </table>
+    <table style="width:100%;">
+      <tr>
+        <td colspan="4" class="blank"></td>
+        <td class="total-line">Subtotal</td>
+        <td class="total-value">
+          <i class='fa fa-inr'></i> <span id="subtotal"></span>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4" class="blank"></td>
+        <td class="total-line">Gst ( <span id="gstPercent" style="height:14px;width:25px">18</span> %)</td>
+        <td class="total-value">
+          <i class='fa fa-inr'></i> <span id="gst"></span>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4" class="blank"> </td>
+        <td class="total-line">Total</td>
+        <td class="total-value">
+          <i class='fa fa-inr'></i> <span id="total"></span>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4" class="blank"> </td>
+        <td class="total-line">Amount Paid (<i class='fa fa-inr'></i>)</td>
+        <td class="total-value"><span id="paid"></span></td>
+      </tr>
+      <tr>
+        <td colspan="4" class="blank"> </td>
+        <td class="total-line balance">Balance Due</td>
+        <td class="total-value balance">
+          <i class='fa fa-inr'></i> <span class="due" id="due"></span>
+        </td>
+      </tr>
+    </table>
+
+    <div id="terms">
+      <h5>Terms</h5>
+      <textarea>Please check the product serial number before receiving any product And GST include 9% SGST and 9% CGST(total 18% GST).</textarea>
+    </div>
+
+    <div id="seal" style="float:right;">
+      <h5>Authorized Signatory</h5>
+    </div>
+  </div>
+  <div class="print_Div" id="print_Div">
+    <button type="button" name="button" id="print">Print Invoice</button>
+  </div>
+  </div>
+
+</div>
+  <script type="text/javascript" src="./../vendor/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="./../js/plugins/jquery-ui.js"></script>
+  <script type="text/javascript" src="./../vendor/bootstrap/js/bootstrap.bundle.min.js"></script> 
+  <!-- custom js -->
+  <script type="text/javascript" src="./../js/plugins/sweet-alert.min.js"></script>
+  <script type="text/javascript" src="./../vendor/notify/notify.js"></script>
+  <script type="text/javascript" src="./../js/main/changeColor.js"></script>
+  <script type="text/javascript" src="./../js/plugins/ajaxHendler.js"></script>
+  <script type="text/javascript" src="./../js/plugins/moment.js"></script>
+  <script type="text/javascript" src="./../js/plugins/util.js"></script>
+  <script type="text/javascript" src="./../js/main/viewInvoice.js"></script>
+</body>
+
+</html>

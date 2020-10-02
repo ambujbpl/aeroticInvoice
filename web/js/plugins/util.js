@@ -290,7 +290,6 @@ executeCustomQueryHtml = (query,type,view = "",message = "") => {
        $("#selfPhone").html(res.data[0]["Phone"]);
        $("#selfGst").html(res.data[0]["Gst"]);
        $("#registrationNumber").html(res.data[0]["HsnCode"]);
-       $("#YearCode").html(res.data[0]["YearCode"]);
        let invoiceNumber = ``;
        if(parseInt(parseInt(res.data[0]["InvoiceCount"])) > 99) {
          invoiceNumber = `${parseInt(res.data[0]["InvoiceCount"])}`; 
@@ -626,7 +625,7 @@ EditData = (val,table_name) => {
       if(table_name.trim().toLowerCase() === "product"){
         OpenCustomModal('editModal','html','modal-lg');
       }else if(table_name.trim().toLowerCase() === "invoices"){
-        window.open("./html/addInvoice.html?type=view", "_blank")
+        window.open(`./html/viewInvoice.html?id=${Id}`, "_blank")
       }      
     } else {
       $.notify("Your details are safe!", "info");
@@ -724,4 +723,28 @@ saveEditedMainContainerBody = () => {
 
 updateMainContainerBodyWithOutData = (data,type,view) => {
   $('.' + type).html("");
+}
+
+/**
+ * Shows the loader.
+ */
+showLoader = async () => {
+  setTimeout(() => {
+    $('.loader').removeClass("hide");
+    $('.bodycontainer').addClass("hide");
+  }, 2000);
+}
+
+/**
+ * Hides the loader.
+ */
+hideLoader = async () => {
+  setTimeout(() => {
+    $('.loader').addClass("hide");
+    $('.bodycontainer').removeClass("hide");
+    $('.bodycontainer').css({
+      'height': '100%',
+      'overflow-y': 'scroll'
+    })
+  }, 2000);
 }

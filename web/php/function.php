@@ -1,9 +1,8 @@
 <?php
-	session_start();
+	// session_start();
 	function isLoginSessionExpired() {
-		include('./../common.php');
     if(isset($_SESSION['session_start_time'])) {
-      if(((time() - $_SESSION['session_start_time']) < $sessionMaxTime)){ 
+      if(((time() - $_SESSION['session_start_time']) < 20000)){ 
         return true; 
       } 
     }
