@@ -30,13 +30,14 @@
 					}
 				},
 				"url": {
-					"raw": "localhost/aeroticInvoice/api/View_invoice.php",
+					"raw": "localhost/aeroticInvoice/api/invoice/View_invoice.php",
 					"host": [
 						"localhost"
 					],
 					"path": [
 						"aeroticInvoice",
 						"api",
+						"invoice",
 						"View_invoice.php"
 					]
 				},
@@ -172,7 +173,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"query\":\"select * from users\"\n}",
+					"raw": "{\n\t\"query\":\"update product set name='SLD' ,detail='Fuel Type' ,rate='1005.500' , updated_by='harshuj' where id=1\",\n\t\"token\":\"unefuhw1588245928cetenzzvatjbeyqvacuc\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -253,6 +254,102 @@
 					]
 				},
 				"description": "localhost/aeroticInvoice/api/datatable/user_activityLogs.php"
+			},
+			"response": []
+		},
+		{
+			"name": "Add Invoice",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "invoiceobj[Invoice_Date]",
+							"value": " 2020-07-04",
+							"type": "text"
+						},
+						{
+							"key": "invoiceobj[Subtotal]",
+							"value": "2226.30",
+							"type": "text"
+						},
+						{
+							"key": "invoiceobj[Gst]",
+							"value": "400.73400000000004",
+							"type": "text"
+						},
+						{
+							"key": "invoiceobj[Total]",
+							"value": "2627.03",
+							"type": "text"
+						},
+						{
+							"key": "invoiceobj[Amount_Due]",
+							"value": "2627.03",
+							"type": "text"
+						},
+						{
+							"key": "invoiceobj[Address]\n",
+							"value": "{\"selfName\":\"Saniya Enterprises\",\"selfAddress\":\"Bhopal Madhya Pradesh\",\"selfPhone\":\"9584444161\",\"selfGst\":\"23CPFPD6088B1Z8\",\"gstPercent\":\"18\"}",
+							"type": "text"
+						},
+						{
+							"key": "invoiceobj[customer_address] ",
+							"value": "{\"PartyName\":\"\",\"PartyAddress\":\"\",\"PartyPhone\":\"\",\"PartyGst\":\"\",\"Registration\":\"MP04TA0123\",\"header\":\"INVOICE\"}\n",
+							"type": "text"
+						},
+						{
+							"key": "invoiceobj[Registration]\n",
+							"value": "MP04TA0123",
+							"type": "text"
+						},
+						{
+							"key": "invoiceobj[header]\n",
+							"value": "INVOICE",
+							"type": "text"
+						},
+						{
+							"key": "invoiceobj[updated_by]\n",
+							"value": "harshuj",
+							"type": "text"
+						},
+						{
+							"key": "product_details",
+							"value": "[{\\\"productName\\\":\\\"SLD\\\",\\\"productDesc\\\":\\\"Fuel Type\\\",\\\"productCost\\\":\\\"1005.500\\\",\\\"productQuantity\\\":\\\"1\\\",\\\"productPrize\\\":\\\"1005.50\\\"},{\\\"productName\\\":\\\"SLD\\\",\\\"productDesc\\\":\\\"Electronic\\\",\\\"productCost\\\":\\\"1207.700\\\",\\\"productQuantity\\\":\\\"1\\\",\\\"productPrize\\\":\\\"1207.70\\\"},{\\\"productName\\\":\\\"Roter Seal\\\",\\\"productDesc\\\":\\\"Seal for SLD device\\\",\\\"productCost\\\":\\\"13.100\\\",\\\"productQuantity\\\":\\\"1\\\",\\\"productPrize\\\":\\\"13.10\\\"}]",
+							"type": "text"
+						},
+						{
+							"key": "invoiceobj[Invoice_ID]",
+							"value": "testing",
+							"type": "text"
+						},
+						{
+							"key": "invoiceobj[Amount_Paid]",
+							"value": "0",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost/aeroticInvoice/api/invoice/Add_invoices.php",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"aeroticInvoice",
+						"api",
+						"invoice",
+						"Add_invoices.php"
+					]
+				},
+				"description": "localhost//aeroticInvoice/api/invoice/Add_invoice.php"
 			},
 			"response": []
 		}
