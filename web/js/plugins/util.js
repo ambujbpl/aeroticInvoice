@@ -519,12 +519,19 @@ updateMainContainerBody = (data,type,view) => {
  * @param      {string}  view        The view
  */
 updateMainContainerBodyDataTable = (table_name,type,view) => {
+  // if(view.trim().toLowerCase() === "productdetails"){
+  //   $('.' + type).html("").append(`<table id='exampleEditable' class='table table-bordered table-striped' cellspacing=0 width=100%><thead><tr><th>ID</th><th>Name</th><th>Detail</th><th>Rate</th><th>Created At</th><th>Updated At</th><th>Updated By</th><th>Action</th></tr></thead></table>`);
+  //   updateDataTableWithServerSidePagination('exampleEditable','./../api/datatable/product_details.php',true,table_name);    
+  // } else if (view.trim().toLowerCase() === "invoicesdetails"){
+  //   $('.' + type).html("").append(`<table id='exampleEditable' class='table table-bordered table-striped' cellspacing=0 width=100%><thead><tr><th>Invoice ID</th><th>Invoice Date</th><th>Sub Total</th><th>GST</th><th>Total</th><th>Paid</th><th>Due</th><th>Created At</th><th>Updated At</th><th>Updated By</th><th>Action</th></tr></thead></table>`);
+  //   updateDataTableWithServerSidePagination('exampleEditable','./../api/datatable/invoices_details.php',true,table_name);
+  // }
   if(view.trim().toLowerCase() === "productdetails"){
     $('.' + type).html("").append(`<table id='exampleEditable' class='table table-bordered table-striped' cellspacing=0 width=100%><thead><tr><th>ID</th><th>Name</th><th>Detail</th><th>Rate</th><th>Created At</th><th>Updated At</th><th>Updated By</th><th>Action</th></tr></thead></table>`);
-    updateDataTableWithServerSidePagination('exampleEditable','./../api/datatable/product_details.php',true,table_name);    
+    updateDataTableWithoutServerSidePagination('exampleEditable','./../api/datatable/product_details.php',true,table_name);    
   } else if (view.trim().toLowerCase() === "invoicesdetails"){
     $('.' + type).html("").append(`<table id='exampleEditable' class='table table-bordered table-striped' cellspacing=0 width=100%><thead><tr><th>Invoice ID</th><th>Invoice Date</th><th>Sub Total</th><th>GST</th><th>Total</th><th>Paid</th><th>Due</th><th>Created At</th><th>Updated At</th><th>Updated By</th><th>Action</th></tr></thead></table>`);
-    updateDataTableWithServerSidePagination('exampleEditable','./../api/datatable/invoices_details.php',true,table_name);
+    updateDataTableWithoutServerSidePagination('exampleEditable','./../api/datatable/invoices_details.php',true,table_name);
   }
 }
 
@@ -534,7 +541,7 @@ updateMainContainerBodyDataTable = (table_name,type,view) => {
  * @param      {string}  id      The identifier
  * @param      {<type>}  url     The url
  */
-updateDataTableWithServerSidePagination = (id,url,action,table_name) => {
+updateDataTableWithServerSidePagination =  (id,url,action,table_name) => {
   console.log("id : ",id);
   console.log("url : ",url);
   console.log("action : ",action);
@@ -595,6 +602,180 @@ updateDataTableWithServerSidePagination = (id,url,action,table_name) => {
       "autoWidth": true
     });
   }
+}
+
+/**
+ * { function_description }
+ *
+ * @param      {string}  id      The identifier
+ * @param      {<type>}  url     The url
+ */
+updateDataTableWithoutServerSidePagination = (id,url,action,table_name) => {
+  let columns = [];
+  console.log("id : ",id);
+  console.log("url : ",url);
+  console.log("action : ",action);
+  console.log("table_name : ",table_name);
+  let query = `select * from ${table_name}`;
+  if (table_name === "invoices") {
+    columns = [
+      { data: 'id' },
+      { data: 'invoice_date' },
+      { data: 'subtotal' },
+      { data: 'gst' },
+      { data: 'total' },
+      { data: 'paid' },
+      { data: 'due' },
+      { data: 'created_at' },
+      { data: 'updated_at' },
+      { data: 'updated_by' },
+      { data: 'updated_by' }
+    ]
+  } else if (table_name === "product") {
+    columns = [
+      { data: 'id' },
+      { data: 'name' },
+      { data: 'detail' },
+      { data: 'rate' },
+      { data: 'created_at' },
+      { data: 'updated_at' },
+      { data: 'updated_by' },
+      { data: 'updated_by' }
+    ]
+  }
+  $.when(Posthandler("./../api/custom/custom_query.php", {'query':query, 'token': user.token}, false)).done(function(res) {
+    if(res.resCode.trim().toLowerCase() == "ok") {
+      if(action){
+        $.fn.dataTable.ext.buttons.add = {
+          className: 'add-record',
+          action: function ( e, dt, node, config ) {
+            globalObj.editTableName = table_name;
+            delete globalObj.editId;
+            OpenCustomModal('editModal','html','modal-lg');
+          }
+        };
+        $('#' + id).DataTable({
+          dom: 'Blfrtip',
+          buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print' //,{extend: 'add',text: 'Add New'}
+          ],
+          searching: true,
+          aLengthMenu: [
+              [5, 10, 50, 100, -1],
+              [5, 10, 50, 100, "All"]
+          ],
+          iDisplayLength: 5,
+          // "processing": true,
+          // "serverSide": true,
+          // "ajax": url,
+          data: res.data,
+          columns: columns,
+          responsive: true,
+          createdRow: function(row, data, index) {
+              // $(row).find('td').eq(0).addClass(index + 'noisref');
+              // $(row).find('td').eq(1).addClass('getRowWiseData');
+              var addHtml = ``;
+              if(table_name === "product"){
+                addHtml += `<a href='javascript:;' class='edit' onclick='EditData(this,"${table_name}")'><i class='far fa-edit'></i></a> | <a href='javascript:;' class='delete' onclick='DeleteData(this,"${table_name}")'><i class='far fa-trash-alt'></i></a>`;
+              } else if(table_name === "invoices"){
+                addHtml += `<a href='javascript:;' class='edit' onclick='EditData(this,"${table_name}")'><i class='far fa-eye'></i></a> | <a href='javascript:;' class='delete' onclick='DeleteData(this,"${table_name}")'><i class='far fa-trash-alt'></i></a>`;
+              }
+              $(row).find('td:last').html(addHtml);
+          },
+          // "scrollX": true,
+          // "autoWidth": true
+        });
+      }else{
+        $('#' + id).DataTable({
+          data: res.data,
+          columns: columns,
+          dom: 'Blfrtip',
+          buttons: [
+            'copy', 'excel', 'pdf', 'print'
+          ],
+          searching: true,
+          aLengthMenu: [
+              [5, 10, 50, 100, -1],
+              [5, 10, 50, 100, "All"]
+          ],
+          iDisplayLength: 5,
+          responsive: true,
+          // "processing": true,
+          // "serverSide": true,
+          // "ajax": url,
+          // "scrollX": true,
+          // "autoWidth": true,
+
+        });
+      }
+    } else if(res.resCode.trim().toLowerCase() == "sessionerror") {
+      $.notify(res.message,"error");
+      setTimeout(()=> { logoutFunction(); },200);
+    } else if(res.resCode.trim().toLowerCase() == "tokenerror") {
+      $.notify(res.message,"error");
+      setTimeout(()=> { logoutFunction(); },200);
+    }else {
+      $.notify(res.message,"error");
+    }
+  }).fail(function() {
+    return {"resCode":"Error","message":"Something went wrong please contact your administrator."};
+  });
+  // if(action){
+  //   $.fn.dataTable.ext.buttons.add = {
+  //     className: 'add-record',
+  //     action: function ( e, dt, node, config ) {
+  //       globalObj.editTableName = table_name;
+  //       delete globalObj.editId;
+  //       OpenCustomModal('editModal','html','modal-lg');
+  //     }
+  //   };
+  //   $('#' + id).DataTable({
+  //     dom: 'Blfrtip',
+  //     buttons: [
+  //       'copy', 'csv', 'excel', 'pdf', 'print',{extend: 'add',text: 'Add New'}
+  //     ],
+  //     searching: true,
+  //     aLengthMenu: [
+  //         [5, 10, 50, 100, -1],
+  //         [5, 10, 50, 100, "All"]
+  //     ],
+  //     iDisplayLength: 5,
+  //     "processing": true,
+  //     "serverSide": true,
+  //     "ajax": url,
+  //     createdRow: function(row, data, index) {
+  //         // $(row).find('td').eq(0).addClass(index + 'noisref');
+  //         // $(row).find('td').eq(1).addClass('getRowWiseData');
+  //         var addHtml = ``;
+  //         if(table_name === "product"){
+  //           addHtml += `<a href='javascript:;' class='edit' onclick='EditData(this,"${table_name}")'><i class='far fa-edit'></i></a> | <a href='javascript:;' class='delete' onclick='DeleteData(this,"${table_name}")'><i class='far fa-trash-alt'></i></a>`;
+  //         } else if(table_name === "invoices"){
+  //           addHtml += `<a href='javascript:;' class='edit' onclick='EditData(this,"${table_name}")'><i class='far fa-eye'></i></a> | <a href='javascript:;' class='delete' onclick='DeleteData(this,"${table_name}")'><i class='far fa-trash-alt'></i></a>`;
+  //         }
+  //         $(row).find('td:last').html(addHtml);
+  //     },
+  //     "scrollX": true,
+  //     "autoWidth": true
+  //   });
+  // }else{
+  //   $('#' + id).DataTable({
+  //     dom: 'Blfrtip',
+  //     buttons: [
+  //         'copy', 'excel', 'pdf', 'print'
+  //     ],
+  //     searching: true,
+  //     aLengthMenu: [
+  //         [5, 10, 50, 100, -1],
+  //         [5, 10, 50, 100, "All"]
+  //     ],
+  //     iDisplayLength: 5,
+  //     "processing": true,
+  //     "serverSide": true,
+  //     "ajax": url,
+  //     "scrollX": true,
+  //     "autoWidth": true
+  //   });
+  // }
 }
 
 /**

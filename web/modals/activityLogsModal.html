@@ -44,25 +44,65 @@
     if(user){
       user = JSON.parse(user);
     }
-    $('#activityLogsModalTable').DataTable({
-    	dom: 'Blfrtip',
-      buttons: [
-          'copy', 'csv', 'excel', 'pdf', 'print'
-      ],
-      searching: false,
-    	// ordering:  true,
-    	"order": [[ 4, "desc" ]],
-    	aLengthMenu: [
-	        [5, 10, 50, 100, 500, 1000, -1],
-	        [5, 10, 50, 100, 500, 1000, "All"]
-	    ],
-	    iDisplayLength: 5,
-     //  "select": true,
-     //  "sorting": true,
-     //  "pagination": true,
-      "processing": true,
-      "serverSide": true,
-      "ajax": "/aeroticInvoice/api/datatable/user_activityLogs.php"
+    // // With Server side pagination    
+    // $('#activityLogsModalTable').DataTable({
+    // 	dom: 'Blfrtip',
+    //   buttons: [
+    //       'copy', 'csv', 'excel', 'pdf', 'print'
+    //   ],
+    //   searching: false,
+    // 	// ordering:  true,
+    // 	"order": [[ 4, "desc" ]],
+    // 	aLengthMenu: [
+	   //      [5, 10, 50, 100, 500, 1000, -1],
+	   //      [5, 10, 50, 100, 500, 1000, "All"]
+	   //  ],
+	   //  iDisplayLength: 5,
+    //  //  "select": true,
+    //  //  "sorting": true,
+    //  //  "pagination": true,
+    //   "processing": true,
+    //   "serverSide": true,
+    //   "ajax": "/aeroticInvoice/api/datatable/user_activityLogs.php"
+    // });
+    
+    // Without server side pagination
+    $.when(Posthandler("./../api/custom/custom_query.php", {'query': 'select * from logs;', 'token': user.token}, false)).done(function(res) {
+      if(res.resCode.trim().toLowerCase() == "ok") {
+        $('#activityLogsModalTable').DataTable({
+          dom: 'Blfrtip',
+          data: res.data,
+          columns: [
+            { data: 'type' },
+            { data: 'table_name' },
+            { data: 'info' },
+            { data: 'details' },
+            { data: 'created_at' }
+          ],
+          buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+          ],
+          searching: true,
+          // ordering:  true,
+          "order": [[ 4, "desc" ]],
+          aLengthMenu: [
+              [5, 10, 50, 100, 500, 1000, -1],
+              [5, 10, 50, 100, 500, 1000, "All"]
+          ],
+          iDisplayLength: 5,
+          responsive: true,
+        });
+      } else if(res.resCode.trim().toLowerCase() == "sessionerror") {
+        $.notify(res.message,"error");
+        setTimeout(()=> { logoutFunction(); },200);
+      } else if(res.resCode.trim().toLowerCase() == "tokenerror") {
+        $.notify(res.message,"error");
+        setTimeout(()=> { logoutFunction(); },200);
+      }else {
+        $.notify(res.message,"error");
+      }
+    }).fail(function() {
+      return {"resCode":"Error","message":"Something went wrong please contact your administrator."};
     });
 	});
 </script>

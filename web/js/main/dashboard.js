@@ -71,4 +71,7 @@ productDetails = () => {
  */
 updateCounters = () => {
 	executeCustomQuery("select count(*) as count from product","updatecounters","productCounts","");
+  executeCustomQuery("select count(*) as count from invoices","updatecounters","invoicesCounts","");
+  executeCustomQuery("select sum(paid) as count from invoices where (invoice_date between  DATE_FORMAT(NOW() ,'%Y-%m-01') AND NOW() )","updatecounters","sellCountMonthly","");
+  executeCustomQuery("select sum(paid) as count from invoices","updatecounters","sellCountAnnually","");
 }
