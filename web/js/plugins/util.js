@@ -925,7 +925,7 @@ hideLoader = async () => {
     $('.bodycontainer').removeClass("hide");
     $('.bodycontainer').css({
       'height': '100%',
-      'overflow-y': 'scroll'
+      // 'overflow-y': 'scroll'
     })
   }, 2000);
 }
