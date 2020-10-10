@@ -83,3 +83,23 @@ updateInvoiceDetailsHtml = async (res) => {
   $('#items').html(body);
  
 }
+
+
+$("#print").click(function() { // calls the id of the button that will print
+  $('.theme-config').addClass('hide');
+  $('.hiderow').addClass('hide');
+  $('.print_Div').addClass('hide');
+  $('.home').addClass('hide');
+  if (print()) { // shows print preview.
+    $('.theme-config').removeClass('hide');
+    $('.hiderow').removeClass('hide');
+    $('.print_Div').removeClass('hide');
+    $('.home').removeClass('hide');
+  } else { // else statement will check if cancel button is clicked.
+    $('.theme-config').removeClass('hide');
+    $('.hiderow').removeClass('hide');
+    $('.print_Div').removeClass('hide');
+    $('.home').removeClass('hide');
+  }
+});
+$('#home_Title').html("View Invoice Page");
