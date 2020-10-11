@@ -605,6 +605,17 @@ updateDataTableWithServerSidePagination =  (id,url,action,table_name) => {
 }
 
 /**
+ * Adds a new product.
+ *
+ * @param      {<type>}  table_name  The table name
+ */
+addNewProduct = (table_name) => {
+  globalObj.editTableName = table_name;
+  delete globalObj.editId;
+  OpenCustomModal('editModal','html','modal-lg');  
+}
+
+/**
  * { function_description }
  *
  * @param      {string}  id      The identifier
@@ -656,6 +667,7 @@ updateDataTableWithoutServerSidePagination = (id,url,action,table_name) => {
         };
         $('#' + id).DataTable({
           dom: 'Blfrtip',
+          // "dom": '<"dt-buttons"Bf><"clear">lirtp',
           buttons: [
             'copy', 'csv', 'excel', 'pdf', 'print' //,{extend: 'add',text: 'Add New'}
           ],
@@ -686,7 +698,16 @@ updateDataTableWithoutServerSidePagination = (id,url,action,table_name) => {
           // "autoWidth": true
         });
       }else{
+        $.fn.dataTable.ext.buttons.add = {
+          className: 'add-record',
+          action: function ( e, dt, node, config ) {
+            globalObj.editTableName = table_name;
+            delete globalObj.editId;
+            OpenCustomModal('editModal','html','modal-lg');
+          }
+        };
         $('#' + id).DataTable({
+          // "dom": '<"dt-buttons"Bf><"clear">lirtp',
           data: res.data,
           columns: columns,
           dom: 'Blfrtip',

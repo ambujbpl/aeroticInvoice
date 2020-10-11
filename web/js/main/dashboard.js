@@ -61,7 +61,7 @@ basicDetails = () => {
 productDetails = () => {
 	$('.mainContainerRow').removeClass('hide');
 	$('.mainContainerHeader').html('Product Details');
-	$('.mainContainerDropdownMenuLink').html('').append(`<div class="dropdown-header">Dropdown Product Details Header:</div>`).append(`<a class="dropdown-item" onclick="productDetails();">View Product Detail</a>`).append(`<a class="dropdown-item" onclick="$('.add-record').click();">Add New Product</a>`);
+	$('.mainContainerDropdownMenuLink').html('').append(`<div class="dropdown-header">Dropdown Product Details Header:</div>`).append(`<a class="dropdown-item" onclick="productDetails();">View Product Detail</a>`).append(`<a class="dropdown-item" onclick="addNewProduct('product');">Add New Product</a>`);
 	// executeCustomQuery("select * from product","mainContainerBody","productDetails");
 	showServerSideDetailsByTableNameDataTable("product","mainContainerBody","productDetails");
 }
