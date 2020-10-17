@@ -57,7 +57,11 @@ function update_total() {
   var total = 0;
   $('.price').each(function(i){
     price = $(this).html().replace("Rs ","");
-    if (!isNaN(price)) total += Number(price);
+    if (!isNaN(price)){
+      total += Number(price);
+    } else {
+      $.notify('Hay, check your values price, quantity and gst should be in digit format..','error');
+    }
   });
 
   total = roundNumber(total,2);
@@ -75,9 +79,11 @@ function update_total() {
 function get_Gst(x){
   var g = $('#gstPercent').val();
   console.log("GST % : ",g);
-  if(g){
+  if(g && !isNaN(g)){
     return ((x*(parseInt(g)))/100)
-  }else{
+  } else {
+    $.notify('Hay, gst should be in digit format.. and current gst percent is 18% ','error');
+    $('#gstPercent').val('18');
     return ((x*18)/100)
   }
 }
@@ -94,8 +100,11 @@ function update_price() {
   var price = row.find('.cost').val().replace("Rs ","") * row.find('.qty').val();
   price = roundNumber(price,2);
   isNaN(price) ? row.find('.price').html("N/A") : row.find('.price').html(price);
-
-  update_total();
+  if(isNaN(price)) {
+    $.notify('Hay, it should be a digit', 'error');
+  } else {
+    update_total();
+  }
 }
 
 function bind() {
