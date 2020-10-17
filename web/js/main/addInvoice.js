@@ -52,7 +52,7 @@ function saveInDBFunction() {
       // productDesc = $('textarea#Type').val(),
       productCost = $tds.eq(2).val(),
       productQuantity = $tds.eq(3).val(),
-      productPrize = $tds1.text();
+      productPrize = $tds1.text().replace(/[^a-zA-Z ]/g, "");
     var obj = {
       "productName": productName,
       "productDesc": productDesc,
@@ -64,26 +64,26 @@ function saveInDBFunction() {
       myTableArray.push(obj);
     }
   });
-  var Invoice_ID = $('#invoiceNumber').text();
+  var Invoice_ID = $('#invoiceNumber').text().replace(/[^a-zA-Z ]/g, "");
   var Invoice_Date = $('#date').val();
   console.log("Invoice_Date old : ", Invoice_Date);
   Invoice_Date = moment(Invoice_Date, "DD-MM-YYYY").format('YYYY-MM-DD');
   console.log("Invoice_Date new : ", Invoice_Date);
-  var Subtotal = $('#subtotal').text() || '0';
-  var Gst = $('#gst').text() || '0';
-  var Total = $('#total').text() || '0';
+  var Subtotal = $('#subtotal').text().replace(/[^a-zA-Z ]/g, "") || '0';
+  var Gst = $('#gst').text().replace(/[^a-zA-Z ]/g, "") || '0';
+  var Total = $('#total').text().replace(/[^a-zA-Z ]/g, "") || '0';
   var Amount_Paid = $('#paid').val() || '0';
-  var Amount_Due = $('#due').text() || '0';
-  var selfName = $('#selfName').val().trim();
-  var selfAddress = $('#selfAddress').val().trim();
-  var selfPhone = $('#selfPhone').val().trim();
-  var selfGst = $('#selfGst').val().trim();
-  var gstPercent = $('#gstPercent').val().trim();
-  var PartyName = $('#PartyName').val().trim();
-  var PartyAddress = $('#PartyAddress').val().trim();
-  var PartyPhone = $('#PartyPhone').val().trim();
-  var PartyGst = $('#PartyGst').val().trim();
-  var registrationNumber = $('#registrationNumber').val().trim();
+  var Amount_Due = $('#due').text().replace(/[^a-zA-Z ]/g, "") || '0';
+  var selfName = $('#selfName').val().trim().replace(/[^a-zA-Z ]/g, "");
+  var selfAddress = $('#selfAddress').val().trim().replace(/[^a-zA-Z ]/g, "");
+  var selfPhone = $('#selfPhone').val().trim().replace(/[^a-zA-Z ]/g, "");
+  var selfGst = $('#selfGst').val().trim().replace(/[^a-zA-Z ]/g, "");
+  var gstPercent = $('#gstPercent').val().trim().replace(/[^a-zA-Z ]/g, "");
+  var PartyName = $('#PartyName').val().trim().replace(/[^a-zA-Z ]/g, "");
+  var PartyAddress = $('#PartyAddress').val().trim().replace(/[^a-zA-Z ]/g, "");
+  var PartyPhone = $('#PartyPhone').val().trim().replace(/[^a-zA-Z ]/g, "");
+  var PartyGst = $('#PartyGst').val().trim().replace(/[^a-zA-Z ]/g, "");
+  var registrationNumber = $('#registrationNumber').val().trim().replace(/[^a-zA-Z ]/g, "");
   var header = $('#header').val();
   var Address = {
     "selfName": selfName,
