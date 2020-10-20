@@ -532,6 +532,9 @@ updateMainContainerBodyDataTable = (table_name,type,view) => {
   } else if (view.trim().toLowerCase() === "invoicesdetails"){
     $('.' + type).html("").append(`<table id='exampleEditable' class='table table-bordered table-striped' cellspacing=0 width=100%><thead><tr><th>Invoice ID</th><th>Invoice Date</th><th>Sub Total</th><th>GST</th><th>Total</th><th>Paid</th><th>Due</th><th>Created At</th><th>Updated At</th><th>Updated By</th><th>Action</th></tr></thead></table>`);
     updateDataTableWithoutServerSidePagination('exampleEditable','./../api/datatable/invoices_details.php',true,table_name);
+  } else if(view.trim().toLowerCase() === "remindersdetails"){
+    $('.' + type).html("").append(`<table id='exampleEditable' class='table table-bordered table-striped' cellspacing=0 width=100%><thead><tr><th>ID</th><th>Name</th><th>Reminder Type</th><th>Start At</th><th>End At</th><th>Reminder Date</th></tr></thead></table>`);
+    updateDataTableWithoutServerSidePagination('exampleEditable','./../api/datatable/product_details.php',true,table_name);    
   }
 }
 
@@ -652,6 +655,15 @@ updateDataTableWithoutServerSidePagination = (id,url,action,table_name) => {
       { data: 'updated_at' },
       { data: 'updated_by' },
       { data: 'updated_by' }
+    ]
+  } else if (table_name === "reminders") {
+    columns = [
+      { data: 'id' },
+      { data: 'name' },
+      { data: 'reminder_type' },
+      { data: 'start_at' },
+      { data: 'end_at' },
+      { data: 'reminder_date' }
     ]
   }
   $.when(Posthandler("./../api/custom/custom_query.php", {'query':query, 'token': user.token}, false)).done(function(res) {

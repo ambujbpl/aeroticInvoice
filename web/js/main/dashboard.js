@@ -65,6 +65,17 @@ productDetails = () => {
 	// executeCustomQuery("select * from product","mainContainerBody","productDetails");
 	showServerSideDetailsByTableNameDataTable("product","mainContainerBody","productDetails");
 }
+/**
+ * { reminders Details }
+ */
+remindersDetails = () => {
+  $('.mainContainerRow').removeClass('hide');
+  $('.mainContainerHeader').html('Reminders Details');
+  $('.mainContainerDropdownMenuLink').html('').append(`<div class="dropdown-header">Dropdown Reminders Details Header:</div>`).append(`<a class="dropdown-item" onclick="remindersDetails();">View Reminders Detail</a>`).append(`<a class="dropdown-item" onclick="addNewReminders('reminders');">Add New Reminders</a>`);
+  // executeCustomQuery("select * from product","mainContainerBody","reminders");
+  showServerSideDetailsByTableNameDataTable("reminders","mainContainerBody","remindersDetails");
+}
+
 
 /**
  * { update Counters }
