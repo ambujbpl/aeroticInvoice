@@ -12,132 +12,153 @@
   <button class="btn btn-primary addUpdateBtn" type="button" onclick="updateFunction();">Update</button>
 </div>
 <script type="text/javascript">
-	var user = localStorage.getItem('user');
-	var chengedArray = [];
-	var selected; 
-	if(user){
-		user = JSON.parse(user);
-	  $('#editModalBody').html(" ");
-	  if(globalObj.editId && globalObj.editTableName){
-	  	$('.addUpdateBtn').html("Update");
-		  var query = `select * from ${globalObj.editTableName} where id=${globalObj.editId};`;
-		  $.when(Posthandler("./../api/custom/custom_query.php", {'query':query, 'token': user.token}, true)).done(function(res) {
-		    if(res.resCode.trim().toLowerCase() == "ok") {
-		    	$.notify(res.message, "success");   
-					$('#editModalBody').html("<table id='editModalTable' class='table table-bordered table-striped' cellspacing=0 width=100%></table>");
-				  var body = "";
-				  var data = res.data[0];
-				  for(var key in data){
-				  	let updatedKey = updateKeyFormat(key);
-				  	if(data[key] == null || data[key] == undefined)data[key] = '';
-				  	if(key == "id" || key == "userid" || key == "password" || key == "created_at" || key == "updated_at" || key == "updated_by" || key == "role" || key == "profile_file_name"){
-				  		body += "<tr><th class='capitalize'>" + updatedKey + "</th><td>" + data[key] + "</td></tr>";	  		
-				  	} else{
-				  		body += "<tr><th class='capitalize'>" + updatedKey + "</th><td><input type='text' id='"+ key + "' value='" + data[key] + "' /></td></tr>";
-				  		chengedArray.push(key);
-				  	}
-				  }
-				  $("#editModalTable").append(body);	      
-		    } else {
-		      $('#errorDiv').html(res.message);
-		      $.notify(res.message, "error");
-		    }
-		  }).fail(function() {
-		    $.notify("Something went wrong please contact your administrator.", "error");
-		    console.log("Error executing AJAX request. Please contact your administrator");
-		  });
-	  }else{
-	  	$('.addUpdateBtn').html("Add");
-		  var query = `select * from ${globalObj.editTableName} limit 1;`;
-		  $.when(Posthandler("./../api/custom/custom_query.php", {'query':query, 'token': user.token}, true)).done(function(res) {
-		    if(res.resCode.trim().toLowerCase() == "ok") {
-		    	$('#editModalBody').html("<table id='editModalTable' class='table table-bordered table-striped' cellspacing=0 width=100%></table>");
-				  var body = "";
-				  var data = res.data[0];
-				  delete data.id;
-				  delete data.created_at;
-				  delete data.updated_at;
-				  delete data.updated_by;
-				  for(var key in data){
-				  	let updatedKey = updateKeyFormat(key);
-				  	if(data[key] == null || data[key] == undefined)data[key] = '';
-				  	if(key == "id" || key == "userid" || key == "password" || key == "created_at" || key == "updated_at" || key == "updated_by" || key == "role" || key == "profile_file_name"){
-				  		body += "<tr><th class='capitalize'>" + updatedKey + "</th><td></td></tr>";	  		
-				  	} else{
-				  		body += "<tr><th class='capitalize'>" + updatedKey + "</th><td><input type='text' id='"+ key + "' value='' /></td></tr>";
-				  		chengedArray.push(key);
-				  	}
-				  }
-				  $("#editModalTable").append(body);
-		    } else {
-		      $('#errorDiv').html(res.message);
-		      $.notify(res.message, "error");
-		    }
-		  }).fail(function() {
-		    $.notify("Something went wrong please contact your administrator.", "error");
-		    console.log("Error executing AJAX request. Please contact your administrator");
-		  });
-	  }
-	}else{
-		logoutFunction();
-	}
+var user = localStorage.getItem('user');
+var chengedArray = [];
+var selected;
+console.log("globalObj :", globalObj);
+if (user) {
+    user = JSON.parse(user);
+    $('#editModalBody').html(" ");
+    if (globalObj.editId && globalObj.editTableName) {
+        $('.addUpdateBtn').html("Update");
+        var query = `select * from ${globalObj.editTableName} where id=${globalObj.editId};`;
+        $.when(Posthandler("./../api/custom/custom_query.php", {
+            'query': query,
+            'token': user.token
+        }, true)).done(function(res) {
+            if (res.resCode.trim().toLowerCase() == "ok") {
+                $.notify(res.message, "success");
+                $('#editModalBody').html("<table id='editModalTable' class='table table-bordered table-striped' cellspacing=0 width=100%></table>");
+                var body = "";
+                var data = res.data[0];
+                for (var key in data) {
+                    let updatedKey = updateKeyFormat(key);
+                    if (data[key] == null || data[key] == undefined) data[key] = '';
+                    if (key == "id" || key == "userid" || key == "password" || key == "created_at" || key == "updated_at" || key == "updated_by" || key == "role" || key == "profile_file_name") {
+                        body += "<tr><th class='capitalize'>" + updatedKey + "</th><td>" + data[key] + "</td></tr>";
+                    } else {
+                        body += "<tr><th class='capitalize'>" + updatedKey + "</th><td><input type='text' id='" + key + "' value='" + data[key] + "' /></td></tr>";
+                        chengedArray.push(key);
+                    }
+                }
+                $("#editModalTable").append(body);
+            } else {
+                $('#errorDiv').html(res.message);
+                $.notify(res.message, "error");
+            }
+        }).fail(function() {
+            $.notify("Something went wrong please contact your administrator.", "error");
+            console.log("Error executing AJAX request. Please contact your administrator");
+        });
+    } else {
+        $('.addUpdateBtn').html("Add");
+        var query = `select * from ${globalObj.editTableName} limit 1;`;
+        $.when(Posthandler("./../api/custom/custom_query.php", {
+            'query': query,
+            'token': user.token
+        }, true)).done(function(res) {
+            if (res.resCode.trim().toLowerCase() == "ok") {
+                $('#editModalBody').html("<table id='editModalTable' class='table table-bordered table-striped' cellspacing=0 width=100%></table>");
+                var body = "";
+                var data = res.data[0];
+                delete data.id;
+                delete data.created_at;
+                delete data.updated_at;
+                delete data.updated_by;
+                for (var key in data) {
+                    let updatedKey = updateKeyFormat(key);
+                    if (data[key] == null || data[key] == undefined) data[key] = '';
+                    if (key == "id" || key == "userid" || key == "password" || key == "created_at" || key == "updated_at" || key == "updated_by" || key == "role" || key == "profile_file_name") {
+                        body += "<tr><th class='capitalize'>" + updatedKey + "</th><td></td></tr>";
+                    } else {
+                        body += "<tr><th class='capitalize'>" + updatedKey + "</th><td><input type='text' id='" + key + "' value='' /></td></tr>";
+                        chengedArray.push(key);
+                    }
+                }
+                $("#editModalTable").append(body);
+            } else {
+                $('#errorDiv').html(res.message);
+                $.notify(res.message, "error");
+            }
+        }).fail(function() {
+            $.notify("Something went wrong please contact your administrator.", "error");
+            console.log("Error executing AJAX request. Please contact your administrator");
+        });
+    }
+} else {
+    logoutFunction();
+}
 
-	/**
-	 * { function_description }
-	 */
-	function updateFunction(){
-		if(chengedArray.length > 0){
-			if(globalObj.editId && globalObj.editTableName){
-				let query = `update ${globalObj.editTableName} set `
-				chengedArray.forEach((key,index) => {
-					var val = $('#' + key).val();
-					query += `${key}="${val}" ,`;
-				});
-				// query = query.slice(0, -1);
-				query += ` updated_by="${user.id}" where id=${globalObj.editId}`;
-				$.when(Posthandler("./../api/custom/custom_query.php", {'query':query, 'token': user.token}, true)).done(function(res) {
-	        if(res.resCode.trim().toLowerCase() == "ok") {
-	          $.notify("Record has been edited", "success");
-	          productDetails();
-	          $('#custom-modal').modal('hide');
-	        } else {
-	          $('#errorDiv').html(res.message);
-	          $.notify(res.message, "error");
-	        }
-	      }).fail(function() {
-	        $.notify("Something went wrong please contact your administrator.", "error");
-	        console.log("Error executing AJAX request. Please contact your administrator");
-	      });
-			}else{
-				let query = `INSERT INTO ${globalObj.editTableName} (`
-				chengedArray.forEach((key,index) => {
-					var val = $('#' + key).val();
-					query += `${key} ,`;
-				});
-				// query = query.slice(0, -1);
-				query += "updated_by) VALUES (";
-				chengedArray.forEach((key,index) => {
-					var val = $('#' + key).val();
-					query += `"${val}" ,`;
-				});
-				// query = query.slice(0, -1);
-				query += `"${user.id}")`;
-				console.log("query : ",query);
-				$.when(Posthandler("./../api/custom/custom_query.php", {'query':query, 'token': user.token}, true)).done(function(res) {
-	        if(res.resCode.trim().toLowerCase() == "ok") {
-	          $.notify("Record has been added", "success");
-	          updateCounters();
-	          productDetails();
-	          $('#custom-modal').modal('hide');
-	        } else {
-	          $('#errorDiv').html(res.message);
-	          $.notify(res.message, "error");
-	        }
-	      }).fail(function() {
-	        $.notify("Something went wrong please contact your administrator.", "error");
-	        console.log("Error executing AJAX request. Please contact your administrator");
-	      });
-			}
-		}
-	}
+/**
+ * { function_description }
+ */
+function updateFunction() {
+    if (chengedArray.length > 0) {
+        if (globalObj.editId && globalObj.editTableName) {
+            let query = `update ${globalObj.editTableName} set `
+            chengedArray.forEach((key, index) => {
+                var val = $('#' + key).val();
+                query += `${key}="${val}" ,`;
+            });
+            // query = query.slice(0, -1);
+            query += ` updated_by="${user.id}" where id=${globalObj.editId}`;
+            $.when(Posthandler("./../api/custom/custom_query.php", {
+                'query': query,
+                'token': user.token
+            }, true)).done(function(res) {
+                if (res.resCode.trim().toLowerCase() == "ok") {
+                    $.notify("Record has been edited", "success");
+                    if (globalObj.editTableName == "product") {
+                        productDetails();
+                    } else if (globalObj.editTableName == 'reminders') {
+                        remindersDetails();
+                    }
+                    $('#custom-modal').modal('hide');
+                } else {
+                    $('#errorDiv').html(res.message);
+                    $.notify(res.message, "error");
+                }
+            }).fail(function() {
+                $.notify("Something went wrong please contact your administrator.", "error");
+                console.log("Error executing AJAX request. Please contact your administrator");
+            });
+        } else {
+            let query = `INSERT INTO ${globalObj.editTableName} (`
+            chengedArray.forEach((key, index) => {
+                var val = $('#' + key).val();
+                query += `${key} ,`;
+            });
+            // query = query.slice(0, -1);
+            query += "updated_by) VALUES (";
+            chengedArray.forEach((key, index) => {
+                var val = $('#' + key).val();
+                query += `"${val}" ,`;
+            });
+            // query = query.slice(0, -1);
+            query += `"${user.id}")`;
+            console.log("query : ", query);
+            $.when(Posthandler("./../api/custom/custom_query.php", {
+                'query': query,
+                'token': user.token
+            }, true)).done(function(res) {
+                if (res.resCode.trim().toLowerCase() == "ok") {
+                    $.notify("Record has been added", "success");
+                    updateCounters();
+                    if (globalObj.editTableName == "product") {
+                        productDetails();
+                    } else if (globalObj.editTableName == 'reminders') {
+                        remindersDetails();
+                    }
+                    $('#custom-modal').modal('hide');
+                } else {
+                    $('#errorDiv').html(res.message);
+                    $.notify(res.message, "error");
+                }
+            }).fail(function() {
+                $.notify("Something went wrong please contact your administrator.", "error");
+                console.log("Error executing AJAX request. Please contact your administrator");
+            });
+        }
+    }
+}
 </script>

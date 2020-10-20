@@ -533,7 +533,7 @@ updateMainContainerBodyDataTable = (table_name,type,view) => {
     $('.' + type).html("").append(`<table id='exampleEditable' class='table table-bordered table-striped' cellspacing=0 width=100%><thead><tr><th>Invoice ID</th><th>Invoice Date</th><th>Sub Total</th><th>GST</th><th>Total</th><th>Paid</th><th>Due</th><th>Created At</th><th>Updated At</th><th>Updated By</th><th>Action</th></tr></thead></table>`);
     updateDataTableWithoutServerSidePagination('exampleEditable','./../api/datatable/invoices_details.php',true,table_name);
   } else if(view.trim().toLowerCase() === "remindersdetails"){
-    $('.' + type).html("").append(`<table id='exampleEditable' class='table table-bordered table-striped' cellspacing=0 width=100%><thead><tr><th>ID</th><th>Name</th><th>Reminder Type</th><th>Start At</th><th>End At</th><th>Reminder Date</th></tr></thead></table>`);
+    $('.' + type).html("").append(`<table id='exampleEditable' class='table table-bordered table-striped' cellspacing=0 width=100%><thead><tr><th>ID</th><th>Name</th><th>Reminder Type</th><th>Start At</th><th>End At</th><th>Reminder Date</th><th>Action</th></tr></thead></table>`);
     updateDataTableWithoutServerSidePagination('exampleEditable','./../api/datatable/product_details.php',true,table_name);    
   }
 }
@@ -617,6 +617,16 @@ addNewProduct = (table_name) => {
   delete globalObj.editId;
   OpenCustomModal('editModal','html','modal-lg');  
 }
+/**
+ * Adds a new Reminders.
+ *
+ * @param      {<type>}  table_name  The table name
+ */
+addNewReminders = (table_name) => {
+  globalObj.editTableName = table_name;
+  delete globalObj.editId;
+  OpenCustomModal('editModal','html','modal-lg');  
+}
 
 /**
  * { function_description }
@@ -663,6 +673,7 @@ updateDataTableWithoutServerSidePagination = (id,url,action,table_name) => {
       { data: 'reminder_type' },
       { data: 'start_at' },
       { data: 'end_at' },
+      { data: 'reminder_date' },
       { data: 'reminder_date' }
     ]
   }
@@ -702,6 +713,8 @@ updateDataTableWithoutServerSidePagination = (id,url,action,table_name) => {
               if(table_name === "product"){
                 addHtml += `<a href='javascript:;' class='edit' onclick='EditData(this,"${table_name}")'><i class='far fa-edit'></i></a> | <a href='javascript:;' class='delete' onclick='DeleteData(this,"${table_name}")'><i class='far fa-trash-alt'></i></a>`;
               } else if(table_name === "invoices"){
+                addHtml += `<a href='javascript:;' class='edit' onclick='EditData(this,"${table_name}")'><i class='far fa-eye'></i></a> | <a href='javascript:;' class='delete' onclick='DeleteData(this,"${table_name}")'><i class='far fa-trash-alt'></i></a>`;
+              } else if(table_name === "reminders"){
                 addHtml += `<a href='javascript:;' class='edit' onclick='EditData(this,"${table_name}")'><i class='far fa-eye'></i></a> | <a href='javascript:;' class='delete' onclick='DeleteData(this,"${table_name}")'><i class='far fa-trash-alt'></i></a>`;
               }
               $(row).find('td:last').html(addHtml);
@@ -823,7 +836,7 @@ EditData = (val,table_name) => {
   globalObj.editId = Id;
   globalObj.editTableName = table_name;
   var action;
-  if(table_name.trim().toLowerCase() === "product"){
+  if(table_name.trim().toLowerCase() === "product" || table_name.trim().toLowerCase() === "reminders"){
     action = 'edit';
   }else if(table_name.trim().toLowerCase() === "invoices"){
     action = 'view';
@@ -836,11 +849,11 @@ EditData = (val,table_name) => {
     dangerMode: true,
   }).then((isConfirm) => {
     if (isConfirm) {      
-      if(table_name.trim().toLowerCase() === "product"){
+      if(table_name.trim().toLowerCase() === "product" || table_name.trim().toLowerCase() === "reminders"){
         OpenCustomModal('editModal','html','modal-lg');
       }else if(table_name.trim().toLowerCase() === "invoices"){
         window.open(`./html/viewInvoice.html?id=${Id}`, "_blank")
-      }      
+      }   
     } else {
       $.notify("Your details are safe!", "info");
     }
