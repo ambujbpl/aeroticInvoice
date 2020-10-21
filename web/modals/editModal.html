@@ -71,11 +71,23 @@ if (user) {
                     if (key == "id" || key == "userid" || key == "password" || key == "created_at" || key == "updated_at" || key == "updated_by" || key == "role" || key == "profile_file_name") {
                         body += "<tr><th class='capitalize'>" + updatedKey + "</th><td></td></tr>";
                     } else {
-                        body += "<tr><th class='capitalize'>" + updatedKey + "</th><td><input type='text' id='" + key + "' value='' /></td></tr>";
+                    	if(key == "reminder_date"){
+                    		body += "<tr><th class='capitalize'>" + updatedKey + "</th><td><input class='datepicker' data-date-format='yyyy-mm-dd'  id='" + key + "'></td></tr>";
+
+                    	} else{
+                    		body += "<tr><th class='capitalize'>" + updatedKey + "</th><td><input type='text' id='" + key + "' value='' /></td></tr>";
+                    	}
+                        // body += "<tr><th class='capitalize'>" + updatedKey + "</th><td><input type='text' id='" + key + "' value='' /></td></tr>";
                         chengedArray.push(key);
                     }
                 }
                 $("#editModalTable").append(body);
+                $('.datepicker').datepicker({
+			        weekStart: 1,
+			        daysOfWeekHighlighted: "6,0",
+			        autoclose: true,
+			        todayHighlight: true,
+			    });
             } else {
                 $('#errorDiv').html(res.message);
                 $.notify(res.message, "error");
