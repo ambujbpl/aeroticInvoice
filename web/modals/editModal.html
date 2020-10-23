@@ -74,7 +74,10 @@ if (user) {
                     	if(key == "reminder_date"){
                     		body += "<tr><th class='capitalize'>" + updatedKey + "</th><td><input class='datepicker' data-date-format='yyyy-mm-dd'  id='" + key + "'></td></tr>";
 
-                    	} else{
+                    	} else if(key == "start_at" || key == "end_at"){
+                    		body += `<tr><th class='capitalize' >${updatedKey}</th><td><input class='timepicker ${key}' width='276' time-time-format='hh:mm:ss'  id='${key}'></td></tr>`;
+                    	}
+                    	 else{
                     		body += "<tr><th class='capitalize'>" + updatedKey + "</th><td><input type='text' id='" + key + "' value='' /></td></tr>";
                     	}
                         // body += "<tr><th class='capitalize'>" + updatedKey + "</th><td><input type='text' id='" + key + "' value='' /></td></tr>";
@@ -88,6 +91,21 @@ if (user) {
 			        autoclose: true,
 			        todayHighlight: true,
 			    });
+
+				            // $('.timepicker').each(function() {
+				           	// console.log('----');
+				            // $(this).timepicker({
+				            //  uiLibrary: 'bootstrap4'
+				          	 // });
+				            // });
+
+			    $('#start_at').timepicker({
+		            uiLibrary: 'bootstrap4'
+		        });
+
+			    $('#end_at').timepicker({
+		            uiLibrary: 'bootstrap4'
+		        });
             } else {
                 $('#errorDiv').html(res.message);
                 $.notify(res.message, "error");
