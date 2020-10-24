@@ -1,3 +1,8 @@
+<style type="text/css">
+ .input-group{
+  width: 100% !important;
+ }
+</style>
 <div class="modal-header">
   <h5 class="modal-title" id="exampleModalLabel">Edit Modal</h5>
   <button class="close" type="button" data-dismiss="modal" aria-label="Close">
@@ -72,13 +77,13 @@ if (user) {
                         body += "<tr><th class='capitalize'>" + updatedKey + "</th><td></td></tr>";
                     } else {
                     	if(key == "reminder_date"){
-                    		body += "<tr><th class='capitalize'>" + updatedKey + "</th><td><input class='datepicker' data-date-format='yyyy-mm-dd'  id='" + key + "'></td></tr>";
+                    		body += "<tr><th class='capitalize'>" + updatedKey + "</th><td><input class='datepicker' style='width:100%;' data-date-format='yyyy-mm-dd'  id='" + key + "'></td></tr>";
 
                     	} else if(key == "start_at" || key == "end_at"){
                     		body += `<tr><th class='capitalize' >${updatedKey}</th><td><input class='timepicker ${key}' width='276' time-time-format='hh:mm:ss'  id='${key}'></td></tr>`;
                     	}
                     	 else{
-                    		body += "<tr><th class='capitalize'>" + updatedKey + "</th><td><input type='text' id='" + key + "' value='' /></td></tr>";
+                    		body += "<tr><th class='capitalize'>" + updatedKey + "</th><td><input style='width:100%;' type='text' id='" + key + "' value='' /></td></tr>";
                     	}
                         // body += "<tr><th class='capitalize'>" + updatedKey + "</th><td><input type='text' id='" + key + "' value='' /></td></tr>";
                         chengedArray.push(key);
