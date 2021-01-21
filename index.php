@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <!-- <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico"> -->
 
-    <title>Carousel Template for Bootstrap</title>
+    <title>Sania Enterprises</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/carousel/">
 
@@ -39,7 +39,7 @@
           </ul>
           <form class="form-inline mt-2 mt-md-0">
             <!-- <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"> -->
-            <button class="btn btn-outline-success my-2 my-sm-0" href="web/login.html" type="button">LOGIN</button>
+            <a class="btn btn-outline-success my-2 my-sm-0" href="web/login.html" type="button">LOGIN</a>
             <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">SIGN UP</button> -->
           </form>
         </div>
