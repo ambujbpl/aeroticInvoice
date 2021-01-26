@@ -28,7 +28,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#"> AeroticInvoice <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="#"> <b>Saniya Automobile Services(SAS)</b> <span class="sr-only">(current)</span></a>
             </li>
            <!--  <li class="nav-item">
               <a class="nav-link" href="#">Link</a>
@@ -39,7 +39,7 @@
           </ul>
           <form class="form-inline mt-2 mt-md-0">
             <!-- <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"> -->
-            <a class="btn btn-outline-success my-2 my-sm-0" href="web/login.html" type="button">LOGIN</a>
+            <a class="btn btn-outline-success my-2 my-sm-0" href="web/login.html" type="button"><b>LOGIN</b></a>
             <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">SIGN UP</button> -->
           </form>
         </div>
@@ -53,15 +53,16 @@
           <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
           <li data-target="#myCarousel" data-slide-to="1"></li>
           <li data-target="#myCarousel" data-slide-to="2"></li>
+          <li data-target="#myCarousel" data-slide-to="3"></li>
         </ol>
         <div class="carousel-inner">
           <div class="carousel-item active">
             <img class="first-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="First slide">
             <div class="container">
               <div class="carousel-caption text-left">
-                <h1>Example headline.</h1>
-                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+                <h1>ASCD</h1>
+                <p>Automatic Speed Control Device (ASCD) allows a driver to keep vehicle at predetermined constant speed without depressing accelerator pedal. Driver can set vehicle speed in advance between approximately 40 km/ h (25 MPH) and 194 km/h (120 MPH).</p>
+                <p><a class="btn btn-lg btn-primary" href="web/login.html" role="button">Login</a></p>
               </div>
             </div>
           </div>
@@ -69,9 +70,9 @@
             <img class="second-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Second slide">
             <div class="container">
               <div class="carousel-caption">
-                <h1>Another example headline.</h1>
-                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+                <h1>PUC</h1>
+                <p>The Indian government has mandated the Pollution Under Control (PUC) certificate under the Central Motor Vehicles Rule, 1989. The PUC test assesses the emission of a vehicle and checks if it follows the standard pollution regulation.</p>
+                <p><a class="btn btn-lg btn-primary" href="web/login.html" role="button">Login</a></p>
               </div>
             </div>
           </div>
@@ -79,12 +80,24 @@
             <img class="third-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Third slide">
             <div class="container">
               <div class="carousel-caption text-right">
-                <h1>One more for good measure.</h1>
-                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+                <h1>SBI FATAG</h1>
+                <p> SBI FASTag is a device that employs Radio Frequency Identification (RFID) technology for making toll payments directly from the prepaid or savings accountlinked to it. It is affixed on the windscreen of your vehicle and enables you to drive through toll plazas, without stopping for cash transactions. FASTag is linked to a prepaid account from which the applicable toll amount is deducted.</p>
+                <p><a class="btn btn-lg btn-primary" href="web/login.html" role="button">login</a></p>
               </div>
             </div>
           </div>
+        
+         <div class="carousel-item">
+            <img class="fourth-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Fourth slide">
+            <div class="container">
+              <div class="carousel-caption">
+                <h1>Vehicle Tracking System</h1>
+                <p>A vehicle tracking system combines the use of automatic vehicle location in individual vehicles with software that collects these fleet data for a comprehensive picture of vehicle locations. Modern vehicle tracking systems commonly use GPS or GLONASS technology for locating the vehicle, but other types of automatic vehicle location technology can also be used. Vehicle information can be viewed on electronic maps via the Internet or specialized software.</p>
+                <p><a class="btn btn-lg btn-primary" href="web/login.html" role="button">Login</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
         </div>
         <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -102,38 +115,38 @@
       <!-- Wrap the rest of the page in another container to center all the content. -->
 
       <div class="container marketing">
-
-        <!-- Three columns of text below the carousel -->
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-lg-4">
             <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
             <h2>Heading</h2>
             <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
             <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-          </div><!-- /.col-lg-4 -->
+          </div>
           <div class="col-lg-4">
             <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
             <h2>Heading</h2>
             <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
             <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-          </div><!-- /.col-lg-4 -->
+          </div>
           <div class="col-lg-4">
             <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
             <h2>Heading</h2>
             <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
             <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-          </div><!-- /.col-lg-4 -->
-        </div><!-- /.row -->
+          </div>
+        </div> -->
 
 
         <!-- START THE FEATURETTES -->
 
-        <hr class="featurette-divider">
+        <!-- <hr class="featurette-divider"> -->
 
         <div class="row featurette">
           <div class="col-md-7">
-            <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            <h2 class="featurette-heading">Automatic Speed Control Device <span class="text-muted">Helps to avoid accidents</span></h2>
+            <p class="lead">Automatic Speed Control Device (ASCD) allows a driver to keep vehicle at predetermined constant speed without depressing accelerator pedal. Driver can set vehicle speed in advance between approximately 40 km/ h (25 MPH) and 144 km/h (89 MPH).
+			ECM controls throttle angle of electric throttle control actuator to regulate engine speed.
+			The ASCD operation status is indicated on the combination meter. If any malfunction occurs in ASCD system, ECM automatically deactivates the ASCD control.</p>
           </div>
           <div class="col-md-5">
             <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
@@ -144,8 +157,10 @@
 
         <div class="row featurette">
           <div class="col-md-7 order-md-2">
-            <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            <h2 class="featurette-heading">PUC <span class="text-muted">PUC certificate is mandatory</span></h2>
+            <p class="lead">The number of vehicles has increased exponentially. These two/three or four-wheeler vehicles are causing maximum pollution. Though every now and then the issue catches attention still the pollution index is rising globally.
+			So as an important part of the society, you can get the pollution under control certificate for our vehicles from the government. But before applying, you should know more about PUC Certificate (or “pollution under control” certificate).
+			Additionally, now according to the IRDAI, it is mandatory that you have a valid PUC certificate to renew your motor insurance policy. </p>
           </div>
           <div class="col-md-5 order-md-1">
             <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
@@ -156,13 +171,30 @@
 
         <div class="row featurette">
           <div class="col-md-7">
-            <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            <h2 class="featurette-heading">SBI Fastag <span class="text-muted">Checkmate.</span></h2>
+            <p class="lead">• Cashless payment – SBI FASTag users don’t need to carry cash for toll transactions, and don’t need to worry about collecting the exact change. <br>
+            • Faster transit – Auto-debit of exact amount through the SBI FASTag enables faster transit through the toll plazas and saves time.<br>		
+            • Online recharge– SBI FASTag can be recharged online through Credit Card / Debit Card / Net banking/ IMPS etc.<br>
+            • SMS alerts– Instant SMS alerts on registered mobile number for toll transactions, low balance, etc. A customer may create personnel Tag account by registering online, and can have the facility of topping up the FASTag account through online modes i.e credit card, debit card, internet banking etc. History of past transactions, available balance in the account etc.</p>
           </div>
           <div class="col-md-5">
             <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
           </div>
         </div>
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+          <div class="col-md-7 order-md-2">
+            <h2 class="featurette-heading">Vehicle Tracking System<span class="text-muted">Major constituents of the GPS-based tracking are:-.</span></h2>
+            <p class="lead">GPS tracking unit: The device fits into the vehicle and captures the GPS location information apart from other vehicle information at regular intervals to a central server. Other vehicle information can include fuel amount, engine temperature, altitude, reverse geocoding, door open/close, tire pressure, cut off fuel, turn off ignition, turn on headlight, turn on taillight, battery status, GSM area code/cell code decoded, number of GPS satellites in view, glass open/close, fuel amount, emergency button status, cumulative idling, computed odometer, engine RPM, throttle position, GPRS status and a lot more. Capability of these devices actually decide the final capability of the whole tracking system; most vehicle tracking systems, in addition to providing the vehicle's location data, feature a wide range of communication ports that can be used to integrate other onboard systems, allowing to check their status and control or automate their operation.<br>
+			GPS tracking server: The tracking server has three responsibilitie are receiving data from the GPS tracking unit, securely storing it, and serving this information on demand to the user.<br>
+			User interface: The UI determines how one will be able to access information, view vehicle data, and elicit important details from it.</p>
+          </div>
+          <div class="col-md-5 order-md-1">
+            <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+          </div>
+        </div>
+
 
         <hr class="featurette-divider">
 
