@@ -144,9 +144,20 @@
         <div class="row featurette">
           <div class="col-md-7">
             <h2 class="featurette-heading">Automatic Speed Control Device <span class="text-muted">Helps to avoid accidents</span></h2>
-            <p class="lead">Automatic Speed Control Device (ASCD) allows a driver to keep vehicle at predetermined constant speed without depressing accelerator pedal. Driver can set vehicle speed in advance between approximately 40 km/ h (25 MPH) and 144 km/h (89 MPH).
+            <p class="lead">Driver can set vehicle speed in advance between approximately 40 km/ h (25 MPH) and 144 km/h (89 MPH).
 			ECM controls throttle angle of electric throttle control actuator to regulate engine speed.
-			The ASCD operation status is indicated on the combination meter. If any malfunction occurs in ASCD system, ECM automatically deactivates the ASCD control.</p>
+			The ASCD operation status is indicated on the combination meter. If any malfunction occurs in ASCD system, ECM automatically deactivates the ASCD control.<br>
+			<b> Approx. RS 7,500/piece <br>
+                Type- Automatic <br>
+                Usage- Speed Control <br>
+                Digit Display Size- Single Display <br>
+                Operational Current- 0.78 mA <br>
+                Maximum Current- 0.5 mA <br>
+                Alarm Loudness- upto 120dB <br>
+                Model No- 3GB-275 <br>
+                Voltage- 12V/24v
+            </b>
+		    </p>
           </div>
           <div class="col-md-5">
             <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
@@ -186,9 +197,19 @@
         <div class="row featurette">
           <div class="col-md-7 order-md-2">
             <h2 class="featurette-heading">Vehicle Tracking System<span class="text-muted">Major constituents of the GPS-based tracking are:-.</span></h2>
-            <p class="lead">GPS tracking unit: The device fits into the vehicle and captures the GPS location information apart from other vehicle information at regular intervals to a central server. Other vehicle information can include fuel amount, engine temperature, altitude, reverse geocoding, door open/close, tire pressure, cut off fuel, turn off ignition, turn on headlight, turn on taillight, battery status, GSM area code/cell code decoded, number of GPS satellites in view, glass open/close, fuel amount, emergency button status, cumulative idling, computed odometer, engine RPM, throttle position, GPRS status and a lot more. Capability of these devices actually decide the final capability of the whole tracking system; most vehicle tracking systems, in addition to providing the vehicle's location data, feature a wide range of communication ports that can be used to integrate other onboard systems, allowing to check their status and control or automate their operation.<br>
-			GPS tracking server: The tracking server has three responsibilitie are receiving data from the GPS tracking unit, securely storing it, and serving this information on demand to the user.<br>
-			User interface: The UI determines how one will be able to access information, view vehicle data, and elicit important details from it.</p>
+            <p class="lead">GPS tracking unit: The device fits into the vehicle and captures the GPS location information apart from other vehicle information at regular intervals to a central server. <!-- Other vehicle information can include fuel amount, engine temperature, altitude, reverse geocoding, door open/close, tire pressure, cut off fuel, turn off ignition, turn on headlight, turn on taillight, battery status, GSM area code/cell code decoded, number of GPS satellites in view, glass open/close, fuel amount, emergency button status, cumulative idling, computed odometer, engine RPM, throttle position, GPRS status and a lot more. Capability of these devices actually decide the final capability of the whole tracking system; most vehicle tracking systems, in addition to providing the vehicle's location data, feature a wide range of communication ports that can be used to integrate other onboard systems, allowing to check their status and control or automate their operation. --><br>
+			• GPS tracking server: The tracking server has three responsibilitie are receiving data from the GPS tracking unit, securely storing it, and serving this information on demand to the user.<br>
+			• User interface: The UI determines how one will be able to access information, view vehicle data, and elicit important details from it.<br>
+			<b> Approx. RS 2,000/piece <br>
+                Type- Wired <br>
+                Usage/Application- Car <br>
+                Minimum Order Quantity- 10 Piece <br>
+                Range- Network Range<br>
+                Mobile Access- Yes<br>
+                Screen Size- 4.3 inch., 6.5 inch, 3.5 inch<br>
+                GSM Frequency- 850-1900 MHz
+                </b>
+		    </p>
           </div>
           <div class="col-md-5 order-md-1">
             <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
