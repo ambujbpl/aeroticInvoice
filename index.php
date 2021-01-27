@@ -54,10 +54,11 @@
           <li data-target="#myCarousel" data-slide-to="1"></li>
           <li data-target="#myCarousel" data-slide-to="2"></li>
           <li data-target="#myCarousel" data-slide-to="3"></li>
+          <li data-target="#myCarousel" data-slide-to="4"></li>
         </ol>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img class="first-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="First slide">
+            <img class="first-slide" src="web/images/index/carousel/ASCD.jpg" alt="First slide">
             <div class="container">
               <div class="carousel-caption text-left">
                 <h1>ASCD</h1>
@@ -67,7 +68,7 @@
             </div>
           </div>
           <div class="carousel-item">
-            <img class="second-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Second slide">
+            <img class="second-slide" src="web/images/index/carousel/PUC.jpg" alt="Second slide">
             <div class="container">
               <div class="carousel-caption">
                 <h1>PUC</h1>
@@ -77,7 +78,7 @@
             </div>
           </div>
           <div class="carousel-item">
-            <img class="third-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Third slide">
+            <img class="third-slide" src="web/images/index/carousel/Fastag.png" alt="Third slide">
             <div class="container">
               <div class="carousel-caption text-right">
                 <h1>SBI FATAG</h1>
@@ -88,11 +89,21 @@
           </div>
         
          <div class="carousel-item">
-            <img class="fourth-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Fourth slide">
+            <img class="fourth-slide" src="web/images/index/carousel/VTD.jpg" alt="Fourth slide">
             <div class="container">
               <div class="carousel-caption">
                 <h1>Vehicle Tracking System</h1>
                 <p>A vehicle tracking system combines the use of automatic vehicle location in individual vehicles with software that collects these fleet data for a comprehensive picture of vehicle locations. Modern vehicle tracking systems commonly use GPS or GLONASS technology for locating the vehicle, but other types of automatic vehicle location technology can also be used. Vehicle information can be viewed on electronic maps via the Internet or specialized software.</p>
+                <p><a class="btn btn-lg btn-primary" href="web/login.html" role="button">Login</a></p>
+              </div>
+            </div>
+          </div>
+           <div class="carousel-item">
+            <img class="fifth-slide" src="web/images/index/carousel/HSRP.jpg" alt="Fifth slide">
+            <div class="container">
+              <div class="carousel-caption text-left">
+                <h1>HSRP</h1>
+                <p>High Security Registration Plate is made up of aluminium and is fixed on the vehicle using two non-reusable locks.</p>
                 <p><a class="btn btn-lg btn-primary" href="web/login.html" role="button">Login</a></p>
               </div>
             </div>
@@ -143,7 +154,7 @@
 
         <div class="row featurette">
           <div class="col-md-7">
-            <h2 class="featurette-heading">Automatic Speed Control Device <span class="text-muted">Helps to avoid accidents</span></h2>
+            <h2 class="featurette-heading">Automatic Speed Control Device(SLD) <span class="text-muted">Helps to avoid accidents</span></h2>
             <p class="lead">Driver can set vehicle speed in advance between approximately 40 km/ h (25 MPH) and 144 km/h (89 MPH).
 			ECM controls throttle angle of electric throttle control actuator to regulate engine speed.
 			The ASCD operation status is indicated on the combination meter. If any malfunction occurs in ASCD system, ECM automatically deactivates the ASCD control.<br>
@@ -160,7 +171,7 @@
 		    </p>
           </div>
           <div class="col-md-5">
-            <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+            <img class="featurette-image img-fluid mx-auto" src="web/images/index/ASCD.jpeg" alt="Generic placeholder image">
           </div>
         </div>
 
@@ -174,7 +185,7 @@
 			Additionally, now according to the IRDAI, it is mandatory that you have a valid PUC certificate to renew your motor insurance policy. </p>
           </div>
           <div class="col-md-5 order-md-1">
-            <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+            <img class="featurette-image img-fluid mx-auto" src="web/images/index/PUC.jpeg" alt="Generic placeholder image">
           </div>
         </div>
 
@@ -182,14 +193,15 @@
 
         <div class="row featurette">
           <div class="col-md-7">
-            <h2 class="featurette-heading">SBI Fastag <span class="text-muted">Checkmate.</span></h2>
+            <h2 class="featurette-heading">SBI Fastag <span class="text-muted">Cashless payments(Pay online)</span></h2>
             <p class="lead">• Cashless payment – SBI FASTag users don’t need to carry cash for toll transactions, and don’t need to worry about collecting the exact change. <br>
             • Faster transit – Auto-debit of exact amount through the SBI FASTag enables faster transit through the toll plazas and saves time.<br>		
             • Online recharge– SBI FASTag can be recharged online through Credit Card / Debit Card / Net banking/ IMPS etc.<br>
             • SMS alerts– Instant SMS alerts on registered mobile number for toll transactions, low balance, etc. A customer may create personnel Tag account by registering online, and can have the facility of topping up the FASTag account through online modes i.e credit card, debit card, internet banking etc. History of past transactions, available balance in the account etc.</p>
           </div>
           <div class="col-md-5">
-            <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+            <img class="featurette-image img-fluid mx-auto" src="web/images/index/SBIFASTAG2.jpeg" alt="Generic placeholder image">
+            <img class="featurette-image img-fluid mx-auto" src="web/images/index/SBIFASTAG.jpeg" alt="Generic placeholder image">
           </div>
         </div>
         <hr class="featurette-divider">
@@ -211,13 +223,24 @@
                 </b>
 		    </p>
           </div>
-          <div class="col-md-5 order-md-1">
-            <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+           <div class="col-md-5 order-md-1">
+            <img class="featurette-image img-fluid mx-auto" src="web/images/index/VTD.jpeg" alt="Generic placeholder image">
           </div>
         </div>
-
-
         <hr class="featurette-divider">
+          <div class="row featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading">HSRP <span class="text-muted"></span></h2>
+            <p class="lead"> The Ministry of Road Transport and Highways (MoRTH) has mandated all vehicles to have a high security registration plate (HSRP) that have been sold before April 2019.<br>
+            The registration plate comes with a hot-stamped chromium-based hologram of Ashoka Chakra on the top left corner which is blue in colour and precisely measures 20mm x 20mm. At the bottom left corner of the plate is a 10-digit PIN (permanent identification number) that is laser-engraved on the reflective sheet.<br> 
+            Similarly, the HSRP also comes with a hot-stamped film applied on the registration numerals and letters bearing the inscription ‘India’ at a 45-degree angle. Once the unique registration is fixed, it is then electronically linked to the vehicle.</p>
+          </div>
+          <div class="col-md-5">
+            <img class="featurette-image img-fluid mx-auto" src="web/images/index/HSRP.jpeg" alt="Generic placeholder image">
+             <img class="featurette-image img-fluid mx-auto" src="web/images/index/HSRP2.jpeg" alt="Generic placeholder image">
+          </div>
+        </div>
+         
 
         <!-- /END THE FEATURETTES -->
 
@@ -227,7 +250,7 @@
       <!-- FOOTER -->
       <footer class="container">
         <p class="float-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2017-2018 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+        <p>&copy;<b> 2021 All Rights Resevered. <i>Sania Automobile Services.</i></b> &middot; <!-- <a href="#">Privacy</a> &middot; <a href="#">Terms</a> --></p>
       </footer>
     </main>
 
