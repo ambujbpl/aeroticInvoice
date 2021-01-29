@@ -151,19 +151,7 @@
         <!-- START THE FEATURETTES -->
 
         <!-- <hr class="featurette-divider"> -->
-        <div class="row featurette">
-          <div class="col-md-7 order-md-2">
-            <h2 class="featurette-heading">Gaurav Dubey <span class="text-muted"></span>08770557511</h2>
-            <p class="lead">You can call me anytime to get these services.<br>
-            We will provide you all the informations and you will be able to get your requirments done in one place.</p>
-          </div>
-        <div class="col-md-5 order-md-1">
-            <img class="featurette-image img-fluid mx-auto" src="web/images/index/carousel/bittu.jpeg" alt="Generic placeholder image">
-          </div>
-         </div>
-
-        <hr class="featurette-divider">
-
+        
         <div class="row featurette">
           <div class="col-md-7">
             <h2 class="featurette-heading">Automatic Speed Control Device(SLD) <span class="text-muted">Helps to avoid accidents</span></h2>
@@ -252,8 +240,21 @@
              <img class="featurette-image img-fluid mx-auto" src="web/images/index/HSRP2.jpeg" alt="Generic placeholder image">
           </div>
         </div>
-         
 
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+          <div class="col-md-7 order-md-2">
+            <h2 class="featurette-heading">Gaurav Dubey <span class="text-muted"></span></h2>
+            <p class="lead">Mail me:- gouravdubey03@gmail.com<br>
+            	Call me:- 08770557511<br>
+            	You can reach me anytime to get these services.<br>
+                We will provide you all the informations and you will be able to get your requirments done in one place.</p>
+          </div>
+        <div class="col-md-5 order-md-1">
+            <img class="featurette-image img-fluid mx-auto" src="web/images/index/carousel/bittu.jpeg" alt="Generic placeholder image">
+          </div>
+         </div>
         <!-- /END THE FEATURETTES -->
 
       </div><!-- /.container -->
