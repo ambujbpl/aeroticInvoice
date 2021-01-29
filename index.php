@@ -68,7 +68,7 @@
             </div>
           </div>
           <div class="carousel-item">
-            <img class="second-slide" src="web/images/index/carousel/PUC.jpg" alt="Second slide">
+            <img class="second-slide" src="web/images/index/carousel/PUC.png" alt="Second slide">
             <div class="container">
               <div class="carousel-caption">
                 <h1>PUC</h1>
@@ -151,6 +151,18 @@
         <!-- START THE FEATURETTES -->
 
         <!-- <hr class="featurette-divider"> -->
+        <div class="row featurette">
+          <div class="col-md-7 order-md-2">
+            <h2 class="featurette-heading">Gaurav Dubey <span class="text-muted"></span>08770557511</h2>
+            <p class="lead">You can call me anytime to get these services.<br>
+            We will provide you all the informations and you will be able to get your requirments done in one place.</p>
+          </div>
+        <div class="col-md-5 order-md-1">
+            <img class="featurette-image img-fluid mx-auto" src="web/images/index/carousel/bittu.jpeg" alt="Generic placeholder image">
+          </div>
+         </div>
+
+        <hr class="featurette-divider">
 
         <div class="row featurette">
           <div class="col-md-7">
@@ -179,7 +191,7 @@
 
         <div class="row featurette">
           <div class="col-md-7 order-md-2">
-            <h2 class="featurette-heading">PUC <span class="text-muted">PUC certificate is mandatory</span></h2>
+            <h2 class="featurette-heading">PUC <span class="text-muted">Certificate is mandatory</span></h2>
             <p class="lead">The number of vehicles has increased exponentially. These two/three or four-wheeler vehicles are causing maximum pollution. Though every now and then the issue catches attention still the pollution index is rising globally.
 			So as an important part of the society, you can get the pollution under control certificate for our vehicles from the government. But before applying, you should know more about PUC Certificate (or “pollution under control” certificate).
 			Additionally, now according to the IRDAI, it is mandatory that you have a valid PUC certificate to renew your motor insurance policy. </p>
