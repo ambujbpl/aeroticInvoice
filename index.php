@@ -6,36 +6,24 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico"> -->
-
     <title>Sania Enterprises</title>
-
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/carousel/">
-
     <!-- Bootstrap core CSS -->
     <link href="web/vendor/bootstrap-4.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Custom styles for this template -->
     <link href="web/vendor/bootstrap-4.0.0/dist/css/carousel.css" rel="stylesheet">
+    <!-- <link href="web/css/style.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
   </head>
   <body>
-
     <header>
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-       <!--  <a class="navbar-brand" href="#">Carousel</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button> -->
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
               <a class="nav-link" href="#"> <b>Saniya Automobile Services(SAS)</b> <span class="sr-only">(current)</span></a>
             </li>
-           <!--  <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#">Disabled</a>
-            </li> -->
           </ul>
           <form class="form-inline mt-2 mt-md-0">
             <!-- <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"> -->
@@ -45,9 +33,7 @@
         </div>
       </nav>
     </header>
-
     <main role="main">
-
       <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
           <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -58,7 +44,7 @@
         </ol>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img class="first-slide" src="web/images/index/carousel/ASCD.jpg" alt="First slide">
+            <img class="first-slide" src="web/images/index/carousel/ASCD.png" alt="First slide">
             <div class="container">
               <div class="carousel-caption text-left">
                 <h1>ASCD</h1>
@@ -118,47 +104,43 @@
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>
-      </div>
-
-
       <!-- Marketing messaging and featurettes
       ================================================== -->
       <!-- Wrap the rest of the page in another container to center all the content. -->
-
-      <div class="container marketing">
-        <!-- <div class="row">
+        <div class="container marketing">
+        <div class="row">
           <div class="col-lg-4">
-            <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-            <h2>Heading</h2>
-            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
+            <i class="fa fa-briefcase" style="font-size:48px;color:black"></i>
+            <!-- <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140"> -->
+            <h2>Corporate business</h2>
+            <p>A form of business operation that declares the business as a separate, legal entity guided by a group of officers known as the board of directors</p>
             <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
           </div>
           <div class="col-lg-4">
-            <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-            <h2>Heading</h2>
-            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+            <i class="fa fa-cogs" style="font-size:48px;color:black"></i>
+            <!-- <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140"> -->
+            <h2>Manufacturing</h2>
+            <p>The process of converting raw materials, components, or parts into finished goods that meet a customer's expectations or specifications.</p>
             <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
           </div>
           <div class="col-lg-4">
-            <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-            <h2>Heading</h2>
-            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+            <i class="fa fa-shopping-cart" style="font-size:48px;color:black"></i>
+            <!-- <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140"> -->
+            <h2>Wholesaler</h2>
+            <p>A wholesaler is a company that buys products from manufacturers and sells them at low prices to retailers or other wholesalers.</p>
             <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
           </div>
-        </div> -->
-
-
+        </div>
         <!-- START THE FEATURETTES -->
-
         <!-- <hr class="featurette-divider"> -->
         
         <div class="row featurette">
           <div class="col-md-7">
             <h2 class="featurette-heading">Automatic Speed Control Device(SLD) <span class="text-muted">Helps to avoid accidents</span></h2>
             <p class="lead">Driver can set vehicle speed in advance between approximately 40 km/ h (25 MPH) and 144 km/h (89 MPH).
-			ECM controls throttle angle of electric throttle control actuator to regulate engine speed.
-			The ASCD operation status is indicated on the combination meter. If any malfunction occurs in ASCD system, ECM automatically deactivates the ASCD control.<br>
-			<b> Approx. RS 7,500/piece <br>
+            ECM controls throttle angle of electric throttle control actuator to regulate engine speed.
+            The ASCD operation status is indicated on the combination meter. If any malfunction occurs in ASCD system, ECM automatically deactivates the ASCD control.<br>
+            <b> Approx. RS 7,500/piece <br>
                 Type- Automatic <br>
                 Usage- Speed Control <br>
                 Digit Display Size- Single Display <br>
@@ -168,34 +150,30 @@
                 Model No- 3GB-275 <br>
                 Voltage- 12V/24v
             </b>
-		    </p>
+        </p>
           </div>
           <div class="col-md-5">
             <img class="featurette-image img-fluid mx-auto" src="web/images/index/ASCD.jpeg" alt="Generic placeholder image">
           </div>
         </div>
-
         <hr class="featurette-divider">
-
         <div class="row featurette">
           <div class="col-md-7 order-md-2">
             <h2 class="featurette-heading">PUC <span class="text-muted">Certificate is mandatory</span></h2>
             <p class="lead">The number of vehicles has increased exponentially. These two/three or four-wheeler vehicles are causing maximum pollution. Though every now and then the issue catches attention still the pollution index is rising globally.
-			So as an important part of the society, you can get the pollution under control certificate for our vehicles from the government. But before applying, you should know more about PUC Certificate (or “pollution under control” certificate).
-			Additionally, now according to the IRDAI, it is mandatory that you have a valid PUC certificate to renew your motor insurance policy. </p>
+            So as an important part of the society, you can get the pollution under control certificate for our vehicles from the government. But before applying, you should know more about PUC Certificate (or “pollution under control” certificate).
+            Additionally, now according to the IRDAI, it is mandatory that you have a valid PUC certificate to renew your motor insurance policy. </p>
           </div>
           <div class="col-md-5 order-md-1">
             <img class="featurette-image img-fluid mx-auto" src="web/images/index/PUC.jpeg" alt="Generic placeholder image">
           </div>
         </div>
-
         <hr class="featurette-divider">
-
         <div class="row featurette">
           <div class="col-md-7">
             <h2 class="featurette-heading">SBI Fastag <span class="text-muted">Cashless payments(Pay online)</span></h2>
             <p class="lead">• Cashless payment – SBI FASTag users don’t need to carry cash for toll transactions, and don’t need to worry about collecting the exact change. <br>
-            • Faster transit – Auto-debit of exact amount through the SBI FASTag enables faster transit through the toll plazas and saves time.<br>		
+            • Faster transit – Auto-debit of exact amount through the SBI FASTag enables faster transit through the toll plazas and saves time.<br>   
             • Online recharge– SBI FASTag can be recharged online through Credit Card / Debit Card / Net banking/ IMPS etc.<br>
             • SMS alerts– Instant SMS alerts on registered mobile number for toll transactions, low balance, etc. A customer may create personnel Tag account by registering online, and can have the facility of topping up the FASTag account through online modes i.e credit card, debit card, internet banking etc. History of past transactions, available balance in the account etc.</p>
           </div>
@@ -205,14 +183,13 @@
           </div>
         </div>
         <hr class="featurette-divider">
-
         <div class="row featurette">
           <div class="col-md-7 order-md-2">
             <h2 class="featurette-heading">Vehicle Tracking System<span class="text-muted">Major constituents of the GPS-based tracking are:-.</span></h2>
-            <p class="lead">GPS tracking unit: The device fits into the vehicle and captures the GPS location information apart from other vehicle information at regular intervals to a central server. <!-- Other vehicle information can include fuel amount, engine temperature, altitude, reverse geocoding, door open/close, tire pressure, cut off fuel, turn off ignition, turn on headlight, turn on taillight, battery status, GSM area code/cell code decoded, number of GPS satellites in view, glass open/close, fuel amount, emergency button status, cumulative idling, computed odometer, engine RPM, throttle position, GPRS status and a lot more. Capability of these devices actually decide the final capability of the whole tracking system; most vehicle tracking systems, in addition to providing the vehicle's location data, feature a wide range of communication ports that can be used to integrate other onboard systems, allowing to check their status and control or automate their operation. --><br>
-			• GPS tracking server: The tracking server has three responsibilitie are receiving data from the GPS tracking unit, securely storing it, and serving this information on demand to the user.<br>
-			• User interface: The UI determines how one will be able to access information, view vehicle data, and elicit important details from it.<br>
-			<b> Approx. RS 2,000/piece <br>
+            <p class="lead">• GPS tracking unit: The device fits into the vehicle and captures the GPS location information apart from other vehicle information at regular intervals to a central server.<br>
+            • GPS tracking server: The tracking server has three responsibilitie are receiving data from the GPS tracking unit, securely storing it, and serving this information on demand to the user.<br>
+            • User interface: The UI determines how one will be able to access information, view vehicle data, and elicit important details from it.<br>
+            <b> Approx. RS 2,000/piece <br>
                 Type- Wired <br>
                 Usage/Application- Car <br>
                 Minimum Order Quantity- 10 Piece <br>
@@ -221,7 +198,7 @@
                 Screen Size- 4.3 inch., 6.5 inch, 3.5 inch<br>
                 GSM Frequency- 850-1900 MHz
                 </b>
-		    </p>
+        </p>
           </div>
            <div class="col-md-5 order-md-1">
             <img class="featurette-image img-fluid mx-auto" src="web/images/index/VTD.jpeg" alt="Generic placeholder image">
@@ -240,15 +217,13 @@
              <img class="featurette-image img-fluid mx-auto" src="web/images/index/HSRP2.jpeg" alt="Generic placeholder image">
           </div>
         </div>
-
         <hr class="featurette-divider">
-
         <div class="row featurette">
           <div class="col-md-7 order-md-2">
             <h2 class="featurette-heading">Gaurav Dubey <span class="text-muted"></span></h2>
             <p class="lead">Mail me:- gouravdubey03@gmail.com<br>
-            	Call me:- 08770557511<br>
-            	You can reach me anytime to get these services.<br>
+              Call me:- 08770557511<br>
+              You can reach me anytime to get these services.<br>
                 We will provide you all the informations and you will be able to get your requirments done in one place.</p>
           </div>
         <div class="col-md-5 order-md-1">
@@ -256,17 +231,13 @@
           </div>
          </div>
         <!-- /END THE FEATURETTES -->
-
       </div><!-- /.container -->
-
-
       <!-- FOOTER -->
       <footer class="container">
         <p class="float-right"><a href="#">Back to top</a></p>
         <p>&copy;<b> 2021 All Rights Resevered. <i>Sania Automobile Services.</i></b> &middot; <!-- <a href="#">Privacy</a> &middot; <a href="#">Terms</a> --></p>
       </footer>
     </main>
-
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

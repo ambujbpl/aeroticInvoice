@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="src/skdslider.min.js"></script>
+<link href="src/skdslider.css" rel="stylesheet">
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        jQuery('#demo1').skdslider({
+          slideSelector: '.slide',
+          delay:5000,
+          animationSpeed:2000,
+          showNextPrev:true,
+          showPlayButton:true,
+          autoSlide:true,
+          animationType:'fading'
+        });
+
+        jQuery('#demo2').skdslider({
+          slideSelector: '.slide',
+          delay:5000, 
+          animationSpeed: 1000,
+          showNextPrev:true,
+          showPlayButton:false,
+          autoSlide:true,
+          animationType:'sliding'
+        });
+    });
+</script>
+<style type="text/css">
+  body { margin:0; padding:0;}
+  .demo-code{ background-color:#ffffff; border:1px solid #333333; display:block; padding:10px;}
+  .option-table td{ border-bottom:1px solid #eeeeee;}
+</style>
+</head>
+<body>
+<!-- <h3>SKDSlider is a jquery responsive Image Slider. It is very light weight and 100% responsive. It can be used in full width mode. Works on almost all browser.  It slides almost anything. Swipe/touch events will work for mobile devices. Here are some demos:</h3>
+<h4>Full Width Demo:</h4> -->
+
+ <div id="demo1">
+      <div class="slide">
+        <img src="slides/1.jpg" />
+        <!--Slider Description example-->
+         <div class="slide-desc">
+            <h2>Slider Title 1</h2>
+            <p>Demo description here. Demo description here. Demo description here. Demo description here. Demo description here. <a class="more" href="#">more</a></p>
+        </div>
+     </div>
+    <div class="slide">
+       <img src="slides/2.jpg" />
+       <div class="slide-desc">
+        <h2>Slider Title 2</h2>
+        <p>Demo description here. Demo description here. Demo description here. Demo description here. Demo description here. <a class="more" href="#">more</a></p>
+      </div>
+   </div>
+   <div class="slide">
+      <img src="slides/3.jpeg" />
+      <!--NO Description Here-->
+   </div>
+   <div class="slide">
+     <img src="slides/4.jpg" />
+     <div class="slide-desc">
+      <h2>Slider Title 4</h2>
+      <p>Demo description here. Demo description here. Demo description here. Demo description here. Demo description here. <a class="more" href="#">more</a></p>
+     </div>
+  </div>
+ <div class="slide">
+    <img src="slides/5.jpg" />
+ </div>
+ <div class="slide">
+   <img src="slides/6.jpg" />
+    <div class="slide-desc">
+    <h2>Slider Title 6</h2>
+    <p>Demo description here. Demo description here. Demo description here. Demo description here. Demo description here. <a class="more" href="#">more</a></p>
+   </div>
+ </div>
+</div>
+</body>
+</html>
