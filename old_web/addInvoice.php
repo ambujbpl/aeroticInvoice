@@ -361,7 +361,7 @@ $total3 = mysqli_num_rows($data3);
 				"Address":JSON.stringify(Address),
 				"PartyAddress":JSON.stringify(PartyAddress),
 				"Registration":registrationNumber,
-        "header":header,
+"header":header,
       }
       // console.log("rest>>>>>///",rest);
       $.ajax({
