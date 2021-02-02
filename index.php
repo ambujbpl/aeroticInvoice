@@ -15,6 +15,7 @@
     <!-- <link href="web/css/style.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="web/vendor/skdslider/src/skdslider.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" type="text/css" href="web/css/mediaQuery.css"> -->
   </head>
   <body>
     <header>
@@ -35,63 +36,63 @@
     </header>
     <main role="main">
       <div id="demo1">
-      <div class="slide">
-        <img src="web/images/index/carousel/ASCD.png" />
-         <div class="slide-desc">
-            <h2>ASCD</h2>
-            <p> Automatic Speed Control Device (ASCD) allows a driver to keep vehicle at predetermined constant speed without depressing accelerator pedal. Driver can set vehicle speed in advance between approximately 40 km/ h (25 MPH) and 194 km/h (120 MPH).<a class="more" href="web/login.html"><b>LOGIN</b></a></p>
+        <div class="slide">
+          <img src="web/images/index/carousel/ASCD.png" />
+           <div class="slide-desc">
+              <h2>ASCD</h2>
+              <p> Automatic Speed Control Device (ASCD) allows a driver to keep vehicle at predetermined constant speed without depressing accelerator pedal. Driver can set vehicle speed in advance between approximately 40 km/ h (25 MPH) and 194 km/h (120 MPH).<a class="more" href="web/login.html"><b>LOGIN</b></a></p>
+          </div>
+         </div>
+         <div class="slide">
+             <img src="web/images/index/carousel/PUC.png" />
+             <div class="slide-desc">
+              <h2>PUC</h2>
+              <p>The Indian government has mandated the Pollution Under Control (PUC) certificate under the Central Motor Vehicles Rule, 1989. The PUC test assesses the emission of a vehicle and checks if it follows the standard pollution regulation. <a class="more" href="web/login.html"><b>LOGIN</b></a></p>
+            </div>
+         </div>
+         <div class="slide">
+           <img src="web/images/index/carousel/Fastag.png" />
+           <div class="slide-desc">
+            <h2>SBI FASTAG</h2>
+            <p>SBI FASTAG is a device that employs Radio Frequency Identification (RFID) technology for making toll payments directly from the prepaid or savings accountlinked to it. It is affixed on the windscreen of your vehicle and enables you to drive through toll plazas, without stopping for cash transactions. FASTag is linked to a prepaid account from which the applicable toll amount is deducted.<a class="more" href="web/login.html"><b>LOGIN</b></a></p>
+           </div>
+         </div>
+         <div class="slide">
+           <img src="web/images/index/carousel/VTD.jpg" />
+           <div class="slide-desc">
+            <h2>VTD</h2>
+            <p>A vehicle tracking system combines the use of automatic vehicle location in individual vehicles with software that collects these fleet data for a comprehensive picture of vehicle locations. Modern vehicle tracking systems commonly use GPS or GLONASS technology for locating the vehicle, but other types of automatic vehicle location technology can also be used. Vehicle information can be viewed on electronic maps via the Internet or specialized software.<a class="more" href="web/login.html"><b>LOGIN</b></a></p>
+           </div>
         </div>
-     </div>
-    <div class="slide">
-       <img src="web/images/index/carousel/PUC.png" />
-       <div class="slide-desc">
-        <h2>PUC</h2>
-        <p>The Indian government has mandated the Pollution Under Control (PUC) certificate under the Central Motor Vehicles Rule, 1989. The PUC test assesses the emission of a vehicle and checks if it follows the standard pollution regulation. <a class="more" href="web/login.html"><b>LOGIN</b></a></p>
+        <div class="slide">
+         <img src="web/images/index/carousel/HSRP.jpg" />
+          <div class="slide-desc">
+          <h2>HSRP</h2>
+          <p>High Security Registration Plate is made up of aluminium and is fixed on the vehicle using two non-reusable locks.<a class="more" href="web/login.html"><b>LOGIN</b></a></p>
+         </div>
+       </div>
       </div>
-   </div>
-   <div class="slide">
-     <img src="web/images/index/carousel/Fastag.png" />
-     <div class="slide-desc">
-      <h2>SBI FASTAG</h2>
-      <p>SBI FASTAG is a device that employs Radio Frequency Identification (RFID) technology for making toll payments directly from the prepaid or savings accountlinked to it. It is affixed on the windscreen of your vehicle and enables you to drive through toll plazas, without stopping for cash transactions. FASTag is linked to a prepaid account from which the applicable toll amount is deducted.<a class="more" href="web/login.html"><b>LOGIN</b></a></p>
-     </div>
-   </div>
-   <div class="slide">
-     <img src="web/images/index/carousel/VTD.jpg" />
-     <div class="slide-desc">
-      <h2>VTD</h2>
-      <p>A vehicle tracking system combines the use of automatic vehicle location in individual vehicles with software that collects these fleet data for a comprehensive picture of vehicle locations. Modern vehicle tracking systems commonly use GPS or GLONASS technology for locating the vehicle, but other types of automatic vehicle location technology can also be used. Vehicle information can be viewed on electronic maps via the Internet or specialized software.<a class="more" href="web/login.html"><b>LOGIN</b></a></p>
-     </div>
-  </div>
-  <div class="slide">
-   <img src="web/images/index/carousel/HSRP.jpg" />
-    <div class="slide-desc">
-    <h2>HSRP</h2>
-    <p>High Security Registration Plate is made up of aluminium and is fixed on the vehicle using two non-reusable locks.<a class="more" href="web/login.html"><b>LOGIN</b></a></p>
-   </div>
- </div>
-</div>
        <!-- Marketing messaging and featurettes
       ================================================== -->
       <!-- Wrap the rest of the page in another container to center all the content. -->
-        <div class="container marketing">
+      <div class="container marketing" style="margin-top: 15px;">
         <div class="row">
           <div class="col-lg-4">
-            <i class="fa fa-briefcase" style="font-size:48px;color:black"></i>
+            <i class="fa fa-briefcase" style="border: 2px solid black; padding: 10px; font-size:48px; color:black; border-radius: 50%"></i>        
             <!-- <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140"> -->
             <h2>Corporate business</h2>
             <p>A form of business operation that declares the business as a separate, legal entity guided by a group of officers known as the board of directors</p>
             <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
           </div>
           <div class="col-lg-4">
-            <i class="fa fa-cogs" style="font-size:48px;color:black"></i>
+            <i class="fa fa-cogs" style="border: 2px solid black; padding: 10px; font-size:48px; color:black; border-radius: 50%"></i>
             <!-- <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140"> -->
             <h2>Manufacturing</h2>
             <p>The process of converting raw materials, components, or parts into finished goods that meet a customer's expectations or specifications.</p>
             <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
           </div>
           <div class="col-lg-4">
-            <i class="fa fa-shopping-cart" style="font-size:48px;color:black"></i>
+            <i class="fa fa-shopping-cart" style="border: 2px solid black; padding: 10px; font-size:48px; color:black; border-radius: 50%"></i>
             <!-- <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140"> -->
             <h2>Wholesaler</h2>
             <p>A wholesaler is a company that buys products from manufacturers and sells them at low prices to retailers or other wholesalers.</p>
@@ -211,7 +212,7 @@
     <script type="text/javascript" src="web/vendor/jquery/jquery.min.js"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
     <!-- <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script> -->
-    <script src="web/vendor/bootstrap-4.0.0/dist/js/popper.min.js"></script>
+    <!-- <script src="web/vendor/bootstrap-4.0.0/dist/js/popper.min.js"></script> -->
     <!-- <script src="../../dist/js/bootstrap.min.js"></script> -->
     <script type="text/javascript" src="web/vendor/bootstrap-4.0.0/dist/js/bootstrap.min.js"></script>
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->

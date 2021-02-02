@@ -1,0 +1,43 @@
+/*==================================================
+=            Bootstrap 4 Media Queries             =
+==================================================*/
+
+/*----------- common device -----------*/
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width: 0px) and (max-width: 320px) {
+  .skdslider{
+    height: 200px;
+  }
+}
+/* Extra Small Devices, Phones */
+@media only screen and (min-width: 321px) and (max-width: 400px) {
+  .skdslider{
+    height: 250px;
+  }
+}
+@media only screen and (min-width: 401px) and (max-width: 768px) {
+  .skdslider{
+    height: 350px;
+  }
+}
+/* Small Devices, Tablets */
+@media only screen and (min-width: 769px) and (max-width: 991px) {
+  .skdslider{
+    height: 450px;
+  }
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .skdslider{
+    height: 500px;
+  }
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width: 1200px) {
+  .skdslider{
+    height: 500px;
+  }
+}
