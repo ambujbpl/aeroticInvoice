@@ -14,7 +14,7 @@
     <link href="web/vendor/bootstrap-4.0.0/dist/css/carousel.css" rel="stylesheet">
     <!-- <link href="web/css/style.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <link href="web/vendor/skdslider/src/skdslider.css" rel="stylesheet">
   </head>
   <body>
     <header>
@@ -34,77 +34,44 @@
       </nav>
     </header>
     <main role="main">
-      <div id="myCarousel" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-          <li data-target="#myCarousel" data-slide-to="1"></li>
-          <li data-target="#myCarousel" data-slide-to="2"></li>
-          <li data-target="#myCarousel" data-slide-to="3"></li>
-          <li data-target="#myCarousel" data-slide-to="4"></li>
-        </ol>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img class="first-slide" src="web/images/index/carousel/ASCD.png" alt="First slide">
-            <div class="container">
-              <div class="carousel-caption text-left">
-                <h1>ASCD</h1>
-                <p>Automatic Speed Control Device (ASCD) allows a driver to keep vehicle at predetermined constant speed without depressing accelerator pedal. Driver can set vehicle speed in advance between approximately 40 km/ h (25 MPH) and 194 km/h (120 MPH).</p>
-                <p><a class="btn btn-lg btn-primary" href="web/login.html" role="button">Login</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img class="second-slide" src="web/images/index/carousel/PUC.png" alt="Second slide">
-            <div class="container">
-              <div class="carousel-caption">
-                <h1>PUC</h1>
-                <p>The Indian government has mandated the Pollution Under Control (PUC) certificate under the Central Motor Vehicles Rule, 1989. The PUC test assesses the emission of a vehicle and checks if it follows the standard pollution regulation.</p>
-                <p><a class="btn btn-lg btn-primary" href="web/login.html" role="button">Login</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img class="third-slide" src="web/images/index/carousel/Fastag.png" alt="Third slide">
-            <div class="container">
-              <div class="carousel-caption text-right">
-                <h1>SBI FATAG</h1>
-                <p> SBI FASTag is a device that employs Radio Frequency Identification (RFID) technology for making toll payments directly from the prepaid or savings accountlinked to it. It is affixed on the windscreen of your vehicle and enables you to drive through toll plazas, without stopping for cash transactions. FASTag is linked to a prepaid account from which the applicable toll amount is deducted.</p>
-                <p><a class="btn btn-lg btn-primary" href="web/login.html" role="button">login</a></p>
-              </div>
-            </div>
-          </div>
-        
-         <div class="carousel-item">
-            <img class="fourth-slide" src="web/images/index/carousel/VTD.jpg" alt="Fourth slide">
-            <div class="container">
-              <div class="carousel-caption">
-                <h1>Vehicle Tracking System</h1>
-                <p>A vehicle tracking system combines the use of automatic vehicle location in individual vehicles with software that collects these fleet data for a comprehensive picture of vehicle locations. Modern vehicle tracking systems commonly use GPS or GLONASS technology for locating the vehicle, but other types of automatic vehicle location technology can also be used. Vehicle information can be viewed on electronic maps via the Internet or specialized software.</p>
-                <p><a class="btn btn-lg btn-primary" href="web/login.html" role="button">Login</a></p>
-              </div>
-            </div>
-          </div>
-           <div class="carousel-item">
-            <img class="fifth-slide" src="web/images/index/carousel/HSRP.jpg" alt="Fifth slide">
-            <div class="container">
-              <div class="carousel-caption text-left">
-                <h1>HSRP</h1>
-                <p>High Security Registration Plate is made up of aluminium and is fixed on the vehicle using two non-reusable locks.</p>
-                <p><a class="btn btn-lg btn-primary" href="web/login.html" role="button">Login</a></p>
-              </div>
-            </div>
-          </div>
+      <div id="demo1">
+      <div class="slide">
+        <img src="web/images/index/carousel/ASCD.png" />
+         <div class="slide-desc">
+            <h2>ASCD</h2>
+            <p> Automatic Speed Control Device (ASCD) allows a driver to keep vehicle at predetermined constant speed without depressing accelerator pedal. Driver can set vehicle speed in advance between approximately 40 km/ h (25 MPH) and 194 km/h (120 MPH).<a class="more" href="web/login.html"><b>LOGIN</b></a></p>
         </div>
-        </div>
-        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      <!-- Marketing messaging and featurettes
+     </div>
+    <div class="slide">
+       <img src="web/images/index/carousel/PUC.png" />
+       <div class="slide-desc">
+        <h2>PUC</h2>
+        <p>The Indian government has mandated the Pollution Under Control (PUC) certificate under the Central Motor Vehicles Rule, 1989. The PUC test assesses the emission of a vehicle and checks if it follows the standard pollution regulation. <a class="more" href="web/login.html"><b>LOGIN</b></a></p>
+      </div>
+   </div>
+   <div class="slide">
+     <img src="web/images/index/carousel/Fastag.png" />
+     <div class="slide-desc">
+      <h2>SBI FASTAG</h2>
+      <p>SBI FASTAG is a device that employs Radio Frequency Identification (RFID) technology for making toll payments directly from the prepaid or savings accountlinked to it. It is affixed on the windscreen of your vehicle and enables you to drive through toll plazas, without stopping for cash transactions. FASTag is linked to a prepaid account from which the applicable toll amount is deducted.<a class="more" href="web/login.html"><b>LOGIN</b></a></p>
+     </div>
+   </div>
+   <div class="slide">
+     <img src="web/images/index/carousel/VTD.jpg" />
+     <div class="slide-desc">
+      <h2>VTD</h2>
+      <p>A vehicle tracking system combines the use of automatic vehicle location in individual vehicles with software that collects these fleet data for a comprehensive picture of vehicle locations. Modern vehicle tracking systems commonly use GPS or GLONASS technology for locating the vehicle, but other types of automatic vehicle location technology can also be used. Vehicle information can be viewed on electronic maps via the Internet or specialized software.<a class="more" href="web/login.html"><b>LOGIN</b></a></p>
+     </div>
+  </div>
+  <div class="slide">
+   <img src="web/images/index/carousel/HSRP.jpg" />
+    <div class="slide-desc">
+    <h2>HSRP</h2>
+    <p>High Security Registration Plate is made up of aluminium and is fixed on the vehicle using two non-reusable locks.<a class="more" href="web/login.html"><b>LOGIN</b></a></p>
+   </div>
+ </div>
+</div>
+       <!-- Marketing messaging and featurettes
       ================================================== -->
       <!-- Wrap the rest of the page in another container to center all the content. -->
         <div class="container marketing">
@@ -249,5 +216,29 @@
     <script type="text/javascript" src="web/vendor/bootstrap-4.0.0/dist/js/bootstrap.min.js"></script>
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
     <script src="web/vendor/bootstrap-4.0.0/dist/js/holder.min.js"></script>
-  </body>
+    <script src="web/vendor/skdslider/src/skdslider.min.js"></script>
+    </body>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $('#demo1').skdslider({
+          slideSelector: '.slide',
+          delay:5000,
+          animationSpeed:2000,
+          showNextPrev:true,
+          showPlayButton:true,
+          autoSlide:true,
+          animationType:'fading'
+        });
+
+        $('#demo2').skdslider({
+          slideSelector: '.slide',
+          delay:5000, 
+          animationSpeed: 1000,
+          showNextPrev:true,
+          showPlayButton:false,
+          autoSlide:true,
+          animationType:'sliding'
+        });
+    });
+  </script>
 </html>
