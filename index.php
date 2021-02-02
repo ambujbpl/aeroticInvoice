@@ -82,21 +82,21 @@
             <!-- <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140"> -->
             <h2>Corporate business</h2>
             <p>A form of business operation that declares the business as a separate, legal entity guided by a group of officers known as the board of directors</p>
-            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+            <!-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
           </div>
           <div class="col-lg-4">
             <i class="fa fa-cogs" style="border: 2px solid black; padding: 10px; font-size:48px; color:black; border-radius: 50%"></i>
             <!-- <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140"> -->
             <h2>Manufacturing</h2>
             <p>The process of converting raw materials, components, or parts into finished goods that meet a customer's expectations or specifications.</p>
-            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+            <!-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
           </div>
           <div class="col-lg-4">
             <i class="fa fa-shopping-cart" style="border: 2px solid black; padding: 10px; font-size:48px; color:black; border-radius: 50%"></i>
             <!-- <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140"> -->
             <h2>Wholesaler</h2>
             <p>A wholesaler is a company that buys products from manufacturers and sells them at low prices to retailers or other wholesalers.</p>
-            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+            <!-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
           </div>
         </div>
         <!-- START THE FEATURETTES -->
