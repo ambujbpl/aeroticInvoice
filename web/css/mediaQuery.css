@@ -7,37 +7,37 @@
 /* Extra Small Devices, Phones */
 @media only screen and (min-width: 0px) and (max-width: 320px) {
   .skdslider{
-    height: 200px;
+    height: 200px !important;
   }
 }
 /* Extra Small Devices, Phones */
 @media only screen and (min-width: 321px) and (max-width: 400px) {
   .skdslider{
-    height: 250px;
+    height: 250px !important;
   }
 }
 @media only screen and (min-width: 401px) and (max-width: 768px) {
   .skdslider{
-    height: 350px;
+    height: 350px !important;
   }
 }
 /* Small Devices, Tablets */
 @media only screen and (min-width: 769px) and (max-width: 991px) {
   .skdslider{
-    height: 450px;
+    height: 450px !important;
   }
 }
 
 /* Medium Devices, Desktops */
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .skdslider{
-    height: 500px;
+    height: 500px !important;
   }
 }
 
 /* Large Devices, Wide Screens */
 @media only screen and (min-width: 1200px) {
   .skdslider{
-    height: 500px;
+    height: 500px !important;
   }
 }
