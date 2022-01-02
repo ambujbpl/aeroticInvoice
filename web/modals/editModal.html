@@ -42,11 +42,44 @@ if (user) {
                     if (key == "id" || key == "userid" || key == "password" || key == "created_at" || key == "updated_at" || key == "updated_by" || key == "role" || key == "profile_file_name") {
                         body += "<tr><th class='capitalize'>" + updatedKey + "</th><td>" + data[key] + "</td></tr>";
                     } else {
+
+                         if(key== "reminder_date"){
+                             body += "<tr><th class='capitalize'>" + updatedKey+ "</th><td><input class='datepicker' style='width:100%;' data-date-format='yyyy-mm-dd'  id='" + key+ "' value='" + moment(new Date(data[key])).format('DD/MM/YYYY') + "'></td></tr>";
+
+                         } else if(key== "start_at" || key== "end_at"){
+                             body += `<tr><th class='capitalize' >${updatedKey}</th><td><input class='timepicker ${key}' width='276' time-time-format='hh:mm:ss'  id='${key}' value='${data[key]}'></td></tr>`;
+                         }
+                         else {
+
                         body += "<tr><th class='capitalize'>" + updatedKey + "</th><td><input type='text' id='" + key + "' value='" + data[key] + "' /></td></tr>";
-                        chengedArray.push(key);
+                        }
+                        chengedArray.push(key);  
+                        
                     }
                 }
                 $("#editModalTable").append(body);
+                $('.datepicker').datepicker({
+                    weekStart: 1,
+                    daysOfWeekHighlighted: "6,0",
+                    autoclose: true,
+                    todayHighlight: true,
+                });
+                // $('.datepicker').datepicker( "setDate" , moment(new Date(data['reminder_date'])).format('DD/MM/YYYY'))
+
+                            // $('.timepicker').each(function() {
+                            // console.log('----');
+                            // $(this).timepicker({
+                            //  uiLibrary: 'bootstrap4'
+                             // });
+                            // });
+
+                $('#start_at').timepicker({
+                    uiLibrary: 'bootstrap4'
+                });
+
+                $('#end_at').timepicker({
+                    uiLibrary: 'bootstrap4'
+                });
             } else {
                 $('#errorDiv').html(res.message);
                 $.notify(res.message, "error");
@@ -160,6 +193,13 @@ function updateFunction() {
             let query = `update ${globalObj.editTableName} set `
             chengedArray.forEach((key, index) => {
                 var val = $('#' + key).val();
+                if(key.trim() === "reminder_date"){
+                    console.log('I am here --- ',val);
+                    // val = new Date(val).valueOf();
+                    // val = "2020-12-25 00:00:00";
+                    val = moment(val).format('YYYY-MM-DD');
+                    console.log('new val --- ',val);                    
+                }
                 query += `${key}="${val}" ,`;
             });
             // query = query.slice(0, -1);
