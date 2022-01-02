@@ -227,13 +227,16 @@ function updateFunction() {
         } else {
             let query = `INSERT INTO ${globalObj.editTableName} (`
             chengedArray.forEach((key, index) => {
-                var val = $('#' + key).val();
+                // var val = $('#' + key).val();
                 query += `${key} ,`;
             });
             // query = query.slice(0, -1);
             query += "updated_by) VALUES (";
             chengedArray.forEach((key, index) => {
                 var val = $('#' + key).val();
+                 if(key.trim() === "reminder_date"){
+                    val = moment(val).format('YYYY-MM-DD');
+                }
                 query += `"${val}" ,`;
             });
             // query = query.slice(0, -1);

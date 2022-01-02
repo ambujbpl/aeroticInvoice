@@ -884,6 +884,8 @@ DeleteData = (val,table_name) => {
         productDetails();
       } else if (table_name === "invoices"){
         viewBill();
+      }else if (table_name === "reminders"){
+        remindersDetails();
       }
     } else {
       $.notify("Your details are safe!", "info");
