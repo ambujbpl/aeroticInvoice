@@ -88,9 +88,7 @@ $(document).ready(function() {
   });
 });
 
-uploadFile = () => {
 
-}
 
 function formSubmitFunction() {
     $('#errorDiv').html("submit");

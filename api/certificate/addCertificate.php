@@ -9,28 +9,48 @@ $ownername = '';
 $mobile = '';
 $address1 = '';
 $technicianname = '';
-$userid = '';
-$pass = '';
+$vehicle = '';
+$engine = '';
+$chassi = '';
+$manufacturer = '';
+$makerclassification = '';
+$registrationdate = '';
+$speed = '';
+$installationdate = '';
+$roto = '';
+$invoiceno = '';
 
 $data = json_decode(file_get_contents("php://input"));
 $ownername = $data->ownername;
 $mobile = $data->mobile;
-$address1 = $data->address1;
-// $technicianname = $data->technicianname;
-// $userid = $data->userid;
-// $pass = $data->password;
-echo $ownername;
+$address = $data->address1;
+$technicianname = $data->technicianname;
+$vehicle = $data->vehicle;
+$engine = $data->engine;
+$chassi = $data->chassi;
+$manufacturer = $data->manufacturer;
+$makerclassification = $data->makerclassification;
+$registrationdate = $data->registrationdate;
+$speed = $data->speed;
+$installationdate = $data->installationdate;
+$roto = $data->roto;
+$invoiceno = $data->invoiceno;
+
+
+// echo $mobile;
 include('./../config/connection.php');
-$query1 = "select * from users where userid='$userid'";
-$data1 = mysqli_query($connection,$query1);
-$total1 = mysqli_num_rows($data1);
+// $query1 = "select * from users where vehicle='$vehicle'";
+// $data1 = mysqli_query($connection,$query1);
+// $total1 = mysqli_num_rows($data1);
 // mysqli_free_result($data1
 // mysqli_close($connection); 
-if($total1 == 1){
-  $resp = array('resCode' => 'Error', 'Message' => "Sorry, User ID:- $userid already registered") ;
-  echo json_encode($resp);
-}else{
-  $query2 = "insert into users (ownername,mobile,userid,password,email,mobile) VALUES ('$ownername','$mobile','$userid','$pass','$address1','$technicianname')";
+// if($total1 == 1){
+//   $resp = array('resCode' => 'Error', 'Message' => "Sorry, User ID:- $vehicle already registered") ;
+//   echo json_encode($resp);
+// }else{
+// $speed = $data->speed;
+  $query2 = "insert into certificates (ownerName,mobile,vehicleNo,engineNo,address,technicianName,chassisNo,manufacturer,makerClassification,registrationDate,speed,installationDate,roto,invoiceNo) VALUES ('$ownername','$mobile','$vehicle','$engine','$address','$chassi','$installationdate','$manufacturer','$makerclassification','$registrationdate','$speed','$technicianname','$invoiceno','$roto')";
+  // echo $query2;
   // $data2 = mysqli_query($connection,$query2);
   if ($connection->query($query2) === TRUE) {
     $connection->close();
@@ -40,5 +60,5 @@ if($total1 == 1){
     $resp = array('resCode' => 'Error', 'Message' => 'Sorry, User registration failed') ;
     echo json_encode($resp);
   }
-}
+// }
 ?>

@@ -14,59 +14,8 @@
   <link rel="stylesheet" type="text/css" href="./../css/old/print.min.css?v1.0">
   <link rel="stylesheet" type="text/css" href="./../css/custom.min.css?v1.0">
   <link rel="stylesheet" type="text/css" href="./../loader/loader.css?v1.0">
-  <link href="./../css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="./../css/sb-admin-2.css" rel="stylesheet">
 </head>
- <script type="text/javascript">
-  function formSubmitHandler(e){
-    e.preventDefault();
-    var ownername = $('#owner_name').val();
-    var mobile = $('#mobile').val();
-    var address1 = $('#address1').val();
-    var technicianname = $('#technician_name').val();
-    var vehicle = $('#vehicle').val();
-    var engine = $('#engine').val();
-    var chassi = $('#chassi').val();
-    var manufacturer = $('#manufacturer').val();
-    var makerclassification = $('#maker_classification').val();
-    var registrationdate = $('#registration_date').val();
-    var speed = $('#speed').val();
-    var installationdate = $('#installation_date').val();
-    var roto = $('#roto').val();
-    var invoiceno = $('#invoice_no').val();
-    var obj = {
-      "ownername": ownername,
-      "mobile": mobile,
-      "address1": address1,
-      "technicianname": technicianname,
-      "vehicle": vehicle,
-      "engine": engine,
-      "chassi": chassi,
-      "manufacturer": manufacturer,
-      "makerclassification": makerclassification,
-      "registrationdate": registrationdate,
-      "speed": speed,
-      "installationdate": installationdate,
-      "roto": roto,
-      "invoiceno": invoiceno
-    }
-    console.log(obj,'-----------------');
-    $.ajax({
-      type: 'POST',
-      url: './../../api/certificate/addCertificate.php',
-      data: JSON.stringify(obj),
-        contentType: "application/json",
-        dataType: "json",
-    }).done(function(data) { // if getting done then call.
-      console.log('data : ',data);
-      if (data.resCode == "Ok") {
-        swal(data.resCode, data.Message, "success");
-        $('#saveInDBButton').remove();
-      } else {
-        swal(data.resCode, data.Message, "error")
-      }
-    });
-  }
- </script>
 <body>
   <!-- <div id="loading">
     <img id="loading-image" src="./../loader/giphy.webp" alt="Loading..." />
@@ -87,83 +36,83 @@
 		<a href="/" class="fa fa-home" aria-hidden="true">Home</a> > <span id="home_Title"></span>
   </div>
  
- <form action="" method="post">
+ <form class="user form-signin" id="registrationForm" action="" method="post">
   <div class="form-group row">
     <label for="owner_name" class="col-sm-2 col-form-label">Owner Name</label>
     <div class="col-sm-10">
-      <input type="text"  class="form-control" id="owner_name" value="">
+      <input type="text"  class="form-control" name="owner_name" id="owner_name" value="">
     </div>
   </div>
   <div class="form-group row">
     <label for="mobile" class="col-sm-2 col-form-label">Mobile No</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="mobile">
+      <input type="text" class="form-control" name="mobile" id="mobile">
     </div>
   </div>
   <div class="form-group row">
     <label for="address1" class="col-sm-2 col-form-label">Address</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="address1">
+      <input type="text" class="form-control" name="address1" id="address1">
     </div>
   </div>
   <div class="form-group row">
     <label for="technician_name" class="col-sm-2 col-form-label">Technician Name</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="technician_name">
+      <input type="text" class="form-control" name="technician_name" id="technician_name">
     </div>
   </div>
   <div class="form-group row">
     <label for="vehicle" class="col-sm-2 col-form-label">Vehicle No</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="vehicle">
+      <input type="text" class="form-control" name="vehicle" id="vehicle">
     </div>
   </div>
   <div class="form-group row">
     <label for="engine" class="col-sm-2 col-form-label">Engine No</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="engine">
+      <input type="text" class="form-control" name="engine" id="engine">
     </div>
   </div>
   <div class="form-group row">
     <label for="chassi" class="col-sm-2 col-form-label">Chassi No</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="chassi">
+      <input type="text" class="form-control" name="chassi" id="chassi">
     </div>
   </div>
   <div class="form-group row">
     <label for="manufacturer" class="col-sm-2 col-form-label">Manufacturer</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="manufacturer">
+      <input type="text" class="form-control" name="manufacturer" id="manufacturer">
     </div>
   </div>
   <div class="form-group row">
     <label for="maker_classification" class="col-sm-2 col-form-label">Maker Classification</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="maker_classification">
+      <input type="text" class="form-control" name="maker_classification" id="maker_classification">
     </div>
   </div>
   <div class="form-group row">
     <label for="registration_date" class="col-sm-2 col-form-label">Registration Date</label>
     <div class="col-sm-10">
-      <input type="Date" class="form-control" id="registration_date">
+      <input type="Date" class="form-control" name="registration_date" id="registration_date">
     </div>
   </div>
   <div class="form-group row">
     <label for="speed" class="col-sm-2 col-form-label">Speed(Km/h)</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="speed">
+      <input type="text" class="form-control" name="speed" id="speed">
     </div>
   </div>
   <div class="form-group row">
     <label for="installation_date" class="col-sm-2 col-form-label">Installation Date</label>
     <div class="col-sm-10">
-      <input type="Date" class="form-control" id="installation_date">
+      <input type="Date" class="form-control" name="installation_date" id="installation_date">
     </div>
   </div>
   <div class="form-group row">
     <label for="roto" class="col-sm-2 col-form-label">Roto Seal/Ref No</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="roto">
+      <input type="text" class="form-control" name="roto" id="roto">
     </div>
   </div>
   <!--  <div class="form-group row">
@@ -187,11 +136,12 @@
   <div class="form-group row">
     <label for="invoice_no" class="col-sm-2 col-form-label">Invoice No</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="invoice_no">
+      <input type="text" class="form-control" name="invoice_no" id="invoice_no">
     </div>
   </div>
   <div class="col-auto">
-      <button type="submit" class="btn btn-primary mb-2" onclick="formSubmitHandler(event)">Submit</button>
+      <!-- <button type="submit" class="btn btn-primary mb-2" onclick="formSubmitHandler(event)">Submit</button> -->
+      <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="submit">Submit</button>
   </div>
 </form>
 
@@ -199,6 +149,7 @@
 
 </div>
   <script type="text/javascript" src="./../vendor/jquery/jquery.min.js?v1.0"></script>
+  <script type="text/javascript" src="./../vendor/jquery-validation-1.19.1/dist/jquery.validate.js"></script>
   <script type="text/javascript" src="./../js/plugins/jquery-ui.js?v1.0"></script>
   <script type="text/javascript" src="./../vendor/bootstrap/js/bootstrap.bundle.min.js?v1.0"></script> 
   <!-- custom js -->
@@ -208,6 +159,7 @@
   <script type="text/javascript" src="./../js/plugins/ajaxHendler.js?v1.0"></script>
   <script type="text/javascript" src="./../js/plugins/moment.js?v1.0"></script>
   <script type="text/javascript" src="./../js/plugins/util.js?v1.0"></script>
+  <script type="text/javascript" src="./../js/main/addCertificate.js?v1.0"></script>
 </body>
 
 </html>
