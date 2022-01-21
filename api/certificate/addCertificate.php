@@ -49,7 +49,7 @@ include('./../config/connection.php');
 //   echo json_encode($resp);
 // }else{
 // $speed = $data->speed;
-  $query2 = "insert into certificates (ownerName,mobile,vehicleNo,engineNo,address,technicianName,chassisNo,manufacturer,makerClassification,registrationDate,speed,installationDate,roto,invoiceNo) VALUES ('$ownername','$mobile','$vehicle','$engine','$address','$chassi','$installationdate','$manufacturer','$makerclassification','$registrationdate','$speed','$technicianname','$invoiceno','$roto')";
+  $query2 = "insert into certificates (ownerName,mobile,vehicleNo,engineNo,address,technicianName,chassisNo,manufacturer,makerClassification,registrationDate,speed,installationDate,roto,invoiceNo) VALUES ('$ownername','$mobile','$vehicle','$engine','$address','$technicianname','$chassi','$manufacturer','$makerclassification','$registrationdate','$speed','$installationdate','$roto','$invoiceno')";
   // echo $query2;
   // $data2 = mysqli_query($connection,$query2);
   if ($connection->query($query2) === TRUE) {

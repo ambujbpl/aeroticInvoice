@@ -532,6 +532,9 @@ updateMainContainerBodyDataTable = (table_name,type,view) => {
   } else if (view.trim().toLowerCase() === "invoicesdetails"){
     $('.' + type).html("").append(`<table id='exampleEditable' class='table table-bordered table-striped' cellspacing=0 width=100%><thead><tr><th>Invoice ID</th><th>Invoice Date</th><th>Sub Total</th><th>GST</th><th>Total</th><th>Paid</th><th>Due</th><th>Created At</th><th>Updated At</th><th>Updated By</th><th>Action</th></tr></thead></table>`);
     updateDataTableWithoutServerSidePagination('exampleEditable','./../api/datatable/invoices_details.php',true,table_name);
+  } else if (view.trim().toLowerCase() === "pucdetails"){
+    $('.' + type).html("").append(`<table id='exampleEditable' class='table table-bordered table-striped' cellspacing=0 width=100%><thead><tr><th>PUC ID</th><th>Owner Name</th><th>Mobile</th><th>Vehicle No</th><th>Address</th><th>Registration Date</th><th>Installation Date</th><th>Invoice No</th><th>Action</th></tr></thead></table>`);
+    updateDataTableWithoutServerSidePagination('exampleEditable','./../api/datatable/certificate_details.php',true,table_name);
   } else if(view.trim().toLowerCase() === "remindersdetails"){
     $('.' + type).html("").append(`<table id='exampleEditable' class='table table-bordered table-striped' cellspacing=0 width=100%><thead><tr><th>ID</th><th>Name</th><th>Reminder Type</th><th>Start At</th><th>End At</th><th>Reminder Date</th><th>Action</th></tr></thead></table>`);
     updateDataTableWithoutServerSidePagination('exampleEditable','./../api/datatable/product_details.php',true,table_name);    
@@ -676,6 +679,18 @@ updateDataTableWithoutServerSidePagination = (id,url,action,table_name) => {
       { data: 'reminder_date' },
       { data: 'reminder_date' }
     ]
+  } else if (table_name === "certificates") {
+    columns = [
+      { data: 'id' },
+      { data: 'ownerName' },
+      { data: 'mobile' },
+      { data: 'vehicleNo' },
+      { data: 'address' },
+      { data: 'registrationDate' },
+      { data: 'installationDate' },
+      { data: 'invoiceNo' },
+      { data: 'invoiceNo' }
+    ]
   }
   $.when(Posthandler("./../api/custom/custom_query.php", {'query':query, 'token': user.token}, false)).done(function(res) {
     if(res.resCode.trim().toLowerCase() == "ok") {
@@ -715,6 +730,8 @@ updateDataTableWithoutServerSidePagination = (id,url,action,table_name) => {
               } else if(table_name === "invoices"){
                 addHtml += `<a href='javascript:;' class='edit' onclick='EditData(this,"${table_name}")'><i class='far fa-eye'></i></a> | <a href='javascript:;' class='delete' onclick='DeleteData(this,"${table_name}")'><i class='far fa-trash-alt'></i></a>`;
               } else if(table_name === "reminders"){
+                addHtml += `<a href='javascript:;' class='edit' onclick='EditData(this,"${table_name}")'><i class='far fa-eye'></i></a> | <a href='javascript:;' class='delete' onclick='DeleteData(this,"${table_name}")'><i class='far fa-trash-alt'></i></a>`;
+              } else if(table_name === "certificates"){
                 addHtml += `<a href='javascript:;' class='edit' onclick='EditData(this,"${table_name}")'><i class='far fa-eye'></i></a> | <a href='javascript:;' class='delete' onclick='DeleteData(this,"${table_name}")'><i class='far fa-trash-alt'></i></a>`;
               }
               $(row).find('td:last').html(addHtml);
@@ -838,8 +855,10 @@ EditData = (val,table_name) => {
   var action;
   if(table_name.trim().toLowerCase() === "product" || table_name.trim().toLowerCase() === "reminders"){
     action = 'edit';
-  }else if(table_name.trim().toLowerCase() === "invoices"){
+  } else if(table_name.trim().toLowerCase() === "invoices"){
     action = 'view';
+  } else if(table_name.trim().toLowerCase() === "certificates"){
+    action = "view";
   }
   swal({
     title: "Are you sure?",
@@ -853,7 +872,9 @@ EditData = (val,table_name) => {
         OpenCustomModal('editModal','html','modal-lg');
       }else if(table_name.trim().toLowerCase() === "invoices"){
         window.open(`./html/viewInvoice.html?id=${Id}`, "_blank")
-      }   
+      }else if(table_name.trim().toLowerCase() === "certificates"){
+        window.open(`./html/certificate.html?id=${Id}`, "_blank")
+      }
     } else {
       $.notify("Your details are safe!", "info");
     }

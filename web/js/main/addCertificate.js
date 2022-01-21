@@ -14,6 +14,9 @@ $(document).ready(function() {
     }
     return true;
   });
+  var today = new Date();
+  $("#date").val(moment(today).format('DD-MM-YYYY'));
+  
   $("#registrationForm").validate({
     // Specify validation rules
     rules: {
@@ -173,7 +176,7 @@ $(document).ready(function() {
       "roto": roto,
       "invoiceno": invoiceno
     }
-    console.log(obj,'-----------------');
+    // console.log(obj,'-----------------');
     $.ajax({
         type: "POST",
         url: './../../api/certificate/addCertificate.php',

@@ -30,11 +30,29 @@ createBill = () => {
 }
 
 /**
+ * { Create PUC }
+ */
+createPUC = () => {
+	$('.mainContainerRow').removeClass('hide');
+	$('.mainContainerHeader').html('Create PUC');
+	$('.mainContainerDropdownMenuLink').html('').append(`<div class="dropdown-header">Dropdown Create PUC Header:</div>`).append(`<a class="dropdown-item" onclick="showAddPUC();">Create a PUC</a>`).append(`<a class="dropdown-item" onclick="viewPUC();">View PUC</a>`);
+	// executeCustomQuery("select * from basic","mainContainerBody","basicDetails");
+	showAddPUC();	
+}
+
+/**
  * Shows the add bill.
  */
 showAddBill = () => {
 	window.open("./html/addInvoice.html", "_blank");
 	// location.href = './html/addInvoice.php';
+}
+
+/**
+ * Shows the add PUC.
+ */
+showAddPUC = () => {
+	window.open("./html/addCertificate.html", "_blank");
 }
 
 /**
@@ -44,6 +62,15 @@ viewBill = () => {
 	$('.mainContainerRow').removeClass('hide');
 	$('.mainContainerHeader').html('View Bill Details');
 	showServerSideDetailsByTableNameDataTable("invoices","mainContainerBody","invoicesDetails");
+}
+
+/**
+ * { view the PUC }
+ */
+viewPUC = () => {
+	$('.mainContainerRow').removeClass('hide');
+	$('.mainContainerHeader').html('View PUC Details');
+	showServerSideDetailsByTableNameDataTable("certificates","mainContainerBody","pucDetails");
 }
 /**
  * { basic Details }
