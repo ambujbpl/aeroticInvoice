@@ -5,6 +5,9 @@ header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+$state = '';
+$rtocode = '';
+$district = '';
 $ownername = '';
 $mobile = '';
 $address1 = '';
@@ -12,15 +15,24 @@ $technicianname = '';
 $vehicle = '';
 $engine = '';
 $chassi = '';
+$vehicleclass = '';
+$vehiclemodel = '';
+$fueltype = '';
+$vehiclenorms = '';
+$testfees = '';
 $manufacturer = '';
 $makerclassification = '';
 $registrationdate = '';
 $speed = '';
 $installationdate = '';
+$validity = '';
 $roto = '';
 $invoiceno = '';
 
 $data = json_decode(file_get_contents("php://input"));
+$state = $data->state;
+$rtocode = $data->rtocode;
+$district = $data->district;
 $ownername = $data->ownername;
 $mobile = $data->mobile;
 $address = $data->address1;
@@ -28,37 +40,28 @@ $technicianname = $data->technicianname;
 $vehicle = $data->vehicle;
 $engine = $data->engine;
 $chassi = $data->chassi;
+$vehicleclass = $data->vehicleclass;
+$vehiclemodel = $data->vehiclemodel;
+$fueltype = $data->fueltype;
+$vehiclenorms = $data->vehiclenorms;
+$testfees = $data->testfees;
 $manufacturer = $data->manufacturer;
 $makerclassification = $data->makerclassification;
 $registrationdate = $data->registrationdate;
 $speed = $data->speed;
 $installationdate = $data->installationdate;
+$validity = $data->validity;
 $roto = $data->roto;
 $invoiceno = $data->invoiceno;
-
-
-// echo $mobile;
+$image = $data->image;
 include('./../config/connection.php');
-// $query1 = "select * from users where vehicle='$vehicle'";
-// $data1 = mysqli_query($connection,$query1);
-// $total1 = mysqli_num_rows($data1);
-// mysqli_free_result($data1
-// mysqli_close($connection); 
-// if($total1 == 1){
-//   $resp = array('resCode' => 'Error', 'Message' => "Sorry, User ID:- $vehicle already registered") ;
-//   echo json_encode($resp);
-// }else{
-// $speed = $data->speed;
-  $query2 = "insert into certificates (ownerName,mobile,vehicleNo,engineNo,address,technicianName,chassisNo,manufacturer,makerClassification,registrationDate,speed,installationDate,roto,invoiceNo) VALUES ('$ownername','$mobile','$vehicle','$engine','$address','$technicianname','$chassi','$manufacturer','$makerclassification','$registrationdate','$speed','$installationdate','$roto','$invoiceno')";
-  // echo $query2;
-  // $data2 = mysqli_query($connection,$query2);
+  $query2 = "insert into certificates (state,rtoCode,district,ownerName,mobile,vehicleNo,engineNo,address,technicianName,chassisNo,vehicleClass,vehicleModel,fuelType,vehicleNorms,testFees,manufacturer,makerClassification,registrationDate,speed,installationDate,validity,roto,invoiceNo,image) VALUES ('$state','$rtocode','$district','$ownername','$mobile','$vehicle','$engine','$address','$technicianname','$chassi','$vehicleclass','$vehiclemodel','$fueltype','$vehiclenorms','$testfees','$manufacturer','$makerclassification','$registrationdate','$speed','$installationdate','$validity','$roto','$invoiceno','$image')";
   if ($connection->query($query2) === TRUE) {
     $connection->close();
-    $resp = array('resCode' => 'Ok', 'Message' => 'User registered successful') ;
+    $resp = array('resCode' => 'Ok', 'Message' => 'Certificate added successful') ;
     echo json_encode($resp);
   } else {
-    $resp = array('resCode' => 'Error', 'Message' => 'Sorry, User registration failed') ;
+    $resp = array('resCode' => 'Error', 'Message' => 'Sorry, Certificate submission failed') ;
     echo json_encode($resp);
   }
-// }
 ?>
