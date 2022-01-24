@@ -14,7 +14,7 @@ const getCertificateDataFromServer = () => {
 	var id = url.searchParams.get("id");
 	let query = `select * from certificates where id=${id}`;
 	$.when(Posthandler("./../../api/custom/custom_query.php", {'query':query, 'token': user.token}, true)).done(function(res) {
-	console.log('res : ',res);
+	// console.log('res : ',res);
 	if(res.resCode.trim().toLowerCase() == "ok") {
 	  $.notify(res.message, "success");          
 	  setTimeout(async ()=>{
@@ -34,37 +34,21 @@ const getCertificateDataFromServer = () => {
 	});
 };
 updatePUCDetailsHtml = async (res) => {
- $("#selfName").html(address["selfName"]);
- $("#selfAddress").html(address["selfAddress"]);
- $("#selfPhone").html(address["selfPhone"]);
- $('#gst').html(res.gst);
- $("#selfGst").html(address["selfGst"]);
- $("#gstPercent").html(address["gstPercent"]);
- $("#date").html(res["invoice_date"]);
- $("#registrationNumber").html(customer_address["Registration"]);
- $("#invoiceNumber").html(res["invoice_id"]);
- $('#total').html(res.total);
- $('#subtotal').html(res.subtotal);
- $('#paid').html(res.paid);
- $('.due').html(res.due);
- $('#PartyName').html(customer_address["PartyName"]);
- $('#PartyAddress').html(customer_address["PartyAddress"]);
- $('#PartyPhone').html(customer_address["PartyPhone"]);
-  $('#PartyGst').html(customer_address["PartyGst"]);
-  $('#header').html(customer_address["header"]);
-
- // var body = '';
- // product_details.forEach((items) => {
- //    body += `<tr class='item-row'>
- //              <td class='item-name'>
- //                <div class='delete-wpr'><span id='Name'>${items['productName']}</span><a class='delete' href='javascript:;' title='Remove row'><i class='fa fa-times' aria-hidden='true'></i></a>
- //                </div>
- //              </td>
- //              <td class='description'><span>${items['productDesc']}</span></td>
- //              <td><span>${items['productCost']}</span></td>
- //              <td><span>${items['productQuantity']}</span></td>
- //              <td><i class='fa fa-inr'></i> <span>${items['productPrize']}</span></td>
- //            </tr>";`
- //  });
- //  $('#items').html(body);
+  console.log('res : ',res)
+ $("#invoice_no").html(res["invoiceNo"]);
+ $("#vehicle").html(res["vehicleNo"]);
+ $("#chassi").html(res["chassisNo"]);
+ $('#district').html(res.district);
+ $("#engine").html(res["engineNo"]);
+ $("#owner_name").html(res["ownerName"]);
+ $("#registration_date").html(res["registrationDate"]);
+ $("#vehicle_norms").html(res["vehicleNorms"]);
+ $("#vehicle_class").html(res["vehicleClass"]);
+ $('#maker_classification').html(res.makerClassification);
+ $('#vehicle_model').html(res.vehicleModel);
+ $('#fuel_type').html(res.fuelType);
+ $('#installation_date').html(res.installationDate);
+ $('#test_fees').html(res["testFees"]);
+ $('.fuel_type').html(res["fuelType"]);
+ if (res.image) $('#certificate_img').attr("src","./../" + res.image);
 }

@@ -42,7 +42,6 @@
                <div class="flex items-center pl-10 justify-start h-10 text-md font-semibold  p-2 ">Model </div>
                <div class="flex items-center pl-10 justify-start h-10 text-md font-semibold  p-2 ">Fuel </div>
                <div class="flex items-center pl-10 justify-start h-10 text-md font-semibold  p-2 ">Date of Testing </div>
-               <div class="flex items-center pl-10 justify-start h-10 text-md font-semibold  p-2 ">Time of Testing </div>
                <div class="flex items-center pl-10 justify-start h-10 text-md font-semibold  p-2 "> Test Fee </div>
             </div>
             <div class="w-1/4 ">
@@ -59,7 +58,6 @@
                <div class="flex items-center justify-start h-10 text-md font-semibold  p-2 uppercase " id="vehicle_model"></div>
                <div class="flex items-center justify-start h-10 text-md font-semibold  p-2 uppercase " id="fuel_type"></div>
                <div class="flex items-center justify-start h-10 text-md font-semibold  p-2 uppercase " id="installation_date"></div>
-               <div class="flex items-center justify-start h-10 text-md font-semibold  p-2 uppercase ">03:55:54pm</div>
                <div class="flex items-center justify-start h-10 text-md font-semibold  p-2 uppercase " id="test_fees">
                   &#8377; 
                </div>
@@ -68,7 +66,8 @@
             <!-- Right Part Start -->
             <div class="w-1/2 ">
                <div class="w-full h-auto text-center  p-3">
-                  <div class="font-bold text-2xl -mt-5">TEST RESULT : PASS<br>VALID TILL : 27-06-2022</div>
+                  <div class="font-bold text-2xl -mt-5">TEST RESULT : PASS</div> <br>
+                   <!-- <div class="font-bold text-2xl -mt-5" id="installation_date">Valid till</div> -->
                   <div class="mt-5  text-center font-semibold">
                      PETROL/CNG/LPG DRIVEN VEHICLES<br/>
                      Certified that the vehicle conforms to the standards<br/>
@@ -87,7 +86,7 @@
                         </th>
                      </tr>
                      <tr class="w-full border border-gray-600 p-3">
-                        <th class="w-1/5  border border-gray-600 p-3">PETROL </th>
+                        <th class="w-1/5  border border-gray-600 p-3 fuel_type"> </th>
                         <th class="w-1/5 border border-gray-600 p-3">3.5</th>
                         <th class="w-1/5 border border-gray-600 p-3">1.655</th>
                         <th class="w-1/5 border border-gray-600 p-3">4500</th>
@@ -95,7 +94,7 @@
                      </tr>
                   </table>
                   <div class="w-full mt-4 p-2  border border-gray-500">
-                     <img src="../images/61cae632e9242.jpg" class="mx-auto w-64 h-64 object-center" />
+                     <img src="../images/61cae632e9242.jpg" id="certificate_img" class="mx-auto w-64 h-64 object-center" />
                   </div>
                   <div class="absolute">
                      <div class="flex px-5 mt-1 flex-wrap  mt-5  text-left justify-start text-lg font-semibold">Auto Emission Testing Center Code : BPL/98/20</div>
@@ -119,7 +118,7 @@
          </div>
          <!-- Bottom Start -->
          <div class=" text-center mx-12">
-            <div class=" uppercase text-lg text-left font-semibold">Test Result For Petrol/CNG/LPG Vehicle</div>
+            <div class=" uppercase text-lg text-left font-semibold">Test Result For Diesel/Petrol/CNG/LPG Vehicle</div>
             <table class="mt-2  w-1/2 border border-gray-600 text-sm">
                <tr class="w-full border border-gray-600 p-1">
                   <th class="w-1/5 border border-gray-600 p-1"> </th>
