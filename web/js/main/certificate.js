@@ -19,7 +19,7 @@ const getCertificateDataFromServer = () => {
 	  $.notify(res.message, "success");          
 	  setTimeout(async ()=>{
 	    await updatePUCDetailsHtml(res.data[0]);
-	    hideLoader();
+	    // hideLoader();
 	  },250);
 	} else {
 	  $('#errorDiv').html(res.message);
@@ -52,3 +52,21 @@ updatePUCDetailsHtml = async (res) => {
  $('.fuel_type').html(res["fuelType"]);
  if (res.image) $('#certificate_img').attr("src","./../" + res.image);
 }
+  $("#print").click(function() { // calls the id of the button that will print
+  $('.theme-config').addClass('hide');
+  $('.hiderow').addClass('hide');
+  $('.print_Div').addClass('hide');
+  $('.home').addClass('hide');
+  if (print()) { // shows print preview.
+    $('.theme-config').removeClass('hide');
+    $('.hiderow').removeClass('hide');
+    $('.print_Div').removeClass('hide');
+    $('.home').removeClass('hide');
+  } else { // else statement will check if cancel button is clicked.
+    $('.theme-config').removeClass('hide');
+    $('.hiderow').removeClass('hide');
+    $('.print_Div').removeClass('hide');
+    $('.home').removeClass('hide');
+  }
+});
+$('#home_Title').html("Add Certificate Page");
