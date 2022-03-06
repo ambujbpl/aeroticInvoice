@@ -1,269 +1,291 @@
 <style type="text/css">
- .input-group{
-  width: 100% !important;
- }
+    .input-group {
+        width: 100% !important;
+    }
 </style>
 <div class="modal-header">
-  <h5 class="modal-title" id="exampleModalLabel">Edit Modal</h5>
-  <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-    <span aria-hidden="true">×</span>
-  </button>
+    <h5 class="modal-title" id="exampleModalLabel">Edit Modal</h5>
+    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">×</span>
+    </button>
 </div>
 <div class="modal-body">
-	<div id="editModalBody" class="editModalBody"></div>
+    <div id="editModalBody" class="editModalBody"></div>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-  <button class="btn btn-primary addUpdateBtn" type="button" onclick="updateFunction();">Update</button>
+    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+    <button class="btn btn-primary addUpdateBtn" type="button" onclick="updateFunction();">Update</button>
 </div>
 <script type="text/javascript">
-var user = localStorage.getItem('user');
-var chengedArray = [];
-var selected;
-console.log("globalObj :", globalObj);
-if (user) {
-    user = JSON.parse(user);
-    $('#editModalBody').html(" ");
-    if (globalObj.editId && globalObj.editTableName) {
-        $('.addUpdateBtn').html("Update");
-        var query = `select * from ${globalObj.editTableName} where id=${globalObj.editId};`;
-        $.when(Posthandler("./../api/custom/custom_query.php", {
-            'query': query,
-            'token': user.token
-        }, true)).done(function(res) {
-            if (res.resCode.trim().toLowerCase() == "ok") {
-                $.notify(res.message, "success");
-                $('#editModalBody').html("<table id='editModalTable' class='table table-bordered table-striped' cellspacing=0 width=100%></table>");
-                var body = "";
-                var data = res.data[0];
-                for (var key in data) {
-                    let updatedKey = updateKeyFormat(key);
-                    if (data[key] == null || data[key] == undefined) data[key] = '';
-                    if (key == "id" || key == "userid" || key == "password" || key == "created_at" || key == "updated_at" || key == "updated_by" || key == "role" || key == "profile_file_name") {
-                        body += "<tr><th class='capitalize'>" + updatedKey + "</th><td>" + data[key] + "</td></tr>";
-                    } else {
-
-                         if(key== "reminder_date"){
-                             body += "<tr><th class='capitalize'>" + updatedKey+ "</th><td><input class='datepicker' style='width:100%;' data-date-format='yyyy-mm-dd'  id='" + key+ "' value='" + moment(new Date(data[key])).format('DD/MM/YYYY') + "'></td></tr>";
-
-                         } else if(key== "start_at" || key== "end_at"){
-                             body += `<tr><th class='capitalize' >${updatedKey}</th><td><input class='timepicker ${key}' width='276' time-time-format='hh:mm:ss'  id='${key}' value='${data[key]}'></td></tr>`;
-                         }
-                         else {
-
-                        body += "<tr><th class='capitalize'>" + updatedKey + "</th><td><input type='text' id='" + key + "' value='" + data[key] + "' /></td></tr>";
-                        }
-                        chengedArray.push(key);  
-                        
-                    }
-                }
-                $("#editModalTable").append(body);
-                $('.datepicker').datepicker({
-                    weekStart: 1,
-                    daysOfWeekHighlighted: "6,0",
-                    autoclose: true,
-                    todayHighlight: true,
-                });
-                // $('.datepicker').datepicker( "setDate" , moment(new Date(data['reminder_date'])).format('DD/MM/YYYY'))
-
-                            // $('.timepicker').each(function() {
-                            // console.log('----');
-                            // $(this).timepicker({
-                            //  uiLibrary: 'bootstrap4'
-                             // });
-                            // });
-
-                $('#start_at').timepicker({
-                    uiLibrary: 'bootstrap4'
-                });
-
-                $('#end_at').timepicker({
-                    uiLibrary: 'bootstrap4'
-                });
-            } else {
-                $('#errorDiv').html(res.message);
-                $.notify(res.message, "error");
-            }
-        }).fail(function() {
-            $.notify("Something went wrong please contact your administrator.", "error");
-            console.log("Error executing AJAX request. Please contact your administrator");
-        });
-    } else {
-        $('.addUpdateBtn').html("Add");
-        $('#exampleModalLabel').html("Add Modal");
-        var query = `desc ${globalObj.editTableName};`;
-
-        $.when(Posthandler("./../api/custom/custom_query.php", {
-            'query': query,
-            'token': user.token
-        }, true)).done(function(res) {
-            if (res.resCode.trim().toLowerCase() == "ok") {
-                $('#editModalBody').html("<table id='editModalTable' class='table table-bordered table-striped' cellspacing=0 width=100%></table>");
-                var body = "";
-                var data = res.data;
-                delete data.id;
-                delete data.created_at;
-                delete data.updated_at;
-                delete data.updated_by;
-                delete data.status;
-
-                for(let item of data){
-                   if(item.Field != 'id' && item.Field !=  'created_at' && item.Field !=  'updated_at' && item.Field !=  'updated_by' && item.Field !=  'status') {
-                        let updatedKey = updateKeyFormat(item.Field);
-                        if (item.Field== "id" || item.Field== "userid" || item.Field== "password" || item.Field== "created_at" || item.Field== "updated_at" || item.Field== "updated_by" || item.Field== "role" || item.Field== "profile_file_name" || item.Field== "status") {
-                            body += "<tr><th class='capitalize'>" + updatedKey+ "</th><td></td></tr>";
-                        } else {
-                         if(item.Field== "reminder_date"){
-                             body += "<tr><th class='capitalize'>" + updatedKey+ "</th><td><input class='datepicker' style='width:100%;' data-date-format='yyyy-mm-dd'  id='" + item.Field+ "'></td></tr>";
-
-                         } else if(item.Field== "start_at" || item.Field== "end_at"){
-                             body += `<tr><th class='capitalize' >${updatedKey}</th><td><input class='timepicker ${item.Field}' width='276' time-time-format='hh:mm:ss'  id='${item.Field}'></td></tr>`;
-                         }
-                          else{
-                             body += "<tr><th class='capitalize'>" + updatedKey+ "</th><td><input style='width:100%;' type='text' id='" + item.Field + "' value='' /></td></tr>";
-                         }
-                            // body += "<tr><th class='capitalize'>" + updatedKey + "</th><td><input type='text' id='" + key + "' value='' /></td></tr>";
-                            chengedArray.push(item.Field);
-                        }
-                        console.log('insert form element here :-',item); 
-                   }
-                }
-                console.log(data);
-                $("#editModalTable").append(body);
-                // for (var key in data) {
-                //     let updatedKey = updateKeyFormat(key);
-                //     if (data[key] == null || data[key] == undefined) data[key] = '';
-                //     if (key == "id" || key == "userid" || key == "password" || key == "created_at" || key == "updated_at" || key == "updated_by" || key == "role" || key == "profile_file_name" || key == "status") {
-                //         body += "<tr><th class='capitalize'>" + updatedKey + "</th><td></td></tr>";
-                //     } else {
-                //     	if(key == "reminder_date"){
-                //     		body += "<tr><th class='capitalize'>" + updatedKey + "</th><td><input class='datepicker' style='width:100%;' data-date-format='yyyy-mm-dd'  id='" + key + "'></td></tr>";
-
-                //     	} else if(key == "start_at" || key == "end_at"){
-                //     		body += `<tr><th class='capitalize' >${updatedKey}</th><td><input class='timepicker ${key}' width='276' time-time-format='hh:mm:ss'  id='${key}'></td></tr>`;
-                //     	}
-                //     	 else{
-                //     		body += "<tr><th class='capitalize'>" + updatedKey + "</th><td><input style='width:100%;' type='text' id='" + key + "' value='' /></td></tr>";
-                //     	}
-                //         // body += "<tr><th class='capitalize'>" + updatedKey + "</th><td><input type='text' id='" + key + "' value='' /></td></tr>";
-                //         chengedArray.push(key);
-                //     }
-                // }
-                // $("#editModalTable").append(body);
-                $('.datepicker').datepicker({
-			        weekStart: 1,
-			        daysOfWeekHighlighted: "6,0",
-			        autoclose: true,
-			        todayHighlight: true,
-			    });
-
-				            // $('.timepicker').each(function() {
-				           	// console.log('----');
-				            // $(this).timepicker({
-				            //  uiLibrary: 'bootstrap4'
-				          	 // });
-				            // });
-
-			    $('#start_at').timepicker({
-		            uiLibrary: 'bootstrap4'
-		        });
-
-			    $('#end_at').timepicker({
-		            uiLibrary: 'bootstrap4'
-		        });
-            } else {
-                $('#errorDiv').html(res.message);
-                $.notify(res.message, "error");
-            }
-        }).fail(function() {
-            $.notify("Something went wrong please contact your administrator.", "error");
-            console.log("Error executing AJAX request. Please contact your administrator");
-        });
-    }
-} else {
-    logoutFunction();
-}
-
-/**
- * { function_description }
- */
-function updateFunction() {
-    if (chengedArray.length > 0) {
+    var user = localStorage.getItem('user');
+    var chengedArray = [];
+    var selected;
+    console.log("globalObj :", globalObj);
+    if (user) {
+        user = JSON.parse(user);
+        $('#editModalBody').html(" ");
         if (globalObj.editId && globalObj.editTableName) {
-            let query = `update ${globalObj.editTableName} set `
-            chengedArray.forEach((key, index) => {
-                var val = $('#' + key).val();
-                if(key.trim() === "reminder_date"){
-                    console.log('I am here --- ',val);
-                    // val = new Date(val).valueOf();
-                    // val = "2020-12-25 00:00:00";
-                    val = moment(val).format('YYYY-MM-DD');
-                    console.log('new val --- ',val);                    
-                }
-                query += `${key}="${val}" ,`;
-            });
-            // query = query.slice(0, -1);
-            query += ` updated_by="${user.id}" where id=${globalObj.editId}`;
+            $('.addUpdateBtn').html("Update");
+            var query = `select * from ${globalObj.editTableName} where id=${globalObj.editId}`;
             $.when(Posthandler("./../api/custom/custom_query.php", {
                 'query': query,
                 'token': user.token
-            }, true)).done(function(res) {
+            }, true)).done(function (res) {
                 if (res.resCode.trim().toLowerCase() == "ok") {
-                    $.notify("Record has been edited", "success");
-                    if (globalObj.editTableName == "product") {
-                        productDetails();
-                    } else if (globalObj.editTableName == 'reminders') {
-                        remindersDetails();
+                    $.notify(res.message, "success");
+                    $('#editModalBody').html("<table id='editModalTable' class='table table-bordered table-striped' cellspacing=0 width=100%></table>");
+                    var body = "";
+                    var data = res.data[0];
+                    for (var key in data) {
+                        let updatedKey = updateKeyFormat(key);
+                        if (data[key] == null || data[key] == undefined) data[key] = '';
+                        if (key !== "id" && key !== "userid" && key !== "password" && key !== "created_at" && key !== "updated_at" && key !== "updated_by" && key !== "profile_file_name") {
+                            if (key == "reminder_date") {
+                                body += "<tr><th class='capitalize'>" + updatedKey + "</th><td><input class='datepicker' style='width:100%;' data-date-format='yyyy-mm-dd'  id='" + key + "' value='" + moment(new Date(data[key])).format('DD/MM/YYYY') + "'></td></tr>";
+                            } else if (key == "start_at" || key == "end_at") {
+                                body += `<tr><th class='capitalize' >${updatedKey}</th><td><input class='timepicker ${key}' width='276' time-time-format='hh:mm:ss'  id='${key}' value='${data[key]}'></td></tr>`;
+                            } else {
+                                if (globalObj.editTableName === "users" && key == "role") {
+                                    body += "<tr><th class='capitalize'>" + updatedKey + "</th><td><select class='form-control' name='" + key + "'  id='" + key + "'></select></td></tr>";
+                                } else if (globalObj.editTableName === "users" && key == "notification") {
+                                    body += `<tr><th class='capitalize'>${updatedKey}</th><td><input class='form-check-input' type='checkbox' id='${key}' ${parseInt(data[key]) ? 'checked' : ''}></td></tr>`;
+                                } else {
+                                    body += "<tr><th class='capitalize'>" + updatedKey + "</th><td><input class='form-control' type='text' id='" + key + "' value='" + data[key] + "' /></td></tr>";
+                                }
+                            }
+                            chengedArray.push(key);
+                        }
                     }
-                    $('#custom-modal').modal('hide');
+                    $("#editModalTable").append(body);
+                    updateUserRolesHandler(globalObj, data);
+                    $('.datepicker').datepicker({
+                        weekStart: 1,
+                        daysOfWeekHighlighted: "6,0",
+                        autoclose: true,
+                        todayHighlight: true,
+                    });
+                    // $('.datepicker').datepicker( "setDate" , moment(new Date(data['reminder_date'])).format('DD/MM/YYYY'))
+
+                    // $('.timepicker').each(function() {
+                    // console.log('----');
+                    // $(this).timepicker({
+                    //  uiLibrary: 'bootstrap4'
+                    // });
+                    // });
+
+                    $('#start_at').timepicker({
+                        uiLibrary: 'bootstrap4'
+                    });
+
+                    $('#end_at').timepicker({
+                        uiLibrary: 'bootstrap4'
+                    });
                 } else {
                     $('#errorDiv').html(res.message);
                     $.notify(res.message, "error");
                 }
-            }).fail(function() {
+            }).fail(function () {
                 $.notify("Something went wrong please contact your administrator.", "error");
                 console.log("Error executing AJAX request. Please contact your administrator");
             });
         } else {
-            let query = `INSERT INTO ${globalObj.editTableName} (`
-            chengedArray.forEach((key, index) => {
-                // var val = $('#' + key).val();
-                query += `${key} ,`;
-            });
-            // query = query.slice(0, -1);
-            query += "updated_by) VALUES (";
-            chengedArray.forEach((key, index) => {
-                var val = $('#' + key).val();
-                 if(key.trim() === "reminder_date"){
-                    val = moment(val).format('YYYY-MM-DD');
-                }
-                query += `"${val}" ,`;
-            });
-            // query = query.slice(0, -1);
-            query += `"${user.id}")`;
-            console.log("query : ", query);
+            $('.addUpdateBtn').html("Add");
+            $('#exampleModalLabel').html("Add Modal");
+            var query = `desc ${globalObj.editTableName};`;
+
             $.when(Posthandler("./../api/custom/custom_query.php", {
                 'query': query,
                 'token': user.token
-            }, true)).done(function(res) {
+            }, true)).done(function (res) {
                 if (res.resCode.trim().toLowerCase() == "ok") {
-                    $.notify("Record has been added", "success");
-                    updateCounters();
-                    if (globalObj.editTableName == "product") {
-                        productDetails();
-                    } else if (globalObj.editTableName == 'reminders') {
-                        remindersDetails();
+                    $('#editModalBody').html("<table id='editModalTable' class='table table-bordered table-striped' cellspacing=0 width=100%></table>");
+                    var body = "";
+                    var data = res.data;
+                    delete data.id;
+                    delete data.created_at;
+                    delete data.updated_at;
+                    delete data.updated_by;
+                    delete data.status;
+
+                    for (let item of data) {
+                        if (item.Field != 'id' && item.Field != 'created_at' && item.Field != 'updated_at' && item.Field != 'updated_by' && item.Field != 'status' && item.Field != 'notification' && item.Field != "profile_file_name") {
+                            let updatedKey = updateKeyFormat(item.Field);
+                            if (item.Field == "id" || item.Field == "userid" || item.Field == "password" || item.Field == "created_at" || item.Field == "updated_at" || item.Field == "updated_by" || item.Field == "role" || item.Field == "profile_file_name" || item.Field == "status") {
+                                if (globalObj.editTableName === "users" && item.Field != "profile_file_name") {
+                                    if (item.Field == "role") {
+                                        body += "<tr><th class='capitalize'>" + updatedKey + "</th><td><select class='form-control' name='" + item.Field + "'  id='" + item.Field + "'></select></td></tr>";
+
+                                    } else {
+                                        body += "<tr><th class='capitalize'>" + updatedKey + "</th><td><input style='width:100%;' type='text' id='" + item.Field + "' value='' /></td></tr>";
+                                    }
+
+                                    chengedArray.push(item.Field);
+
+                                } else {
+                                    body += "<tr><th class='capitalize'>" + updatedKey + "</th><td></td></tr>";
+                                }
+                            } else {
+                                if (item.Field == "reminder_date") {
+                                    body += "<tr><th class='capitalize'>" + updatedKey + "</th><td><input class='datepicker' style='width:100%;' data-date-format='yyyy-mm-dd'  id='" + item.Field + "'></td></tr>";
+
+                                } else if (item.Field == "start_at" || item.Field == "end_at") {
+                                    body += `<tr><th class='capitalize' >${updatedKey}</th><td><input class='timepicker ${item.Field}' width='276' time-time-format='hh:mm:ss'  id='${item.Field}'></td></tr>`;
+                                }
+                                else {
+                                    body += "<tr><th class='capitalize'>" + updatedKey + "</th><td><input style='width:100%;' type='text' id='" + item.Field + "' value='' /></td></tr>";
+                                }
+                                // body += "<tr><th class='capitalize'>" + updatedKey + "</th><td><input type='text' id='" + key + "' value='' /></td></tr>";
+                                chengedArray.push(item.Field);
+                            }
+                            console.log('insert form element here :-', item);
+                        }
                     }
-                    $('#custom-modal').modal('hide');
+                    console.log(data);
+                    $("#editModalTable").append(body);
+                    updateUserRolesHandler(globalObj, data);
+
+                    // for (var key in data) {
+                    //     let updatedKey = updateKeyFormat(key);
+                    //     if (data[key] == null || data[key] == undefined) data[key] = '';
+                    //     if (key == "id" || key == "userid" || key == "password" || key == "created_at" || key == "updated_at" || key == "updated_by" || key == "role" || key == "profile_file_name" || key == "status") {
+                    //         body += "<tr><th class='capitalize'>" + updatedKey + "</th><td></td></tr>";
+                    //     } else {
+                    //     	if(key == "reminder_date"){
+                    //     		body += "<tr><th class='capitalize'>" + updatedKey + "</th><td><input class='datepicker' style='width:100%;' data-date-format='yyyy-mm-dd'  id='" + key + "'></td></tr>";
+
+                    //     	} else if(key == "start_at" || key == "end_at"){
+                    //     		body += `<tr><th class='capitalize' >${updatedKey}</th><td><input class='timepicker ${key}' width='276' time-time-format='hh:mm:ss'  id='${key}'></td></tr>`;
+                    //     	}
+                    //     	 else{
+                    //     		body += "<tr><th class='capitalize'>" + updatedKey + "</th><td><input style='width:100%;' type='text' id='" + key + "' value='' /></td></tr>";
+                    //     	}
+                    //         // body += "<tr><th class='capitalize'>" + updatedKey + "</th><td><input type='text' id='" + key + "' value='' /></td></tr>";
+                    //         chengedArray.push(key);
+                    //     }
+                    // }
+                    // $("#editModalTable").append(body);
+                    $('.datepicker').datepicker({
+                        weekStart: 1,
+                        daysOfWeekHighlighted: "6,0",
+                        autoclose: true,
+                        todayHighlight: true,
+                    });
+
+                    // $('.timepicker').each(function() {
+                    // console.log('----');
+                    // $(this).timepicker({
+                    //  uiLibrary: 'bootstrap4'
+                    // });
+                    // });
+
+                    $('#start_at').timepicker({
+                        uiLibrary: 'bootstrap4'
+                    });
+
+                    $('#end_at').timepicker({
+                        uiLibrary: 'bootstrap4'
+                    });
                 } else {
                     $('#errorDiv').html(res.message);
                     $.notify(res.message, "error");
                 }
-            }).fail(function() {
+            }).fail(function () {
                 $.notify("Something went wrong please contact your administrator.", "error");
                 console.log("Error executing AJAX request. Please contact your administrator");
             });
         }
+    } else {
+        logoutFunction();
     }
-}
+
+    /**
+     * { function_description }
+     */
+    function updateFunction() {
+        if (chengedArray.length > 0) {
+            if (globalObj.editId && globalObj.editTableName) {
+                let query = `update ${globalObj.editTableName} set `
+                chengedArray.forEach((key, index) => {
+                    var val = $('#' + key).val();
+                    if (key.trim() === "reminder_date") {
+                        console.log('I am here --- ', val);
+                        // val = new Date(val).valueOf();
+                        // val = "2020-12-25 00:00:00";
+                        val = moment(val).format('YYYY-MM-DD');
+                        console.log('new val --- ', val);
+                    } else if(key.trim() === "notification"){
+                        val = $('#' + key).is(":checked");
+                        val = val === true ? 1 : 0;
+                        console.log('Notification val : ',val);
+                    }
+                    query += `${key}="${val}" ,`;
+                });
+                // query = query.slice(0, -1);
+                query += ` updated_by="${user.id}" where id=${globalObj.editId}`;
+                $.when(Posthandler("./../api/custom/custom_query.php", {
+                    'query': query,
+                    'token': user.token
+                }, true)).done(function (res) {
+                    if (res.resCode.trim().toLowerCase() == "ok") {
+                        $.notify("Record has been edited", "success");
+                        if (globalObj.editTableName == "product") {
+                            productDetails();
+                        } else if (globalObj.editTableName == 'reminders') {
+                            remindersDetails();
+                        } else if (globalObj.editTableName == 'users') {
+                            usersDetails();
+                        }
+                        $('#custom-modal').modal('hide');
+                    } else {
+                        $('#errorDiv').html(res.message);
+                        $.notify(res.message, "error");
+                    }
+                }).fail(function () {
+                    $.notify("Something went wrong please contact your administrator.", "error");
+                    console.log("Error executing AJAX request. Please contact your administrator");
+                });
+            } else {
+                let query = `INSERT INTO ${globalObj.editTableName} (`
+                chengedArray.forEach((key, index) => {
+                    // var val = $('#' + key).val();
+                    query += `${key} ,`;
+                });
+                // query = query.slice(0, -1);
+                query += "updated_by) VALUES (";
+                chengedArray.forEach((key, index) => {
+                    var val = $('#' + key).val();
+                    if (key.trim() === "reminder_date") {
+                        val = moment(val).format('YYYY-MM-DD');
+                    }
+                    query += `"${val}" ,`;
+                });
+                // query = query.slice(0, -1);
+                query += `"${user.id}")`;
+                console.log("query : ", query);
+                $.when(Posthandler("./../api/custom/custom_query.php", {
+                    'query': query,
+                    'token': user.token
+                }, true)).done(function (res) {
+                    if (res.resCode.trim().toLowerCase() == "ok") {
+                        $.notify("Record has been added", "success");
+                        updateCounters();
+                        if (globalObj.editTableName == "product") {
+                            productDetails();
+                        } else if (globalObj.editTableName == 'reminders') {
+                            remindersDetails();
+                        } else if (globalObj.editTableName == 'users') {
+                            usersDetails();
+                        }
+                        $('#custom-modal').modal('hide');
+                    } else {
+                        $('#errorDiv').html(res.message);
+                        $.notify(res.message, "error");
+                    }
+                }).fail(function () {
+                    $.notify("Something went wrong please contact your administrator.", "error");
+                    console.log("Error executing AJAX request. Please contact your administrator");
+                });
+            }
+        }
+    }
 </script>

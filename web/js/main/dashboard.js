@@ -3,7 +3,14 @@ if (user) {
 	user = JSON.parse(user);
 	if (user.role.toLowerCase() != "admin") {
 		$.notify('Sorry, You do not have admin access', 'error');
-		// $('.adminAccess').addClass('hide');
+		$('.isAdmin').addClass('hide');
+	} else {
+		$('.isAdmin').removeClass('hide');
+	}
+	if (user.role.toLowerCase() === "puc") {
+		$('.isPuc').removeClass('hide');
+	} else if (user.role.toLowerCase() === "bill") {
+		$('.isBill').removeClass('hide');
 	}
 	// Upcomming functionality
 	// renderSideBarByUserRole(user?.role?.toLowerCase())
@@ -59,7 +66,7 @@ createUser = () => {
 	$('.mainContainerHeader').html('Create User');
 	$('.mainContainerDropdownMenuLink').html('').append(`<div class="dropdown-header">Dropdown Create User Header:</div>`).append(`<a class="dropdown-item" onclick="showAddUser();">Create a User</a>`).append(`<a class="dropdown-item" onclick="viewUser();">View User</a>`);
 	// executeCustomQuery("select * from basic","mainContainerBody","basicDetails");
-	showAddUser();
+	// showAddUser();
 }
 
 /**
@@ -101,7 +108,7 @@ viewPUC = () => {
 viewUser = () => {
 	$('.mainContainerRow').removeClass('hide');
 	$('.mainContainerHeader').html('View User Details');
-	showServerSideDetailsByTableNameDataTable("user", "mainContainerBody", "pucDetails");
+	showServerSideDetailsByTableNameDataTable("users", "mainContainerBody", "pucDetails");
 }
 /**
  * { basic Details }
@@ -133,6 +140,16 @@ remindersDetails = () => {
 	// executeCustomQuery("select * from product","mainContainerBody","reminders");
 	showServerSideDetailsByTableNameDataTable("reminders", "mainContainerBody", "remindersDetails");
 }
+/**
+ * { user Details }
+ */
+ usersDetails = () => {
+	$('.mainContainerRow').removeClass('hide');
+	$('.mainContainerHeader').html('Users Details');
+	$('.mainContainerDropdownMenuLink').html('').append(`<div class="dropdown-header">Dropdown Users Details Header:</div>`).append(`<a class="dropdown-item" onclick="usersDetails();">View Users Detail</a>`).append(`<a class="dropdown-item" onclick="addNewUsers('users');">Add New Users</a>`);
+	// executeCustomQuery("select * from product","mainContainerBody","users");
+	showServerSideDetailsByTableNameDataTable("users", "mainContainerBody", "usersDetails");
+}
 
 
 /**
@@ -143,4 +160,18 @@ updateCounters = () => {
 	executeCustomQuery("select count(*) as count from invoices", "updatecounters", "invoicesCounts", "");
 	executeCustomQuery("select sum(paid) as count from invoices where (invoice_date between  DATE_FORMAT(NOW() ,'%Y-%m-01') AND NOW() )", "updatecounters", "sellCountMonthly", "");
 	executeCustomQuery("select sum(paid) as count from invoices", "updatecounters", "sellCountAnnually", "");
+}
+
+const updateUserRolesHandler = (globalObj, data) => {
+	console.log('globalObj : ',globalObj);
+	optionHtml = `<option value="">----------Select User Roles----------</option>`;
+	const filteredData = userRoles.filter(item => item.show);
+	console.log('filteredData : ',filteredData);
+	filteredData.forEach(item => {
+		optionHtml += `<option value='${item.value}'>${item.name}</optional>`
+	})
+	$("#role").append(optionHtml);
+	if(globalObj.editId && globalObj.editTableName && data.role){
+		$("#role").val(data.role)
+	}
 }

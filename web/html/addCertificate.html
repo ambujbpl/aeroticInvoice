@@ -117,12 +117,6 @@
     </div>
   </div>
   <div class="form-group row">
-    <label for="vehicle_model" class="col-sm-2 col-form-label">Vehicle Model</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" name="vehicle_model" id="vehicle_model">
-    </div>
-  </div>
-  <div class="form-group row">
     <label for="fuel_type" class="col-sm-2 col-form-label">Fuel Type</label>
     <div class="col-sm-10">
       <!-- <input type="text" class="form-control" name="fuel_type" id="fuel_type"> -->
@@ -154,8 +148,8 @@
       <!-- <input type="text" class="form-control" name="test_fees" id="test_fees"> -->
       <select class="form-control" name="test_fees" id="test_fees">
         <option value="">----------Select Test Fees----------</option>
-        <option value="50"> 50 </option>
         <option value="100"> 100 </option>
+        <option value="150"> 150 </option>
         <option value="200"> 200 </option>
         <option value="250"> 250 </option>
         <option value="300"> 300 </option>
@@ -163,16 +157,22 @@
       </select>
     </div>
   </div>  
-  <div class="form-group row">
+  <!-- <div class="form-group row">
     <label for="manufacturer" class="col-sm-2 col-form-label">Manufacturer</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" name="manufacturer" id="manufacturer">
     </div>
-  </div>
+  </div> -->
   <div class="form-group row">
     <label for="maker_classification" class="col-sm-2 col-form-label">Maker Classification</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" name="maker_classification" id="maker_classification">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="vehicle_model" class="col-sm-2 col-form-label">Vehicle Model</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="vehicle_model" id="vehicle_model">
     </div>
   </div>
   <div class="form-group row">
@@ -181,11 +181,11 @@
       <input type="Date" class="form-control" name="registration_date" id="registration_date">
     </div>
   </div>
-  <div class="form-group row">
+  <!-- <div class="form-group row">
     <label for="speed" class="col-sm-2 col-form-label">Speed(Km/h)</label>
     <div class="col-sm-10">
-      <!-- <input type="text" class="form-control" name="speed" id="speed"> -->
-      <select class="form-control" name="speed" id="speed">
+      <input type="text" class="form-control" name="speed" id="speed"> -->
+      <!-- <select class="form-control" name="speed" id="speed">
         <option value="">----------Select Speed----------</option>
         <option value="30">30 KMPH</option>
         <option value="40">40 KMPH</option>
@@ -202,33 +202,33 @@
         <option value="150">150 KMPH</option>
         <option value="160">160 KMPH</option>
         <option value="170">170 KMPH</option>
-      </select>
-    </div>
-  </div>
-  <div class="form-group row">
+      </select> -->
+    <!-- </div>
+  </div> -->
+  <!-- <div class="form-group row">
     <label for="installation_date" class="col-sm-2 col-form-label">Installation Date</label>
     <div class="col-sm-10">
       <input type="Date" class="form-control" name="installation_date" id="installation_date">
     </div>
-  </div>
+  </div> -->
   <div class="form-group row">
     <label for="validity" class="col-sm-2 col-form-label">Validity</label>
     <div class="col-sm-10">
       <!-- <input type="text" class="form-control" name="validity" id="validity"> -->
       <select name="validity" id="validity" class="form-control">
             <option value="">----------Select Validity----------</option>
-            <option value="3">3 Months</option>
+            <!-- <option value="3">3 Months</option> -->
             <option value="6">6 Months</option>
-            <option value="12">12 Months</option>
+            <!-- <option value="12">12 Months</option> -->
       </select>
     </div>
   </div>
-  <div class="form-group row">
+  <!-- <div class="form-group row">
     <label for="roto" class="col-sm-2 col-form-label">Roto Seal/Ref No</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" name="roto" id="roto">
     </div>
-  </div>
+  </div> -->
   <div class="form-group row">
     <label for="name" class="col-sm-2 col-form-label">Vehicle Photo</label>
     <div class="col-sm-10">
@@ -243,6 +243,12 @@
     <label for="invoice_no" class="col-sm-2 col-form-label">Invoice No</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" name="invoice_no" id="invoice_no">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="invoice_no" class="col-sm-2 col-form-label">Test</label>
+    <div class="col-sm-10">
+      <button onclick="getTestResult()">Click to Start</button>
     </div>
   </div>
   <div class="col-auto">
@@ -266,6 +272,8 @@
   <script type="text/javascript" src="./../js/plugins/moment.js?v1.0"></script>
   <script type="text/javascript" src="./../js/plugins/util.js?v1.0"></script>
   <script type="text/javascript" src="./../js/main/rtoDetails.js?v1.0"></script>
+  <script type="text/javascript" src="./../js/main/petrolPuc.js?v1.0"></script>
+  <script type="text/javascript" src="./../js/main/dieselPuc.js?v1.0"></script>
   <script type="text/javascript" src="./../js/main/addCertificate.js?v1.0"></script>
 </body>
 

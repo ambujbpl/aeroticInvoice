@@ -85,19 +85,19 @@ $(document).ready(function() {
         registration_date: {
             required:true
         },
-        speed: {
-            required:true,
-        },
-        installation_date: {
-            required:true
-        },
+        // speed: {
+        //     required:true,
+        // },
+        // installation_date: {
+        //     required:true
+        // },
         validity: {
             required:true
         },
-        roto: {
-            required:true,
-            latersAndNumbers:true
-        },
+        // roto: {
+        //     required:true,
+        //     latersAndNumbers:true
+        // },
         invoice_no: {
             required:true,
             latersAndNumbers:true
@@ -170,19 +170,19 @@ $(document).ready(function() {
         registration_date: {
             required:"Please enter your Registration Date "
         },
-        speed: {
-            required:"Please enter your Speed"
-        },
-        installation_date: {
-            required:"Please enter your Installation Date"
-        },
+        // speed: {
+        //     required:"Please enter your Speed"
+        // },
+        // installation_date: {
+        //     required:"Please enter your Installation Date"
+        // },
         validity: {
             required:"Please enter your  valid details"
         },
-        roto: {
-            required:"Please enter your Roto Seal/Ref No",
-            latersAndNumbers: "Roto Seal/Ref No will be alphabetic and numbers only"
-        },
+        // roto: {
+        //     required:"Please enter your Roto Seal/Ref No",
+        //     latersAndNumbers: "Roto Seal/Ref No will be alphabetic and numbers only"
+        // },
         invoice_no: {
             required:"Please enter your Invoice No",
             latersAndNumbers: "Invoice No will be alphabetic and numbers only"
@@ -202,7 +202,36 @@ $(document).ready(function() {
     });
 });
 let fileData;
+
+function getTestResult() {
+    $('.loader').show();
+    var fueltype = $('#fuel_type').val();
+    console.log('fueltype : ',fueltype);
+    if(fueltype){
+        if(fueltype.trim().toLowerCase().includes('petrol')){
+            // petrol settings            
+            // to gerate a randome rounded number between 1 to 10;
+            var theRandomNumber = Math.floor(Math.random() * 10) + 1;
+            console.log('theRandomNumber : ',theRandomNumber);
+            const currentSet = petrolPuc[theRandomNumber];
+            console.log('currentSet : ',currentSet);
+        } else {
+            // Deisel settings
+            // to gerate a randome rounded number between 1 to 10;
+            var theRandomNumber = Math.floor(Math.random() * 10) + 1;
+            console.log('theRandomNumber : ',theRandomNumber);
+            const currentSet = dieselPuc[theRandomNumber];
+            console.log('currentSet Diesel : ',currentSet);
+        }
+        $('.loader').hide();
+    } else {
+        $('.loader').hide();
+        $.notify('Please select fuel type', "error");
+    } 
+} 
+
 function formSubmitFunction(){
+    console.log('test');
     // e.preventDefault();
     var state = $('#state').val();
     var rtocode = $('#rto_code').val();
@@ -219,13 +248,14 @@ function formSubmitFunction(){
     var fueltype = $('#fuel_type').val();
     var vehiclenorms = $('#vehicle_norms').val();
     var testfees = $('#test_fees').val();
-    var manufacturer = $('#manufacturer').val();
+    // var manufacturer = $('#manufacturer').val();
     var makerclassification = $('#maker_classification').val();
     var registrationdate = $('#registration_date').val();
-    var speed = $('#speed').val();
-    var installationdate = $('#installation_date').val();
+    // var speed = $('#speed').val();
+    // var installationdate = $('#installation_date').val();
+    var installationdate = moment(new Date()).format('YYYY-MM-DD');
     var validity = $('#validity').val();
-    var roto = $('#roto').val();
+    // var roto = $('#roto').val();
     var invoiceno = $('#invoice_no').val();
     var obj = {
       "state": state,
@@ -243,19 +273,21 @@ function formSubmitFunction(){
       "fueltype": fueltype,
       "vehiclenorms": vehiclenorms,
       "testfees": testfees,
-      "manufacturer": manufacturer,
+    //   "manufacturer": manufacturer,
       "makerclassification": makerclassification,
       "registrationdate": registrationdate,
-      "speed": speed,
+    //   "speed": speed,
       "installationdate": installationdate,
       "validity": validity,
-      "roto": roto,
+    //   "roto": roto,
       "invoiceno": invoiceno
     }
     if(fileData){
         obj.image = fileData.path;
+    } else {
+        obj.image = 'nofile';
     }
-    // console.log(obj,'-----------------');
+    console.log(obj,'-----------------');
     $.ajax({
         type: "POST",
         url: './../../api/certificate/addCertificate.php',
