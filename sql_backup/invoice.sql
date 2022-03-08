@@ -545,28 +545,32 @@ INSERT INTO `reminders` (`id`, `name`, `reminder_type`, `start_at`, `end_at`, `r
 --
 
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `first_name` varchar(20) DEFAULT NULL,
   `last_name` varchar(20) DEFAULT NULL,
   `userid` varchar(20) NOT NULL,
   `password` varchar(20) NOT NULL,
   `email` varchar(40) DEFAULT NULL,
   `mobile` varchar(15) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_by` varchar(15) DEFAULT NULL,
+  `center_code` varchar(15) DEFAULT NULL,
+  `center_name` varchar(40) DEFAULT NULL,
+  `center_address` varchar(255) DEFAULT NULL,
   `role` varchar(10) DEFAULT 'VIEWER',
   `profile_file_name` varchar(255) DEFAULT NULL,
-  `notification` tinyint(1) DEFAULT 0
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `notification` tinyint(1) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `first_name`, `last_name`, `userid`, `password`, `email`, `mobile`, `created_at`, `updated_at`, `updated_by`, `role`, `profile_file_name`, `notification`) VALUES
-(1, 'Gourav', 'Dubey', 'gouravdubey', 'mpbhopal', 'gouravdubey03@gmail.com', '8770557511', '2020-10-01 23:55:04', '2021-01-29 12:11:12', 'gouravdubey', 'ADMIN', 'bittu.jpeg', 0),
-(2, 'Ambuj', 'Dubey', 'ambuj', 'dubey', 'ambuj.ideata@gmail.com', '9753750955', '2020-10-02 07:54:56', '2020-10-02 07:54:56', NULL, 'VIEWER', NULL, 0);
+INSERT INTO `users` (`id`, `first_name`, `last_name`, `userid`, `password`, `email`, `mobile`, `created_at`, `updated_at`, `updated_by`, `center_code`, `center_name`,`center_address`, `role`, `profile_file_name`, `notification`) VALUES
+(1, 'Gourav', 'Dubey', 'gouravdubey', 'mpbhopal', 'gouravdubey03@gmail.com', '8770557511', '2020-10-01 23:55:04', '2021-01-29 12:11:12', 'gouravdubey', '123','bhel','bhel bhopal', 'ADMIN', 'bittu.jpeg', 0),
+(2, 'Ambuj', 'Dubey', 'ambuj', 'dubey', 'ambuj.ideata@gmail.com', '9753750955', '2020-10-02 07:54:56', '2020-10-02 07:54:56', NULL, '321','harshu','anand nagar', 'VIEWER', NULL, 0);
 
 --
 -- Indexes for dumped tables

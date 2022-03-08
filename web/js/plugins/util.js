@@ -540,7 +540,7 @@ updateMainContainerBodyDataTable = (table_name,type,view) => {
     $('.' + type).html("").append(`<table id='exampleEditable' class='table table-bordered table-striped' cellspacing=0 width=100%><thead><tr><th>ID</th><th>Name</th><th>Reminder Type</th><th>Start At</th><th>End At</th><th>Reminder Date</th><th>Action</th></tr></thead></table>`);
     updateDataTableWithoutServerSidePagination('exampleEditable','./../api/datatable/product_details.php',true,table_name);    
   }else if (view.trim().toLowerCase() === "usersdetails"){
-    $('.' + type).html("").append(`<table id='exampleEditable' class='table table-bordered table-striped' cellspacing=0 width=100%><thead><tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Mobile Number</th><th>Role</th><th>Action</th></tr></thead></table>`);
+    $('.' + type).html("").append(`<table id='exampleEditable' class='table table-bordered table-striped' cellspacing=0 width=100%><thead><tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Mobile Number</th><th>Center Code</th><th>Center Name</th><th>Center Address </th><th>Role</th><th>Action</th></tr></thead></table>`);
     updateDataTableWithoutServerSidePagination('exampleEditable','./../api/datatable/user_details.php',true,table_name);
   }
 }
@@ -716,6 +716,9 @@ updateDataTableWithoutServerSidePagination = (id,url,action,table_name) => {
       { data: 'last_name' },
       { data: 'email' },
       { data: 'mobile' },
+      { data: 'center_code' },
+      { data: 'center_name' },
+      { data: 'center_address' },
       { data: 'role' },
       { data: 'role' }
     ]
