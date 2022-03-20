@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,179 +14,210 @@
   <link rel='stylesheet' type="text/css" href="./../css/old/style.css?v1.0">
   <link rel="stylesheet" type="text/css" href="./../css/old/print.min.css?v1.0">
   <link rel="stylesheet" type="text/css" href="./../css/custom.min.css?v1.0">
-  <link rel="stylesheet" type="text/css" href="./../loader/loader.css?v1.0">
   <link href="./../css/sb-admin-2.css" rel="stylesheet">
+  <style>
+    .loader {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: 1;
+      width: 120px;
+      height: 120px;
+      border: 16px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 16px solid blue;
+      border-right: 16px solid green;
+      border-bottom: 16px solid red;
+      border-left: 16px solid pink;
+      width: 120px;
+      height: 120px;
+      -webkit-animation: spin 2s linear infinite;
+      animation: spin 2s linear infinite;
+    }
+
+    @-webkit-keyframes spin {
+      0% {
+        -webkit-transform: rotate(0deg);
+      }
+
+      100% {
+        -webkit-transform: rotate(360deg);
+      }
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
 </head>
+
 <body>
   <!-- <div id="loading">
     <img id="loading-image" src="./../loader/giphy.webp" alt="Loading..." />
   </div> -->
-<div class="container">
-  <div class="loader hide">
-    <div class="loader--dot"></div>
-    <div class="loader--dot"></div>
-    <div class="loader--dot"></div>
-    <div class="loader--dot"></div>
-    <div class="loader--dot"></div>
-    <div class="loader--dot"></div>
-    <div class="loader--text"></div>
-  </div>
+  <div class="container">
+    <div class="loader hide"></div>
+    <div class="bodycontainer">
+      <div class="home">
+        <a href="/" class="fa fa-home" aria-hidden="true">Home</a> > <span id="home_Title"></span>
+      </div>
 
-  <div class="bodycontainer">
-	<div class="home">
-		<a href="/" class="fa fa-home" aria-hidden="true">Home</a> > <span id="home_Title"></span>
-  </div>
- 
- <form class="user form-signin" id="registrationForm" action="" method="post">
-   <div class="form-group row">
-    <label for="state" class="col-sm-2 col-form-label">State</label>
-    <div class="col-sm-10">
-      <input type="text"  class="form-control" name="state" id="state" value="Madhya Pradesh" disabled>
-    </div>
-  </div> 
-  <div class="form-group row">
-    <label for="rto_code" class="col-sm-2 col-form-label">RTO Code</label>
-    <div class="col-sm-10">
-      <!-- <input type="text"  class="form-control" name="rto_code" id="rto_code" value=""> -->  
-      <select class="custom-select" name="rto_code" id="rto_code">
-      </select>
-    </div>
-  </div>
-   <div class="form-group row">
-    <label for="district" class="col-sm-2 col-form-label">District</label>
-    <div class="col-sm-10">
-      <input type="text"  class="form-control" name="district" id="district" readonly="readonly">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="owner_name" class="col-sm-2 col-form-label">Owner Name</label>
-    <div class="col-sm-10">
-      <input type="text"  class="form-control" name="owner_name" id="owner_name" value="">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="mobile" class="col-sm-2 col-form-label">Mobile No</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" name="mobile" id="mobile">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="address1" class="col-sm-2 col-form-label">Address</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" name="address1" id="address1">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="technician_name" class="col-sm-2 col-form-label">Technician Name</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" name="technician_name" id="technician_name">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="vehicle" class="col-sm-2 col-form-label">Vehicle No</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" name="vehicle" id="vehicle">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="engine" class="col-sm-2 col-form-label">Engine No</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" name="engine" id="engine">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="chassi" class="col-sm-2 col-form-label">Chassi No</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" name="chassi" id="chassi">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="vehicle_class" class="col-sm-2 col-form-label">Vehicle Class</label>
-    <div class="col-sm-10">
-      <!-- <input type="text" class="form-control" name="vehicle_class" id="vehicle_class"> -->
-      <select class="form-control" name="vehicle_class" id="vehicle_class">
-        <option value="">----------Select vehicle Class----------</option>
-        <option value="A/R">A/R</option>
-        <option value="LGV">LGV</option>
-        <option value="HGV">HGV</option>
-        <option value="LMV">LMV</option>
-        <option value="MC">MC</option>
-        <option value="Bus">Bus</option>
-        <option value="Taxi">Taxi</option>
-        <option value="M/C">M/C</option>
-      </select>
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="fuel_type" class="col-sm-2 col-form-label">Fuel Type</label>
-    <div class="col-sm-10">
-      <!-- <input type="text" class="form-control" name="fuel_type" id="fuel_type"> -->
-      <select name="fuel_type" id="fuel_type" class="form-control">
-        <option value="">----------Select Fuel Type----------</option>
-        <option value="Diesel"> Diesel </option>
-        <option value="Petrol+CNG">Petrol+CNG </option>
-        <option value="Petrol+LPG"> Petrol+LPG </option>
-        <option value="Petrol">Petrol </option>
-      </select>
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="vehicle_norms" class="col-sm-2 col-form-label">Vehicle Norms</label>
-    <div class="col-sm-10">
-      <!-- <input type="text" class="form-control" name="vehicle_norms" id="vehicle_norms"> -->
-      <select name="vehicle_norms" id="vehicle_norms" class="form-control">
-        <option value="">---------Select Vehicle Norms -----------</option>
-        <option value="BS II"> BS II </option>
-        <option value="BS III"> BS III </option>
-        <option value="BS IV"> BS IV </option>
-        <option value="BS VI"> BS VI </option>
-      </select>
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="test_fees" class="col-sm-2 col-form-label">Test Fees</label>
-    <div class="col-sm-10">
-      <!-- <input type="text" class="form-control" name="test_fees" id="test_fees"> -->
-      <select class="form-control" name="test_fees" id="test_fees">
-        <option value="">----------Select Test Fees----------</option>
-        <option value="100"> 100 </option>
-        <option value="150"> 150 </option>
-        <option value="200"> 200 </option>
-        <option value="250"> 250 </option>
-        <option value="300"> 300 </option>
-        <option value="500"> 500 </option>
-      </select>
-    </div>
-  </div>  
-  <!-- <div class="form-group row">
+      <form class="user form-signin" id="registrationForm" action="" method="post">
+        <div class="form-group row">
+          <label for="state" class="col-sm-2 col-form-label">State</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" name="state" id="state" value="Madhya Pradesh" disabled>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="rto_code" class="col-sm-2 col-form-label">RTO Code</label>
+          <div class="col-sm-10">
+            <!-- <input type="text"  class="form-control" name="rto_code" id="rto_code" value=""> -->
+            <select class="custom-select" name="rto_code" id="rto_code">
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="district" class="col-sm-2 col-form-label">District</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" name="district" id="district" readonly="readonly">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="owner_name" class="col-sm-2 col-form-label">Owner Name</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" name="owner_name" id="owner_name" value="">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="mobile" class="col-sm-2 col-form-label">Mobile No</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" name="mobile" id="mobile">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="address1" class="col-sm-2 col-form-label">Address</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" name="address1" id="address1">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="technician_name" class="col-sm-2 col-form-label">Technician Name</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" name="technician_name" id="technician_name">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="vehicle" class="col-sm-2 col-form-label">Vehicle No</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" name="vehicle" id="vehicle">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="engine" class="col-sm-2 col-form-label">Engine No</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" name="engine" id="engine">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="chassi" class="col-sm-2 col-form-label">Chassi No</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" name="chassi" id="chassi">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="vehicle_class" class="col-sm-2 col-form-label">Vehicle Class</label>
+          <div class="col-sm-10">
+            <!-- <input type="text" class="form-control" name="vehicle_class" id="vehicle_class"> -->
+            <select class="form-control" name="vehicle_class" id="vehicle_class">
+              <option value="">----------Select vehicle Class----------</option>
+              <option value="MC">MC</option>
+              <option value="Auto">Auto and other 3 wheeler vehicle</option>
+              <option value="A/R">A/R</option>
+              <option value="LGV">LGV</option>
+              <option value="HGV">HGV</option>
+              <option value="LMV">LMV</option>
+              <option value="Bus">Bus</option>
+              <option value="Taxi">Taxi</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="fuel_type" class="col-sm-2 col-form-label">Fuel Type</label>
+          <div class="col-sm-10">
+            <!-- <input type="text" class="form-control" name="fuel_type" id="fuel_type"> -->
+            <select name="fuel_type" id="fuel_type" class="form-control">
+              <option value="">----------Select Fuel Type----------</option>
+              <option value="Diesel"> Diesel </option>
+              <option value="Petrol+CNG">Petrol+CNG </option>
+              <option value="Petrol+LPG"> Petrol+LPG </option>
+              <option value="Petrol">Petrol </option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="vehicle_norms" class="col-sm-2 col-form-label">Vehicle Norms</label>
+          <div class="col-sm-10">
+            <!-- <input type="text" class="form-control" name="vehicle_norms" id="vehicle_norms"> -->
+            <select name="vehicle_norms" id="vehicle_norms" class="form-control">
+              <option value="">---------Select Vehicle Norms -----------</option>
+              <option value="BS II"> BS II </option>
+              <option value="BS III"> BS III </option>
+              <option value="BS IV"> BS IV </option>
+              <option value="BS VI"> BS VI </option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="test_fees" class="col-sm-2 col-form-label">Test Fees</label>
+          <div class="col-sm-10">
+            <!-- <input type="text" class="form-control" name="test_fees" id="test_fees"> -->
+            <select class="form-control" name="test_fees" id="test_fees">
+              <option value="">----------Select Test Fees----------</option>
+              <option value="100"> 100 </option>
+              <option value="150"> 150 </option>
+              <option value="200"> 200 </option>
+              <option value="250"> 250 </option>
+              <option value="300"> 300 </option>
+              <option value="500"> 500 </option>
+            </select>
+          </div>
+        </div>
+        <!-- <div class="form-group row">
     <label for="manufacturer" class="col-sm-2 col-form-label">Manufacturer</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" name="manufacturer" id="manufacturer">
     </div>
   </div> -->
-  <div class="form-group row">
-    <label for="maker_classification" class="col-sm-2 col-form-label">Maker Classification</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" name="maker_classification" id="maker_classification">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="vehicle_model" class="col-sm-2 col-form-label">Vehicle Model</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" name="vehicle_model" id="vehicle_model">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="registration_date" class="col-sm-2 col-form-label">Registration Date</label>
-    <div class="col-sm-10">
-      <input type="Date" class="form-control" name="registration_date" id="registration_date">
-    </div>
-  </div>
-  <!-- <div class="form-group row">
+        <div class="form-group row">
+          <label for="maker_classification" class="col-sm-2 col-form-label">Maker Classification</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" name="maker_classification" id="maker_classification">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="vehicle_model" class="col-sm-2 col-form-label">Vehicle Model</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" name="vehicle_model" id="vehicle_model">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="registration_date" class="col-sm-2 col-form-label">Registration Date</label>
+          <div class="col-sm-10">
+            <input type="Date" class="form-control" name="registration_date" id="registration_date">
+          </div>
+        </div>
+        <!-- <div class="form-group row">
     <label for="speed" class="col-sm-2 col-form-label">Speed(Km/h)</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" name="speed" id="speed"> -->
-      <!-- <select class="form-control" name="speed" id="speed">
+        <!-- <select class="form-control" name="speed" id="speed">
         <option value="">----------Select Speed----------</option>
         <option value="30">30 KMPH</option>
         <option value="40">40 KMPH</option>
@@ -203,67 +235,74 @@
         <option value="160">160 KMPH</option>
         <option value="170">170 KMPH</option>
       </select> -->
-    <!-- </div>
+        <!-- </div>
   </div> -->
-  <!-- <div class="form-group row">
+        <!-- <div class="form-group row">
     <label for="installation_date" class="col-sm-2 col-form-label">Installation Date</label>
     <div class="col-sm-10">
       <input type="Date" class="form-control" name="installation_date" id="installation_date">
     </div>
   </div> -->
-  <div class="form-group row">
-    <label for="validity" class="col-sm-2 col-form-label">Validity</label>
-    <div class="col-sm-10">
-      <!-- <input type="text" class="form-control" name="validity" id="validity"> -->
-      <select name="validity" id="validity" class="form-control">
-            <option value="">----------Select Validity----------</option>
-            <!-- <option value="3">3 Months</option> -->
-            <option value="6">6 Months</option>
-            <!-- <option value="12">12 Months</option> -->
-      </select>
-    </div>
-  </div>
-  <!-- <div class="form-group row">
+        <div class="form-group row">
+          <label for="validity" class="col-sm-2 col-form-label">Validity</label>
+          <div class="col-sm-10">
+            <!-- <input type="text" class="form-control" name="validity" id="validity"> -->
+            <select name="validity" id="validity" class="form-control">
+              <option value="">----------Select Validity----------</option>
+              <!-- <option value="3">3 Months</option> -->
+              <option value="6">6 Months</option>
+              <!-- <option value="12">12 Months</option> -->
+            </select>
+          </div>
+        </div>
+        <!-- <div class="form-group row">
     <label for="roto" class="col-sm-2 col-form-label">Roto Seal/Ref No</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" name="roto" id="roto">
     </div>
   </div> -->
-  <div class="form-group row">
-    <label for="name" class="col-sm-2 col-form-label">Vehicle Photo</label>
-    <div class="col-sm-10">
-      <!-- <input type="text" class="form-control" id="name"> -->
-      <div class="custom-file">
-        <input type="file" class="custom-file-input" id="inputGroupFile01">
-        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-      </div>
+        <div class="form-group row">
+          <label for="name" class="col-sm-2 col-form-label">Vehicle Photo</label>
+          <div class="col-sm-10">
+            <!-- <input type="text" class="form-control" id="name"> -->
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="inputGroupFile01">
+              <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="invoice_no" class="col-sm-2 col-form-label">Invoice No</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" name="invoice_no" id="invoice_no">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="invoice_no" class="col-sm-2 col-form-label">Test</label>
+          <div class="col-sm-10">
+            <button onclick="getTestResult(event, 'main')" class="test_button btn btn-lg btn-primary">Start Test</button>
+            <input type="password" name="test_password" id="test_password" placeholder="PUC Password"
+              autocomplete="new-password" />
+            <button onclick="getTestResult(event, 'add')" class="test_more_button btn btn-primary hide" disabled><i
+                class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add More Test</button>
+          </div>
+        </div>
+        <div class="form-group row puc_result_container">
+          <!-- <div class="puc_result_table"></div> -->
+        </div>
+        <div class="col-auto">
+          <!-- <button type="submit" class="btn btn-primary mb-2" onclick="formSubmitHandler(event)">Submit</button> -->
+          <button class="btn btn-lg btn-primary btn-block text-uppercase submitButtonCls" type="submit" name="submit">Submit</button>
+        </div>
+      </form>
+
     </div>
-  </div>
-  <div class="form-group row">
-    <label for="invoice_no" class="col-sm-2 col-form-label">Invoice No</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" name="invoice_no" id="invoice_no">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="invoice_no" class="col-sm-2 col-form-label">Test</label>
-    <div class="col-sm-10">
-      <button onclick="getTestResult()">Click to Start</button>
-    </div>
-  </div>
-  <div class="col-auto">
-      <!-- <button type="submit" class="btn btn-primary mb-2" onclick="formSubmitHandler(event)">Submit</button> -->
-      <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="submit">Submit</button>
-  </div>
-</form>
 
   </div>
-
-</div>
   <script type="text/javascript" src="./../vendor/jquery/jquery.min.js?v1.0"></script>
   <script type="text/javascript" src="./../vendor/jquery-validation-1.19.1/dist/jquery.validate.js"></script>
   <script type="text/javascript" src="./../js/plugins/jquery-ui.js?v1.0"></script>
-  <script type="text/javascript" src="./../vendor/bootstrap/js/bootstrap.bundle.min.js?v1.0"></script> 
+  <script type="text/javascript" src="./../vendor/bootstrap/js/bootstrap.bundle.min.js?v1.0"></script>
   <!-- custom js -->
   <script type="text/javascript" src="./../js/plugins/sweet-alert.min.js?v1.0"></script>
   <script type="text/javascript" src="./../vendor/notify/notify.js?v1.0"></script>
@@ -278,4 +317,3 @@
 </body>
 
 </html>
-				

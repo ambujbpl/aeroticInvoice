@@ -20,7 +20,7 @@
     var user = localStorage.getItem('user');
     var chengedArray = [];
     var selected;
-    console.log("globalObj :", globalObj);
+    // console.log("globalObj :", globalObj);
     if (user) {
         user = JSON.parse(user);
         $('#editModalBody').html(" ");
@@ -137,10 +137,8 @@
                                 // body += "<tr><th class='capitalize'>" + updatedKey + "</th><td><input type='text' id='" + key + "' value='' /></td></tr>";
                                 chengedArray.push(item.Field);
                             }
-                            console.log('insert form element here :-', item);
                         }
                     }
-                    console.log(data);
                     $("#editModalTable").append(body);
                     updateUserRolesHandler(globalObj, data);
 
@@ -208,15 +206,12 @@
                 chengedArray.forEach((key, index) => {
                     var val = $('#' + key).val();
                     if (key.trim() === "reminder_date") {
-                        console.log('I am here --- ', val);
                         // val = new Date(val).valueOf();
                         // val = "2020-12-25 00:00:00";
                         val = moment(val).format('YYYY-MM-DD');
-                        console.log('new val --- ', val);
-                    } else if(key.trim() === "notification"){
+                    } else if (key.trim() === "notification") {
                         val = $('#' + key).is(":checked");
                         val = val === true ? 1 : 0;
-                        console.log('Notification val : ',val);
                     }
                     query += `${key}="${val}" ,`;
                 });
@@ -245,6 +240,7 @@
                     console.log("Error executing AJAX request. Please contact your administrator");
                 });
             } else {
+                let query1 = ``;
                 let query = `INSERT INTO ${globalObj.editTableName} (`
                 chengedArray.forEach((key, index) => {
                     // var val = $('#' + key).val();
@@ -261,22 +257,42 @@
                 });
                 // query = query.slice(0, -1);
                 query += `"${user.id}")`;
-                console.log("query : ", query);
+                if (globalObj.editTableName === 'users') {
+                    query1 += `select * from users where userid='${$('#userid').val()}'`;
+                }
                 $.when(Posthandler("./../api/custom/custom_query.php", {
-                    'query': query,
+                    'query': globalObj.editTableName == 'users' ? query1 : query,
                     'token': user.token
                 }, true)).done(function (res) {
                     if (res.resCode.trim().toLowerCase() == "ok") {
-                        $.notify("Record has been added", "success");
-                        updateCounters();
-                        if (globalObj.editTableName == "product") {
-                            productDetails();
-                        } else if (globalObj.editTableName == 'reminders') {
-                            remindersDetails();
-                        } else if (globalObj.editTableName == 'users') {
-                            usersDetails();
+                        if (globalObj.editTableName === 'users') {
+                            if (res.data.length === 0) {
+                                $.when(Posthandler("./../api/custom/custom_query.php", {
+                                    'query': query,
+                                    'token': user.token
+                                }, true)).done(function (res1) {
+                                    if (res1.resCode.trim().toLowerCase() == "ok") {
+                                        $.notify("Record has been added", "success");
+                                        usersDetails();
+                                        $('#custom-modal').modal('hide');
+                                    }
+                                });
+                            } else {
+                                $.notify("UserId Should be unique", "error");
+                            }
+                        } else {
+                            $.notify("Record has been added", "success");
+                            updateCounters();
+                            if (globalObj.editTableName == "product") {
+                                productDetails();
+                            } else if (globalObj.editTableName == 'reminders') {
+                                remindersDetails();
+                            } else if (globalObj.editTableName == 'users') {
+                                usersDetails();
+                            }
+                            $('#custom-modal').modal('hide');
                         }
-                        $('#custom-modal').modal('hide');
+
                     } else {
                         $('#errorDiv').html(res.message);
                         $.notify(res.message, "error");

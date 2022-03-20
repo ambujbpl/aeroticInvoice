@@ -163,10 +163,8 @@ updateCounters = () => {
 }
 
 const updateUserRolesHandler = (globalObj, data) => {
-	console.log('globalObj : ',globalObj);
 	optionHtml = `<option value="">----------Select User Roles----------</option>`;
 	const filteredData = userRoles.filter(item => item.show);
-	console.log('filteredData : ',filteredData);
 	filteredData.forEach(item => {
 		optionHtml += `<option value='${item.value}'>${item.name}</optional>`
 	})

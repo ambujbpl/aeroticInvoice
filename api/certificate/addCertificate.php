@@ -54,9 +54,11 @@ $validity = $data->validity;
 // $roto = $data->roto;
 $invoiceno = $data->invoiceno;
 $image = $data->image;
+$createdAt = $data->createdAt;
+$testResult = $data->testResult;
 include('./../config/connection.php');
   // $query2 = "insert into certificates (state,rtoCode,district,ownerName,mobile,vehicleNo,engineNo,address,technicianName,chassisNo,vehicleClass,vehicleModel,fuelType,vehicleNorms,testFees,manufacturer,makerClassification,registrationDate,speed,installationDate,validity,roto,invoiceNo,image) VALUES ('$state','$rtocode','$district','$ownername','$mobile','$vehicle','$engine','$address','$technicianname','$chassi','$vehicleclass','$vehiclemodel','$fueltype','$vehiclenorms','$testfees','$manufacturer','$makerclassification','$registrationdate','$speed','$installationdate','$validity','$roto','$invoiceno','$image')";
-  $query2 = "insert into certificates (state,rtoCode,district,ownerName,mobile,vehicleNo,engineNo,address,technicianName,chassisNo,vehicleClass,vehicleModel,fuelType,vehicleNorms,testFees,makerClassification,registrationDate,installationDate,validity,invoiceNo,image) VALUES ('$state','$rtocode','$district','$ownername','$mobile','$vehicle','$engine','$address','$technicianname','$chassi','$vehicleclass','$vehiclemodel','$fueltype','$vehiclenorms','$testfees','$makerclassification','$registrationdate','$installationdate','$validity','$invoiceno','$image')";
+  $query2 = "insert into certificates (state,rtoCode,district,ownerName,mobile,vehicleNo,engineNo,address,technicianName,chassisNo,vehicleClass,vehicleModel,fuelType,vehicleNorms,testFees,makerClassification,registrationDate,installationDate,validity,invoiceNo,image,createdAt,testResult) VALUES ('$state','$rtocode','$district','$ownername','$mobile','$vehicle','$engine','$address','$technicianname','$chassi','$vehicleclass','$vehiclemodel','$fueltype','$vehiclenorms','$testfees','$makerclassification','$registrationdate','$installationdate','$validity','$invoiceno','$image','$createdAt','$testResult')";
   // echo $query2;
   if ($connection->query($query2) === TRUE) {
     $connection->close();

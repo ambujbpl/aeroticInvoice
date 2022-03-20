@@ -1,204 +1,239 @@
 <!DOCTYPE html>
 <html>
-   <head>
-      <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-      <link rel="stylesheet" type="text/css" href="./../css/old/print.min.css">
-      <link rel="stylesheet" type="text/css" href="./../loader/loader.css?v1.0">
-      <link rel="icon" href="./../images/logoNew1.png" type="image/x-icon">
-      <!-- <link rel="stylesheet" type="text/css" href="./../css/print.min.css"> -->
 
-      <title> Certificate | Saniya Enterprises</title>
+<head>
+   <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+   <link rel="stylesheet" type="text/css" href="./../css/old/print.min.css">
+   <link rel="stylesheet" type="text/css" href="./../loader/loader.css?v1.0">
+   <link rel="icon" href="./../images/logoNew1.png" type="image/x-icon">
+   <!-- <link rel="stylesheet" type="text/css" href="./../css/print.min.css"> -->
 
-      <style>
-         @media print {
-             body {
-                margin: 0;
-             }
+   <title> Certificate | Saniya Enterprises</title>
+
+   <style>
+      @media print {
+         body {
+            margin: 0;
          }
-         .print_Div {
-              text-align: center;
-              /*margin-top: 100px !important;*/
-              margin: 10px 0px;
-         }
-         .btn-primary {
-            color: #fff;
-            padding: 10px;
-            background-color: blue;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-         }
-         .hide {
-            display: none;
-         }
-      </style>
-   </head>
-   <body>
-      <!-- Certificate Start From Here -->
-      <div class=" border-2 border-gray-500 m-4 bg-yellow-200">
-         <div class="flex w-full h-48  p-10 text-center font-semibold">
-            <div class="flex flex-col items-center justify-center w-1/4 h-auto ">
-               <img src="ln.png" class="w-32 h-auto" />
-               <img src="p.png" class="w-48 h-auto" />
-            </div>
-            <div class="w-1/2 text-center text-xl -mt-5">
-               <span class="text-6xl font-bold">PUCC</span><br>
-               As Per Central Motor Vehicles Rules 1989<br>
-               <img src="head.png" class="mx-auto" style="width:400px">
-            </div>
-            <div class="w-1/4 flex items-center justify-center">
-               <img src="sb.png" class="mx-auto w-56 h-auto" /> 
-            </div>
+      }
+
+      .print_Div {
+         text-align: center;
+         /*margin-top: 100px !important;*/
+         margin: 10px 0px;
+      }
+
+      .btn-primary {
+         color: #fff;
+         padding: 10px;
+         background-color: blue;
+         border: 1px solid #ccc;
+         border-radius: 10px;
+      }
+
+      .hide {
+         display: none;
+      }
+   </style>
+</head>
+
+<body>
+   <!-- Certificate Start From Here -->
+   <div class=" border-2 border-gray-500 m-4 bg-yellow-200">
+      <div class="flex w-full h-48  p-10 text-center font-semibold">
+         <div class="flex flex-col items-center justify-center w-1/4 h-auto ">
+            <img src="ln.png" class="w-32 h-auto" />
+            <img src="p.png" class="w-48 h-auto" />
          </div>
-         <div class="flex w-full h-auto mt-24">
-            <div class="w-1/4 ">
-               <div class="flex items-center pl-10 justify-start h-10 text-md font-semibold  p-2 ">Certificate Sl.No </div>
-               <div class="flex items-center pl-10 justify-start h-10 text-md font-semibold  p-2 ">Registration No </div>
-               <div class="flex items-center pl-10 justify-start h-10 text-md font-semibold  p-2 ">Chassis No </div>
-               <div class="flex items-center pl-10 justify-start h-10 text-md font-semibold  p-2 ">Engine Number </div>
-               <div class="flex items-center pl-10 justify-start h-10 text-md font-semibold  p-2 ">Name Of Owner </div>
-               <!-- <div class="flex items-center pl-10 justify-start h-10 text-md font-semibold  p-2 ">Owner Mobile </div> -->
-               <div class="`flex items-center pl-10 justify-start h-10 text-md font-semibold  p-2 ">Date of Registration </div>
-               <div class="flex items-center pl-10 justify-start h-10 text-md font-semibold  p-2 ">Emission Norms </div>
-               <div class="flex items-center pl-10 justify-start h-10 text-md font-semibold  p-2 ">Class of Vehicle </div>
-               <div class="flex items-center pl-10 justify-start h-10 text-md font-semibold  p-2 ">Make </div>
-               <div class="flex items-center pl-10 justify-start h-10 text-md font-semibold  p-2 ">Model </div>
-               <div class="flex items-center pl-10 justify-start h-10 text-md font-semibold  p-2 ">Fuel </div>
-               <div class="flex items-center pl-10 justify-start h-10 text-md font-semibold  p-2 ">Date of Testing </div>
-               <div class="flex items-center pl-10 justify-start h-10 text-md font-semibold  p-2 "> Test Fee </div>
-            </div>
-            <div class="w-1/4 ">
-               <div class="flex items-center justify-start h-10 text-md font-semibold  p-2 uppercase " id="invoice_no"></div>
-               <div class="flex items-center justify-start h-10 text-md font-semibold  p-2 uppercase " id="vehicle"></div>
-               <div class="flex items-center justify-start h-10 text-md font-semibold  p-2 uppercase " id="chassi"></div>
-               <div class="flex items-center justify-start h-10 text-md font-semibold  p-2 uppercase " id="engine"></div>
-               <div class="flex items-center justify-start h-10 text-md font-semibold  p-2 uppercase " id="owner_name"></div>
-               <!-- <div class="flex items-center justify-start h-10 text-md font-semibold  p-2 uppercase "></div> -->
-               <div class="flex items-center justify-start h-10 text-md font-semibold  p-2 uppercase " id="registration_date"></div>
-               <div class="flex items-center justify-start h-10 text-md font-semibold  p-2 uppercase " id="vehicle_norms"></div>
-               <div class="flex items-center justify-start h-10 text-md font-semibold  p-2 uppercase " id="vehicle_class"></div>
-               <div class="flex items-center justify-start h-10 text-md font-semibold  p-2 uppercase " id="maker_classification"></div>
-               <div class="flex items-center justify-start h-10 text-md font-semibold  p-2 uppercase " id="vehicle_model"></div>
-               <div class="flex items-center justify-start h-10 text-md font-semibold  p-2 uppercase " id="fuel_type"></div>
-               <div class="flex items-center justify-start h-10 text-md font-semibold  p-2 uppercase " id="installation_date"></div>
-               <div class="flex items-center justify-start h-10 text-md font-semibold  p-2 uppercase " id="test_fees">
-                  &#8377; 
-               </div>
-            </div>
-            <!-- left Part End HERE -->
-            <!-- Right Part Start -->
-            <div class="w-1/2 ">
-               <div class="w-full h-auto text-center  p-3">
-                  <div class="font-bold text-2xl -mt-5">TEST RESULT : PASS</div> <br>
-                   <!-- <div class="font-bold text-2xl -mt-5" id="installation_date">Valid till</div> -->
-                  <div class="mt-5  text-center font-semibold">
-                     PETROL/CNG/LPG DRIVEN VEHICLES<br/>
-                     Certified that the vehicle conforms to the standards<br/>
-                     prescribed under rule 115(2) of CMV Rules 1989<br/>
-                     CO Level at Idling(% Volume) (PPM)<br/>
-                     HC level at idling (RPM)                        
-                  </div>
-                  <table class="mt-6 w-full border border-gray-600 text-sm">
-                     <tr class="w-full border border-gray-600 p-1">
-                        <!-- <th class="w-1/5 border border-gray-600 p-1">FUEL </th> -->
-                        <th class="w-1/5 border border-gray-600 p-1">Prescribed <br>Standard CO
-                        </th>
-                        <th class="w-1/5 border border-gray-600 p-1">Mesured <br>Value</th>
-                        <th class="w-1/5 border border-gray-600 p-1">Prescribed <br>Standard HC
-                        <th class="w-1/5 border border-gray-600 p-1">Mesured <br>Value</th>
-                        </th>
-                     </tr>
-                     <tr class="w-full border border-gray-600 p-1">
-                        <!-- <th class="w-1/5  border border-gray-600 p-1 fuel_type"> </th> -->
-                        <th class="w-1/5 border border-gray-600 p-1">3.5</th>
-                        <th class="w-1/5 border border-gray-600 p-1">1.655</th>
-                        <th class="w-1/5 border border-gray-600 p-1">4500</th>
-                        <th class="w-1/5 border border-gray-600 p-1">1146 </th>
-                     </tr>
-                  </table>
-                  <div class="w-full mt-4 p-2  border border-gray-500">
-                     <img src="../images/61cae632e9242.jpg" id="certificate_img" class="mx-auto w-64 h-64 object-center" />
-                  </div>
-                  <div class="absolute">
-                     <div class="flex px-5 mt-1 flex-wrap  mt-5  text-left justify-start text-lg font-semibold">Auto Emission Testing Center Code : BPL/98/20</div>
-                     <div class="flex px-5 mt-1 flex-wrap  text-left justify-start text-lg font-semibold">Testing Center Name :
-                        Saniya Enterprises
-                     </div>
-                     <div class=" px-5 mt-1 flex-wrap flex  text-left justify-start text-lg font-semibold">Mobile :
-                        8770557511
-                     </div>
-                     <div class=" px-5 mt-1 flex-wrap flex  text-left justify-start text-lg font-semibold">Center Address :
-                        MP Nagar Bhopal
-                     </div>
-                     <div class="mt-10  flex flex-col items-end justify-end text-lg font-semibold  p-6 mr-3 ">
-                        <div> _____________________</div>
-                        <div>Authorised Signature</div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <!-- Right End  -->
+         <div class="w-1/2 text-center text-xl -mt-5">
+            <span class="text-6xl font-bold">PUCC</span><br>
+            As Per Central Motor Vehicles Rules 1989<br>
+            <img src="head.png" class="mx-auto" style="width:400px">
          </div>
-         <!-- Bottom Start -->
-         <div class=" text-center mx-12">
-            <div class=" uppercase text-lg text-left font-semibold">Test Result For The Vehicle</div>
-            <table class="mt-2  w-1/2 border border-gray-600 text-sm">
-               <tr class="w-full border border-gray-600 p-1">
-                  <th class="w-1/5 border border-gray-600 p-1"> </th>
-                  <th class="w-1/5 border border-gray-600 p-1">MEASURED VALUE
-                  </th>
-                  <th class="w-1/5 border border-gray-600 p-1">UNIT</th>
-               </tr>
-               <tr class="w-full border border-gray-600 p-1">
-                  <th class="w-1/5 border border-gray-600 p-1"> CO</th>
-                  <th class="w-1/5 border border-gray-600 p-1">1.655                            </th>
-                  <th class="w-1/5 border border-gray-600 p-1">%</th>
-               </tr>
-               <tr class="w-full border border-gray-600 p-1">
-                  <th class="w-1/5 border border-gray-600 p-1"> CO-CORRECTED</th>
-                  <th class="w-1/5 border border-gray-600 p-1">1.655                            </th>
-                  <th class="w-1/5 border border-gray-600 p-1">%</th>
-               </tr>
-               <tr class="w-full border border-gray-600 p-1">
-                  <th class="w-1/5 border border-gray-600 p-1"> HC</th>
-                  <th class="w-1/5 border border-gray-600 p-1">1146                             </th>
-                  <th class="w-1/5 border border-gray-600 p-1">PPM</th>
-               </tr>
-               <tr class="w-full border border-gray-600 p-1">
-                  <th class="w-1/5 border border-gray-600 p-1"> CO2</th>
-                  <th class="w-1/5 border border-gray-600 p-1">7.5                            </th>
-                  <th class="w-1/5 border border-gray-600 p-1">%</th>
-               </tr>
-               <tr class="w-full border border-gray-600 p-1">
-                  <th class="w-1/5 border border-gray-600 p-1"> O2</th>
-                  <th class="w-1/5 border border-gray-600 p-1">12.2
-                  </th>
-                  <th class="w-1/5 border border-gray-600 p-1">%</th>
-               </tr>
-               <tr class="w-full border border-gray-600 p-1">
-                  <th class="w-1/5 border border-gray-600 p-1">RPM</th>
-                  <th class="w-1/5 border border-gray-600 p-1">0.0
-                  </th>
-                  <th class="w-1/5 border border-gray-600 p-1"></th>
-               </tr>
-               <tr class="w-full border border-gray-600 p-1">
-                  <th class="w-1/5 border border-gray-600 p-1"> OIL-TEMP</th>
-                  <th class="w-1/5 border border-gray-600 p-1">0.0
-                  </th>
-                  <th class="w-1/5 border border-gray-600 p-1">DGREE CENTIGRATE</th>
-               </tr>
-            </table>
-            <div class="mt-5 font-semibold text-gray-800 mb-4">This is a computer generated certificate and does not require signature <br>
-               Fuel Norms entered by PUC center BPL/98/20 manualy,Please visit RTO and correct norms
-            </div>
+         <div class="w-1/4 flex items-center justify-center">
+            <img src="sb.png" class="mx-auto w-56 h-auto" />
          </div>
-       <div class="print_Div" id="print_Div">
-            <button type="button" class="btn btn-primary" name="button" id="print">Print Certificate</button>
-       </div>
       </div>
-      <script type="text/javascript" src="./../vendor/jquery/jquery.min.js?v1.0"></script>
-      <script type="text/javascript" src="./../js/plugins/ajaxHendler.js"></script>
-      <script type="text/javascript" src="./../vendor/notify/notify.js"></script>
-      <script type="text/javascript" src="./../js/main/certificate.js"></script>
-      <!-- Certificate End Here -->
-   </body>
+      <div class="flex w-full h-auto mt-24">
+         <div class="w-1/4 ">
+            <div class="flex items-center pl-10 justify-start h-10 text-md font-semibold  p-2 ">Certificate Sl.No </div>
+            <div class="flex items-center pl-10 justify-start h-10 text-md font-semibold  p-2 ">Registration No </div>
+            <div class="flex items-center pl-10 justify-start h-10 text-md font-semibold  p-2 ">Chassis No </div>
+            <div class="flex items-center pl-10 justify-start h-10 text-md font-semibold  p-2 ">Engine Number </div>
+            <div class="flex items-center pl-10 justify-start h-10 text-md font-semibold  p-2 ">Name Of Owner </div>
+            <!-- <div class="flex items-center pl-10 justify-start h-10 text-md font-semibold  p-2 ">Owner Mobile </div> -->
+            <div class="`flex items-center pl-10 justify-start h-10 text-md font-semibold  p-2 ">Date of Registration
+            </div>
+            <div class="flex items-center pl-10 justify-start h-10 text-md font-semibold  p-2 ">Emission Norms </div>
+            <div class="flex items-center pl-10 justify-start h-10 text-md font-semibold  p-2 ">Class of Vehicle </div>
+            <div class="flex items-center pl-10 justify-start h-10 text-md font-semibold  p-2 ">Make </div>
+            <div class="flex items-center pl-10 justify-start h-10 text-md font-semibold  p-2 ">Model </div>
+            <div class="flex items-center pl-10 justify-start h-10 text-md font-semibold  p-2 ">Fuel </div>
+            <div class="flex items-center pl-10 justify-start h-10 text-md font-semibold  p-2 ">Date of Testing </div>
+            <div class="flex items-center pl-10 justify-start h-10 text-md font-semibold  p-2 "> Test Fee </div>
+         </div>
+         <div class="w-1/4 ">
+            <div class="flex items-center justify-start h-10 text-md font-semibold  p-2 uppercase " id="invoice_no">
+            </div>
+            <div class="flex items-center justify-start h-10 text-md font-semibold  p-2 uppercase " id="vehicle"></div>
+            <div class="flex items-center justify-start h-10 text-md font-semibold  p-2 uppercase " id="chassi"></div>
+            <div class="flex items-center justify-start h-10 text-md font-semibold  p-2 uppercase " id="engine"></div>
+            <div class="flex items-center justify-start h-10 text-md font-semibold  p-2 uppercase " id="owner_name">
+            </div>
+            <!-- <div class="flex items-center justify-start h-10 text-md font-semibold  p-2 uppercase "></div> -->
+            <div class="flex items-center justify-start h-10 text-md font-semibold  p-2 uppercase "
+               id="registration_date"></div>
+            <div class="flex items-center justify-start h-10 text-md font-semibold  p-2 uppercase " id="vehicle_norms">
+            </div>
+            <div class="flex items-center justify-start h-10 text-md font-semibold  p-2 uppercase " id="vehicle_class">
+            </div>
+            <div class="flex items-center justify-start h-10 text-md font-semibold  p-2 uppercase "
+               id="maker_classification"></div>
+            <div class="flex items-center justify-start h-10 text-md font-semibold  p-2 uppercase " id="vehicle_model">
+            </div>
+            <div class="flex items-center justify-start h-10 text-md font-semibold  p-2 uppercase " id="fuel_type">
+            </div>
+            <div class="flex items-center justify-start h-10 text-md font-semibold  p-2 uppercase "
+               id="installation_date"></div>
+            <div class="flex items-center justify-start h-10 text-md font-semibold  p-2 uppercase " id="test_fees">
+               &#8377;
+            </div>
+         </div>
+         <!-- left Part End HERE -->
+         <!-- Right Part Start -->
+         <div class="w-1/2 ">
+            <div class="w-full h-auto text-center  p-3">
+               <div class="font-bold text-2xl -mt-5">TEST RESULT : PASS</div> <br>
+               <!-- <div class="font-bold text-2xl -mt-5" id="installation_date">Valid till</div> -->
+               <div class="mt-5  text-center font-semibold">
+                  DIESEL/PETROL/CNG/LPG DRIVEN VEHICLES<br />
+                  Certified that the vehicle conforms to the standards<br />
+                  prescribed under rule 115(2) of CMV Rules 1989<br />
+                  CO Level at Idling(% Volume) (PPM)<br />
+                  HC level at idling (RPM)
+               </div>
+               <table class="mt-6 w-full border border-gray-600 text-sm petrolView">
+                  <tr class="w-full border border-gray-600 p-1">
+                     <!-- <th class="w-1/5 border border-gray-600 p-1">FUEL </th> -->
+                     <th class="w-1/5 border border-gray-600 p-1">Prescribed <br>Standard CO
+                     </th>
+                     <th class="w-1/5 border border-gray-600 p-1">Mesured <br>Value CO</th>
+                     <th class="w-1/5 border border-gray-600 p-1">Prescribed <br>Standard HC
+                     <th class="w-1/5 border border-gray-600 p-1">Mesured <br>Value HC</th>
+                     </th>
+                  </tr>
+                  <tr class="w-full border border-gray-600 p-1">
+                     <!-- <th class="w-1/5  border border-gray-600 p-1 fuel_type"> </th> -->
+                     <th class="w-1/5 border border-gray-600 p-1 PrescribedStandardCO">3.5</th>
+                     <th class="w-1/5 border border-gray-600 p-1 MesuredValueCO">1.655</th>
+                     <th class="w-1/5 border border-gray-600 p-1 PrescribedStandardHC">4500</th>
+                     <th class="w-1/5 border border-gray-600 p-1 MesuredValueHC">1146 </th>
+                  </tr>
+               </table>
+               <table class="mt-6 w-full border border-gray-600 text-sm dieselView">
+                  <tr class="w-full border border-gray-600 p-1">
+                     <!-- <th class="w-1/5 border border-gray-600 p-1">FUEL </th> -->
+                     <th class="w-1/5 border border-gray-600 p-1">Fuel</th>
+                     <th class="w-1/5 border border-gray-600 p-1">Light Absorption Coefficient<br>(Permissible Limit)
+                     </th>
+                     <th class="w-1/5 border border-gray-600 p-1">Measured Value</th>
+                  </tr>
+                  <tr class="w-full border border-gray-600 p-1">
+                     <!-- <th class="w-1/5  border border-gray-600 p-1 fuel_type"> </th> -->
+                     <th class="w-1/5 border border-gray-600 p-1">Diesel</th>
+                     <th class="w-1/5 border border-gray-600 p-1">2.45</th>
+                     <th class="w-1/5 border border-gray-600 p-1 measuredValue"></th>
+                  </tr>
+               </table>
+               <div class="w-full mt-4 p-2  border border-gray-500">
+                  <img src="../images/61cae632e9242.jpg" id="certificate_img" class="mx-auto w-64 h-64 object-center" />
+               </div>
+               <div class="absolute">
+                  <div class="flex px-5 mt-1 flex-wrap  mt-5  text-left justify-start text-lg font-semibold">Auto
+                     Emission Testing Center Code :&nbsp;<span class="centerCode">BPL/98/20</span></div>
+                  <div class="flex px-5 mt-1 flex-wrap  text-left justify-start text-lg font-semibold">Testing Center
+                     Name :&nbsp;<span class="centerName">Saniya Enterprises</span>
+                  </div>
+                  <div class=" px-5 mt-1 flex-wrap flex  text-left justify-start text-lg font-semibold">Mobile :&nbsp;
+                     <span class="centerMobile">8770557511</span>
+                  </div>
+                  <div class=" px-5 mt-1 flex-wrap flex  text-left justify-start text-lg font-semibold">Center Address :&nbsp;
+                     <span class="centerAddress">MP Nagar Bhopal</span>
+                  </div>
+                  <div class="mt-10  flex flex-col items-end justify-end text-lg font-semibold  p-6 mr-3 "  style="margin-top: 5px;">
+                     <div> _____________________</div>
+                     <div>Authorised Signature</div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- Right End  -->
+      </div>
+      <!-- Bottom Start -->
+      <div class=" text-center mx-12">
+         <div class=" uppercase text-lg text-left font-semibold">Test Result For The Vehicle</div>
+         <table class="mt-2  w-1/2 border border-gray-600 text-sm petrolView petrolViewTable">
+            <tr class="w-full border border-gray-600 p-1">
+               <th class="w-1/5 border border-gray-600 p-1"> </th>
+               <th class="w-1/5 border border-gray-600 p-1">MEASURED VALUE
+               </th>
+               <th class="w-1/5 border border-gray-600 p-1">UNIT</th>
+            </tr>
+            <tr class="w-full border border-gray-600 p-1">
+               <th class="w-1/5 border border-gray-600 p-1"> CO</th>
+               <th class="w-1/5 border border-gray-600 p-1 coValue">1.655</th>
+               <th class="w-1/5 border border-gray-600 p-1">%</th>
+            </tr>
+            <tr class="w-full border border-gray-600 p-1">
+               <th class="w-1/5 border border-gray-600 p-1"> CO-CORRECTED</th>
+               <th class="w-1/5 border border-gray-600 p-1 coCorrected">1.655</th>
+               <th class="w-1/5 border border-gray-600 p-1">%</th>
+            </tr>
+            <tr class="w-full border border-gray-600 p-1">
+               <th class="w-1/5 border border-gray-600 p-1"> HC</th>
+               <th class="w-1/5 border border-gray-600 p-1 hcValue">1146</th>
+               <th class="w-1/5 border border-gray-600 p-1">PPM</th>
+            </tr>
+            <tr class="w-full border border-gray-600 p-1">
+               <th class="w-1/5 border border-gray-600 p-1"> CO2</th>
+               <th class="w-1/5 border border-gray-600 p-1 co2Value">7.5</th>
+               <th class="w-1/5 border border-gray-600 p-1">%</th>
+            </tr>
+            <tr class="w-full border border-gray-600 p-1">
+               <th class="w-1/5 border border-gray-600 p-1"> O2</th>
+               <th class="w-1/5 border border-gray-600 p-1 o2Value">12.2
+               </th>
+               <th class="w-1/5 border border-gray-600 p-1">%</th>
+            </tr>
+            <tr class="w-full border border-gray-600 p-1">
+               <th class="w-1/5 border border-gray-600 p-1">RPM</th>
+               <th class="w-1/5 border border-gray-600 p-1">0.0
+               </th>
+               <th class="w-1/5 border border-gray-600 p-1"></th>
+            </tr>
+            <tr class="w-full border border-gray-600 p-1">
+               <th class="w-1/5 border border-gray-600 p-1"> OIL-TEMP</th>
+               <th class="w-1/5 border border-gray-600 p-1">0.0
+               </th>
+               <th class="w-1/5 border border-gray-600 p-1">DEGREE CENTIGRATE</th>
+            </tr>
+         </table>
+         <table class="mt-2  w-1/2 border border-gray-600 text-sm dieselView dieselViewTable"></table>
+         <div class="mt-5 font-semibold text-gray-800 mb-4">This is a computer generated certificate and does not
+            require signature <br>
+            Fuel Norms entered by PUC center BPL/98/20 manualy,Please visit RTO and correct norms
+         </div>
+      </div>
+      <div class="print_Div" id="print_Div">
+         <button type="button" class="btn btn-primary" name="button" id="print">Print Certificate</button>
+      </div>
+   </div>
+   <script type="text/javascript" src="./../vendor/jquery/jquery.min.js?v1.0"></script>
+   <script type="text/javascript" src="./../js/plugins/ajaxHendler.js"></script>
+   <script type="text/javascript" src="./../vendor/notify/notify.js"></script>
+   <script type="text/javascript" src="./../js/plugins/moment.js?v1.0"></script>
+   <script type="text/javascript" src="./../js/main/certificate.js"></script>
+   <!-- Certificate End Here -->
+</body>
+
 </html>

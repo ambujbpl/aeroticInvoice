@@ -36,7 +36,6 @@ logoutFunction = () => {
  * @param      {<type>}  modalType  The modal type
  */
 OpenCustomModal = (modalName,extention,modalType) => {
-  console.log('OpenCustomModal')
   var model = "./modals/" + modalName + "." + extention;
   $('.modal-dialog').removeClass('modal-xl').removeClass('modal-lg').removeClass('modal-sm').removeClass('modal-xs');
   $('.modal-dialog').addClass(modalType);
@@ -232,7 +231,6 @@ executeCustomQuery = (query,type,view = "",message = "") => {
          invoiceNumber = `0${parseInt(res.data[0]["InvoiceCount"])}`;
        }  else invoiceNumber = `00${parseInt(res.data[0]["InvoiceCount"])}`;
        invoiceNumber = invoiceNumber + `/${res.data[0]["YearCode"]}`;
-       console.log('invoiceNumber : ',invoiceNumber);
        $("#invoiceNumber").html(invoiceNumber);
      } else if(type.trim().toLowerCase() === "updateinvoiceitems"){
        updateInvoiceItems(res.data,type,view,message);
@@ -298,7 +296,6 @@ executeCustomQueryHtml = (query,type,view = "",message = "") => {
          invoiceNumber = `0${parseInt(res.data[0]["InvoiceCount"])}`;
        }  else invoiceNumber = `00${parseInt(res.data[0]["InvoiceCount"])}`;
        invoiceNumber = invoiceNumber + `/${res.data[0]["YearCode"]}`;
-       console.log('invoiceNumber : ',invoiceNumber);
        $("#invoiceNumber").html(invoiceNumber);
      } else if(type.trim().toLowerCase() === "updateinvoicenumber"){
        $("#invoiceNumber").html(parseInt(res.data[0]["invoiceNumber"]) + 1);
@@ -552,10 +549,10 @@ updateMainContainerBodyDataTable = (table_name,type,view) => {
  * @param      {<type>}  url     The url
  */
 updateDataTableWithServerSidePagination =  (id,url,action,table_name) => {
-  console.log("id : ",id);
-  console.log("url : ",url);
-  console.log("action : ",action);
-  console.log("table_name : ",table_name);
+  // console.log("id : ",id);
+  // console.log("url : ",url);
+  // console.log("action : ",action);
+  // console.log("table_name : ",table_name);
   if(action){
     $.fn.dataTable.ext.buttons.add = {
       className: 'add-record',
@@ -595,7 +592,6 @@ updateDataTableWithServerSidePagination =  (id,url,action,table_name) => {
       "scrollX": true,
       "autoWidth": true
     });
-    console.log();
   }else{
     $('#' + id).DataTable({
       dom: 'Blfrtip',
@@ -656,12 +652,13 @@ addNewReminders = (table_name) => {
  */
 updateDataTableWithoutServerSidePagination = (id,url,action,table_name) => {
   let columns = [];
-  console.log("id : ",id);
-  console.log("url : ",url);
-  console.log("action : ",action);
-  console.log("table_name : ",table_name);
+  // console.log("id : ",id);
+  // console.log("url : ",url);
+  // console.log("action : ",action);
+  // console.log("table_name : ",table_name);
   let query = `select * from ${table_name}`;
   if(table_name === "users") query+= ` where role!='ADMIN';`;
+  if(table_name === "certificates" && user.role.trim().toLowerCase() != "admin") query+= ` where createdAt=${user.id};`;
   if (table_name === "invoices") {
     columns = [
       { data: 'id' },
@@ -723,7 +720,6 @@ updateDataTableWithoutServerSidePagination = (id,url,action,table_name) => {
       { data: 'role' }
     ]
   }
-  console.log('columns : ',columns);
   $.when(Posthandler("./../api/custom/custom_query.php", {'query':query, 'token': user.token}, false)).done(function(res) {
     if(res.resCode.trim().toLowerCase() == "ok") {
       if(action){
