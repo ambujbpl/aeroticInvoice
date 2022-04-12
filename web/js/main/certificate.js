@@ -46,6 +46,17 @@ const getCertificateDataFromServer = () => {
 		console.log("Error executing AJAX request. Please contact your administrator");
 	});
 };
+const updateValidityHandler = (months, installationDate) => {
+	console.log('installationDate : ',installationDate);
+	let m = parseInt(months);
+	// let d = new Date(installationDate);
+	// let currentMonth = d.getMonth();
+	// console.log('currentMonth : ',currentMonth);
+	// console.log('d : ',d);
+	// let date = d.setMonth(currentMonth + m);
+	// console.log('date : ',date);
+	$('#validity').html(moment(installationDate).add(m, 'M').format("DD-MM-YYYY"));
+}
 updatePUCDetailsHtml = async (res) => {
 	$("#invoice_no").html(res["invoiceNo"]);
 	$("#vehicle").html(res["vehicleNo"]);
@@ -62,6 +73,7 @@ updatePUCDetailsHtml = async (res) => {
 	$('#installation_date').html(moment(res.installationDate).format("DD-MM-YYYY"));
 	$('#test_fees').html(res["testFees"]);
 	$('.fuel_type').html(res["fuelType"]);
+	updateValidityHandler(res["validity"] || 6, res.installationDate);
 	if (res.image && res.image != "nofile") $('#certificate_img').attr("src", "./../" + res.image);
 	if (res.fuelType.trim().toLowerCase() === "diesel") {
 		let tableHtml = `<thead><tr class='w-full border border-gray-600 p-1'><th class='w-1/5 border border-gray-600 p-1'>SN</th>`;
